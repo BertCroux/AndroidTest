@@ -52,18 +52,11 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/book_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/white_border_button"
-        android:fontFamily="sans-serif-light"
-        android:paddingLeft="35dp"
-        android:paddingRight="35dp"
         android:text="@string/book_btn"
-        android:textColor="@color/white"
-        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/information_text"
-        app:layout_constraintVertical_bias="0.35000002" />
+        app:layout_constraintVertical_bias="0.35000000"
+        style="@style/primary_button_style" />
 </androidx.constraintlayout.widget.ConstraintLayout>
