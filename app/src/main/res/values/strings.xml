@@ -6,6 +6,10 @@
     <string name="navigation_exercises">Exerc.</string>
     <string name="navigation_health">Health</string>
     <string name="navigation_settings">Settings</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--fragment home string resources-->
+    <string name="greeting_text">Hello\nUsername!</string>
+    <string name="information_text">Right now is the perfect time to get fit!\nCome join one of ou training-sessions</string>
+    <string name="book_btn">book</string>
+    <string name="home_image_alt">Men</string>
+    <string name="logo_image_alt">Logo</string>
 </resources>
