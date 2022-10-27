@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home_menu_item"
+        android:id="@+id/home"
         android:icon="@drawable/ic_home"
         android:title="@string/navigation_home" />
     <item
-        android:id="@+id/reservation_menu_item"
+        android:id="@+id/reservation"
         android:icon="@drawable/ic_reservation"
         android:title="@string/navigation_reservation" />
     <item
