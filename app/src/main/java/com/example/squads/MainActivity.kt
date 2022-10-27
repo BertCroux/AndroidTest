@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
 
         navController = this.findNavController(R.id.nav_host_fragment_activity_main)
         setupMenu()
+
+        supportActionBar?.hide() //temporary solution
     }
 
     /**
