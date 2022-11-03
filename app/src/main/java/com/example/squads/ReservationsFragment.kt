@@ -6,16 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 
 class ReservationsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val tabLayout: TabLayout = view.findViewById(R.id.tab_layout)
-        val viewPager: ViewPager = view.findViewById(R.id.view_pager)
-        viewPager.adapter = ReservationsPagerAdapter(requireActivity(), parentFragmentManager)
-        tabLayout.setupWithViewPager(viewPager)
-
+        val viewPager: ViewPager2 = view.findViewById(R.id.view_pager)
+        viewPager.adapter = ReservationsPagerAdapter(this)
+        TabLayoutMediator(tabLayout, viewPager) {tab, position -> when(position) {
+            0 -> tab.text = "test1"
+            else -> {
+                tab.text = "test2"
+            }
+        } }.attach()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
