@@ -1,4 +1,4 @@
-package com.example.squads
+package com.example.squads.screens.reservations.tabs
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter

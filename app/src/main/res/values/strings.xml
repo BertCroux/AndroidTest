@@ -28,4 +28,8 @@
     <string name="year_btn">year</string>
     <string name="all_btn">all</string>
     <string name="date_mock_text">02/09/2022</string>
+    <!--reservation tabs-->
+    <string name="past_res_text">Planned</string>
+    <string name="planned_res_text">Past</string>
+
 </resources>
