@@ -7,33 +7,29 @@
     tools:context=".screens.reservations.ReservationsFragment">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="60dp"
+        android:id="@+id/reservation_title_text"
         android:text="@string/reservations_text"
-        android:textColor="@color/white"
-        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/title_style" />
 
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
+        android:id="@+id/book_btn_2"
         style="@style/primary_button_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/book_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/reservation_title_text" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/button">
+        app:layout_constraintTop_toBottomOf="@+id/book_btn_2">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -57,7 +53,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tab_layout">
-
 
     </androidx.viewpager2.widget.ViewPager2>
 </androidx.constraintlayout.widget.ConstraintLayout>
