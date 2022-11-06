@@ -1,17 +1,15 @@
 package com.example.squads
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.viewpager.widget.ViewPager
 import com.example.squads.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
@@ -25,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         navController = this.findNavController(R.id.nav_host_fragment_activity_main)
         setupMenu()
 
-        supportActionBar?.hide() //temporary solution
+        supportActionBar?.hide() // temporary solution
     }
 
     /**

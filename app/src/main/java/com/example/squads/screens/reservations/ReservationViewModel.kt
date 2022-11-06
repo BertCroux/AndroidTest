@@ -8,13 +8,16 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
-class ReservationViewModel: ViewModel() {
+class ReservationViewModel : ViewModel() {
 
-    //reservations of 'a user' (not specified atm)
-    private val _reservations = listOf(Reservation(
-        LocalDateTime(2022, 10, 3, 19, 0, 0, 0),
-        LocalDateTime(2022, 10, 3, 19, 0, 0, 0),
-         "Heavy workout", "Beast mode"))
+    // reservations of 'a user' (not specified atm)
+    private val _reservations = listOf(
+        Reservation(
+            LocalDateTime(2022, 10, 3, 19, 0, 0, 0),
+            LocalDateTime(2022, 10, 3, 19, 0, 0, 0),
+            "Heavy workout", "Beast mode"
+        )
+    )
 
     private val _pastReservations = MutableLiveData<List<Reservation>>()
     val pastReservation: LiveData<List<Reservation>>
