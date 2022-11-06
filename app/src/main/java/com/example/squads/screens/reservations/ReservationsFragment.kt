@@ -13,6 +13,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 
 class ReservationsFragment : Fragment() {
+    lateinit var viewModel: ReservationViewModel
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val tabLayout: TabLayout = view.findViewById(R.id.tab_layout)
         val viewPager: ViewPager2 = view.findViewById(R.id.view_pager)

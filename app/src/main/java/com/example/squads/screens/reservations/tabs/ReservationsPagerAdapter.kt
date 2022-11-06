@@ -14,5 +14,4 @@ class ReservationsPagerAdapter(fa: Fragment): FragmentStateAdapter(fa) {
             }
         }
     }
-
 }

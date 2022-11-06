@@ -5,9 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import com.example.squads.R
+import com.example.squads.databinding.FragmentPlannedReservationsBinding
+import com.example.squads.screens.reservations.ReservationViewModel
 
 class PlannedReservationsFragment : Fragment() {
+    private val sharedViewModel: ReservationViewModel by activityViewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
     }
@@ -20,6 +26,8 @@ class PlannedReservationsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_planned_reservations, container, false)
+        val binding: FragmentPlannedReservationsBinding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_planned_reservations, container, false)
+        return binding.root
     }
 }
