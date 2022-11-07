@@ -36,7 +36,9 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_view)
         bottomNavigationView.setupWithNavController(navController)
 
-        // Setup the ActionBar with navController and 3 top level destinations
+        // Specify the fragments in a Set Collection
+        // They're used in the same order as defined in the Collection
+        // e.g. home fragment shows at the first menu item in the action bar
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.home, R.id.reservations)
         )
