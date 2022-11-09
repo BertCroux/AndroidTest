@@ -31,12 +31,4 @@
     <!--reservation tabs-->
     <string name="past_res_text">Planned</string>
     <string name="planned_res_text">Past</string>
-    <!--all myhealth shit-->
-    <string name="myhealth_title_text">My Health</string>
-    <string name="weight_kg_text">Weight (kg)</string>
-    <string name="fat_percentage_text">Fat percentage (%)</string>
-    <string name="muscle_percentage_text">Muscle percentage (%)</string>
-    <string name="waist_circumference_cm_text">Waist Circumference (cm)</string>
-    <string name="body_mass_index_text">Body Mass Index</string>
-    <string name="loading_text">Loading...</string>
 </resources>
