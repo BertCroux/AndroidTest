@@ -15,4 +15,14 @@
         android:name="com.example.squads.screens.reservations.ReservationsFragment"
         android:label="fragment_reservations"
         tools:layout="@layout/fragment_reservations" />
+    <fragment
+        android:id="@+id/session"
+        android:name="com.example.squads.screens.sessions.SessionFragment"
+        android:label="fragment_session"
+        tools:layout="@layout/fragment_sessions">
+        <action
+            android:id="@+id/action_homeFragment_to_SessionFragment"
+            app:destination="@id/session" />
+    </fragment>
+
 </navigation>

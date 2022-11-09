@@ -31,5 +31,7 @@
     <!--reservation tabs-->
     <string name="past_res_text">Planned</string>
     <string name="planned_res_text">Past</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
