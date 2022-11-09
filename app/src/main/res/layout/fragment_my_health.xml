@@ -2,20 +2,22 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    
+
     <data>
+
         <variable
             name="myHealthViewModel"
             type="com.example.squads.screens.myhealth.MyHealthViewModel" />
     </data>
-    
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:background="@color/black">
 
         <LinearLayout
-            android:layout_height="match_parent"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -23,12 +25,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                style="@style/title_style"
-                android:background="@color/black"
                 android:id="@+id/myhealth_title"
+                style="@style/title_style"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
-                android:layout_width="match_parent"
+                android:background="@color/black"
                 android:padding="0dp"
                 android:text="@string/myhealth_title_text"
                 android:textAlignment="center"
@@ -39,31 +41,33 @@
 
             <ScrollView
                 android:id="@+id/scrollView2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="64dp"
-                android:layout_width="match_parent"
                 app:layout_constraintTop_toBottomOf="@+id/myhealth_title"
                 tools:layout_editor_absoluteX="-16dp">
 
                 <LinearLayout
-                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:background="@drawable/gray_gradiant_button_upside_down"
                         android:id="@+id/HealthComponentWeight"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="16dp"
                         android:layout_weight="1"
-                        android:layout_width="match_parent">
+                        android:background="@drawable/gray_gradiant_button_upside_down"
+                        android:onClick='@{() -> myHealthViewModel.onNavigateToGraphs("weight")}'
+                        android:tag="weight">
 
                         <TextView
                             android:id="@+id/txtWeight"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:layout_width="wrap_content"
                             android:text="@string/weight_kg_text"
                             android:textColor="@color/white"
                             app:layout_constraintStart_toStartOf="parent"
@@ -86,19 +90,19 @@
 
                         <ImageView
                             android:id="@+id/arrowWeight"
+                            android:layout_width="100dp"
                             android:layout_height="40dp"
                             android:layout_marginEnd="-16dp"
-                            android:layout_width="100dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/ic_baseline_arrow_right_alt_24" />
 
                         <ImageView
                             android:id="@+id/fakeGraphWeight"
-                            android:layout_height="40dp"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginEnd="16dp"
                             android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:srcCompat="@drawable/fake_graph" />
@@ -106,19 +110,19 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:background="@drawable/gray_gradiant_button_upside_down"
                         android:id="@+id/HealthComponentFat"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="16dp"
                         android:layout_weight="1"
-                        android:layout_width="match_parent">
+                        android:background="@drawable/gray_gradiant_button_upside_down">
 
                         <TextView
                             android:id="@+id/txtFat"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:layout_width="wrap_content"
                             android:text="@string/fat_percentage_text"
                             android:textColor="@color/white"
                             app:layout_constraintStart_toStartOf="parent"
@@ -141,19 +145,19 @@
 
                         <ImageView
                             android:id="@+id/arrowFat"
+                            android:layout_width="100dp"
                             android:layout_height="40dp"
                             android:layout_marginEnd="-16dp"
-                            android:layout_width="100dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/ic_baseline_arrow_right_alt_24" />
 
                         <ImageView
                             android:id="@+id/fakeGraphFat"
-                            android:layout_height="40dp"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginEnd="16dp"
                             android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:srcCompat="@drawable/fake_graph" />
@@ -161,19 +165,19 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:background="@drawable/gray_gradiant_button_upside_down"
                         android:id="@+id/HealthComponentMuscle"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="16dp"
                         android:layout_weight="1"
-                        android:layout_width="match_parent">
+                        android:background="@drawable/gray_gradiant_button_upside_down">
 
                         <TextView
                             android:id="@+id/txtMuscle"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:layout_width="wrap_content"
                             android:text="@string/muscle_percentage_text"
                             android:textColor="@color/white"
                             app:layout_constraintStart_toStartOf="parent"
@@ -196,19 +200,19 @@
 
                         <ImageView
                             android:id="@+id/arrowMuscle"
+                            android:layout_width="100dp"
                             android:layout_height="40dp"
                             android:layout_marginEnd="-16dp"
-                            android:layout_width="100dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/ic_baseline_arrow_right_alt_24" />
 
                         <ImageView
                             android:id="@+id/imageView3"
-                            android:layout_height="40dp"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginEnd="16dp"
                             android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:srcCompat="@drawable/fake_graph" />
@@ -216,19 +220,19 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:background="@drawable/gray_gradiant_button_upside_down"
                         android:id="@+id/HealthComponentWaistCirc"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:layout_weight="1"
-                        android:layout_width="match_parent">
+                        android:background="@drawable/gray_gradiant_button_upside_down">
 
                         <TextView
                             android:id="@+id/txtWaistCirc"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:layout_width="wrap_content"
                             android:text="@string/waist_circumference_cm_text"
                             android:textColor="@color/white"
                             app:layout_constraintStart_toStartOf="parent"
@@ -251,38 +255,38 @@
 
                         <ImageView
                             android:id="@+id/arrowWaist"
+                            android:layout_width="100dp"
                             android:layout_height="40dp"
                             android:layout_marginEnd="-16dp"
-                            android:layout_width="100dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/ic_baseline_arrow_right_alt_24" />
 
                         <ImageView
                             android:id="@+id/fakeGraphWaist"
-                            android:layout_height="40dp"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginEnd="16dp"
                             android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:srcCompat="@drawable/fake_graph" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:background="@drawable/gray_gradiant_button_upside_down"
                         android:id="@+id/HealthComponentBMI"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:layout_weight="1"
-                        android:layout_width="match_parent">
+                        android:background="@drawable/gray_gradiant_button_upside_down">
 
                         <TextView
                             android:id="@+id/txtBMI"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:layout_width="wrap_content"
                             android:text="@string/body_mass_index_text"
                             android:textColor="@color/white"
                             app:layout_constraintStart_toStartOf="parent"
@@ -305,19 +309,19 @@
 
                         <ImageView
                             android:id="@+id/arrowBMI"
+                            android:layout_width="100dp"
                             android:layout_height="40dp"
                             android:layout_marginEnd="-16dp"
-                            android:layout_width="100dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/ic_baseline_arrow_right_alt_24" />
 
                         <ImageView
                             android:id="@+id/fakeGraphBMI"
-                            android:layout_height="40dp"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginEnd="16dp"
                             android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:srcCompat="@drawable/fake_graph" />

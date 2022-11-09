@@ -19,6 +19,21 @@
         android:id="@+id/myhealth"
         android:name="com.example.squads.screens.myhealth.MyHealthFragment"
         android:label="fragment_my_health"
-        tools:layout="@layout/fragment_my_health" />
+        tools:layout="@layout/fragment_my_health" >
+        <action
+            android:id="@+id/action_myhealth_to_myHealthGraphsFragment"
+            app:destination="@id/myHealthGraphsFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/myHealthGraphsFragment"
+        android:name="com.example.squads.screens.myhealth.MyHealthGraphsFragment"
+        android:label="MyHealthGraphsFragment" >
+        <action
+            android:id="@+id/action_myHealthGraphsFragment_to_myhealth"
+            app:destination="@id/myhealth"
+            app:popUpTo="@id/myhealth"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>

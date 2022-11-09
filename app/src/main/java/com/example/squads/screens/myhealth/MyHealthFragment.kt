@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.squads.R
 import com.example.squads.databinding.FragmentMyHealthBinding
 
@@ -24,7 +25,7 @@ class MyHealthFragment : Fragment() {
         )
 
 
-        //create the viewmodel
+        //get the viewmodel
         val myHealthViewModel: MyHealthViewModel = ViewModelProvider(this).get(MyHealthViewModel::class.java)
         // set the viewmodel in the xml file
         binding.myHealthViewModel = myHealthViewModel
@@ -33,7 +34,6 @@ class MyHealthFragment : Fragment() {
         binding.lifecycleOwner = this
 
 
-        //observers of the variables in the viewmodel
         //observer for the latest measurement
         myHealthViewModel.latestMeasurement.observe(viewLifecycleOwner, Observer { measurement ->
             //als de latestMeasurement verandert moeten alle teksten ook veranderd worden
@@ -47,6 +47,15 @@ class MyHealthFragment : Fragment() {
             }
         })
 
+
+        //observer on when to navigate to the graphs fragment
+        myHealthViewModel.navigateToGraphs.observe(viewLifecycleOwner, Observer {
+            //actually navigate to the graphs page
+            if (it == true){
+                this.findNavController().navigate(R.id.action_myhealth_to_myHealthGraphsFragment)
+                myHealthViewModel.doneNavigatingToGraphs()
+            }
+        })
 
 
 
