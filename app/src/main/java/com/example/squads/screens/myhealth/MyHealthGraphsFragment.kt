@@ -85,6 +85,7 @@ class MyHealthGraphsFragment : Fragment() {
                 throw NotFoundException()
             }
         }
+        throw NotFoundException()
     }
 
 }
