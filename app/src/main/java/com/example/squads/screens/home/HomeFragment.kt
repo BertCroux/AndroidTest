@@ -1,6 +1,7 @@
 package com.example.squads.screens.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,13 +28,15 @@ class HomeFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
-        setOnClickListeners()
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
-    private fun setOnClickListeners() {
+    public fun NavigateToSession() {
+        Log.i("HomeFragment", binding.bookBtn.toString())
+
         binding.bookBtn.setOnClickListener {
+            //Log.i("clicker", "Button clicked")
             view -> view.findNavController().navigate(R.id.action_homeFragment_to_SessionFragment)
         }
     }

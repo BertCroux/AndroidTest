@@ -22,7 +22,8 @@
         tools:layout="@layout/fragment_sessions">
         <action
             android:id="@+id/action_homeFragment_to_SessionFragment"
-            app:destination="@id/session" />
+            app:destination="@id/session"
+            app:popUpToInclusive="false" />
     </fragment>
 
 </navigation>

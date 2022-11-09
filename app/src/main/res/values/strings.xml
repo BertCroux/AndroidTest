@@ -33,5 +33,6 @@
     <string name="planned_res_text">Past</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="book_session_lbl">Book a session</string>
 
 </resources>
