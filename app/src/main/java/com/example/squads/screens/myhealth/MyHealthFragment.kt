@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -26,8 +27,7 @@ class MyHealthFragment : Fragment() {
 
 
         //get the viewmodel
-        val myHealthViewModel: MyHealthViewModel =
-            ViewModelProvider(this).get(MyHealthViewModel::class.java)
+        val myHealthViewModel: MyHealthViewModel by activityViewModels()
         // set the viewmodel in the xml file
         binding.myHealthViewModel = myHealthViewModel
 
