@@ -25,21 +25,19 @@ class MyHealthGraphsFragment : Fragment() {
             inflater, R.layout.fragment_my_health_graphs, container, false
         )
 
-        //fuck da moet zijnen eigen viewmodel emmen of ni?
-
         //get the viewmodel
-        val myHealthViewModel: MyHealthViewModel = ViewModelProvider(this).get(MyHealthViewModel::class.java)
+        val myHealthViewModel: MyHealthViewModel =
+            ViewModelProvider(this).get(MyHealthViewModel::class.java)
         // set the viewmodel in the xml file
         binding.myHealthViewModel = myHealthViewModel
 
         //makes the live data work ig
         binding.lifecycleOwner = this
 
-
         //observer on when to navigate from the graphs fragment
         myHealthViewModel.navigateFromGraphs.observe(viewLifecycleOwner, Observer {
             //actually navigate to the graphs page
-            if (it == true){
+            if (it == true) {
                 this.findNavController().navigate(R.id.action_myHealthGraphsFragment_to_myhealth)
                 myHealthViewModel.doneNavigatingFromGraphs()
             }

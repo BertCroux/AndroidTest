@@ -26,7 +26,8 @@ class MyHealthFragment : Fragment() {
 
 
         //get the viewmodel
-        val myHealthViewModel: MyHealthViewModel = ViewModelProvider(this).get(MyHealthViewModel::class.java)
+        val myHealthViewModel: MyHealthViewModel =
+            ViewModelProvider(this).get(MyHealthViewModel::class.java)
         // set the viewmodel in the xml file
         binding.myHealthViewModel = myHealthViewModel
 
@@ -43,7 +44,7 @@ class MyHealthFragment : Fragment() {
                 binding.txtMuscleValue.text = String.format("%.1f", it.MusclePercentage)
                 binding.txtWaistCircValue.text = String.format("%.1f", it.WaistCircumference)
                 //TODO BMI: moet nog lengte van persoon hebben
-                binding.txtBMIValue.text = String.format("%.1f", it.Weight / (1.8*1.8))
+                binding.txtBMIValue.text = String.format("%.1f", it.Weight / (1.8 * 1.8))
             }
         })
 
@@ -51,18 +52,14 @@ class MyHealthFragment : Fragment() {
         //observer on when to navigate to the graphs fragment
         myHealthViewModel.navigateToGraphs.observe(viewLifecycleOwner, Observer {
             //actually navigate to the graphs page
-            if (it == true){
+            if (it == true) {
                 this.findNavController().navigate(R.id.action_myhealth_to_myHealthGraphsFragment)
                 myHealthViewModel.doneNavigatingToGraphs()
             }
         })
 
 
-
-
-
         return binding.root
-
     }
 
 }

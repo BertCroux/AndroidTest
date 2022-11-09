@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.datetime.LocalDateTime
 
 class MyHealthViewModel : ViewModel() {
-    //list of alle the users measurements
+    //list of all the users measurements
     private val _measurements = MutableLiveData<List<Measurement>>()
     val measurements: LiveData<List<Measurement>>
         get() = _measurements
@@ -18,22 +18,7 @@ class MyHealthViewModel : ViewModel() {
         get() = _latestMeasurement
 
 
-    //navigation to and from graphs
-    private val _navigateToGraphs = MutableLiveData<Boolean?>()
-    val navigateToGraphs: LiveData<Boolean?>
-        get() = _navigateToGraphs
-    fun doneNavigatingToGraphs(){
-        _navigateToGraphs.value = null
-    }
-
-    private val _navigateFromGraphs = MutableLiveData<Boolean?>()
-    val navigateFromGraphs: LiveData<Boolean?>
-        get() = _navigateFromGraphs
-    fun doneNavigatingFromGraphs(){
-        _navigateFromGraphs.value = null
-    }
-
-
+    //variable so the graphsfragment knows what to display
     private val _typeDataGraph = MutableLiveData<String?>()
     val typeDataGraph: LiveData<String?>
         get() = _typeDataGraph
@@ -63,7 +48,7 @@ class MyHealthViewModel : ViewModel() {
 
     //set the _latestMeasurement value to the latest measurement
     fun getLatestMeasurement() {
-        if (_measurements.value.isNullOrEmpty()){
+        if (_measurements.value.isNullOrEmpty()) {
             return
         }
 
@@ -76,10 +61,28 @@ class MyHealthViewModel : ViewModel() {
 //        val latestDate: LocalDateTime? = dates.maxOrNull()
 //
 //        _latestMeasurement.value = _measurements.value!!.filter { it.MeasuredOn == latestDate }.first()
-
     }
 
-    fun onNavigateToGraphs(type: String){
+
+    //navigation to and from graphs-----------------------------------------------------------------
+    private val _navigateToGraphs = MutableLiveData<Boolean?>()
+    val navigateToGraphs: LiveData<Boolean?>
+        get() = _navigateToGraphs
+
+    fun doneNavigatingToGraphs() {
+        _navigateToGraphs.value = null
+    }
+
+    private val _navigateFromGraphs = MutableLiveData<Boolean?>()
+    val navigateFromGraphs: LiveData<Boolean?>
+        get() = _navigateFromGraphs
+
+    fun doneNavigatingFromGraphs() {
+        _navigateFromGraphs.value = null
+    }
+
+
+    fun onNavigateToGraphs(type: String) {
         //set type so that the graphsfragment can know what to display
         _typeDataGraph.value = type
 
@@ -87,10 +90,11 @@ class MyHealthViewModel : ViewModel() {
         _navigateToGraphs.value = true
     }
 
-    fun onNavigateFromGraphs(){
+    fun onNavigateFromGraphs() {
         //werkt, maar mss overkill, ga zien om da te doen met fragmentmanager.popBackStack()
         //zo doet da gwn hetzelfde als uw back button
         //moet wss ook zien bij die actions van pop to enzo
         _navigateFromGraphs.value = true
     }
+
 }
