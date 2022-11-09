@@ -27,17 +27,16 @@ class HomeFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        NavigateToSession()
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        // we already inflated this with the binding, so we use the binding.root because we need
+        //to return a View
+        return binding.root
     }
 
-    public fun NavigateToSession() {
-        Log.i("HomeFragment", binding.bookBtn.toString())
-
+    fun NavigateToSession() {
         binding.bookBtn.setOnClickListener {
-            //Log.i("clicker", "Button clicked")
-            view -> view.findNavController().navigate(R.id.action_homeFragment_to_SessionFragment)
+            findNavController().navigate(R.id.session)
         }
     }
 }
