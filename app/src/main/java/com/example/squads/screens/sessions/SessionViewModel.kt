@@ -32,15 +32,6 @@ class SessionViewModel : ViewModel() {
     }
 
 
-
-    private val _navigateToSession = MutableLiveData<Boolean?>()
-    val navigateToSession: LiveData<Boolean?>
-        get() = _navigateToSession
-
-    fun doneNavigatingToSession() {
-        _navigateToSession.value = null
-    }
-
     private val _navigateFromSession = MutableLiveData<Boolean?>()
     val navigateFromSession: LiveData<Boolean?>
         get() = _navigateFromSession
@@ -49,14 +40,7 @@ class SessionViewModel : ViewModel() {
         _navigateFromSession.value = null
     }
 
-
-    fun onNavigateToSessions() {
-        //set the navigate to true so that the myhealth fragment knows when to navigate
-        _navigateToSession.value = true
-    }
-
     fun onNavigateFromSession() {
-
         _navigateFromSession.value = true
     }
 

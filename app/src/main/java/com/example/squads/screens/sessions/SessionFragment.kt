@@ -1,6 +1,7 @@
 package com.example.squads.screens.sessions
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,11 +37,13 @@ class SessionFragment : Fragment() {
         binding.lifecycleOwner = this
 
         //observer on when to navigate from the graphs fragment
-        sessionViewModel.navigateToSession.observe(viewLifecycleOwner, Observer {
+        sessionViewModel.navigateFromSession.observe(viewLifecycleOwner, Observer {
             //actually navigate to the graphs page
             if (it == true) {
-                this.findNavController().navigate(R.id.action_homeFragment_to_SessionFragment)
-                sessionViewModel.doneNavigatingToSession()
+                Log.i("fromSession", "keer terug naar session")
+
+                this.findNavController().navigate(R.id.home)
+                sessionViewModel.doneNavigatingFromSession()
             }
         })
 
