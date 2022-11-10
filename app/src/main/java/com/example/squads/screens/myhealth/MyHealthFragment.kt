@@ -15,26 +15,37 @@ import com.example.squads.databinding.FragmentMyHealthBinding
 
 class MyHealthFragment : Fragment() {
 
+    lateinit var binding: FragmentMyHealthBinding
+    lateinit var myHealthViewModel: MyHealthViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         //get binding object and inflate the fragments
-        val binding: FragmentMyHealthBinding = DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_my_health, container, false
         )
 
-
         //get the viewmodel
-        val myHealthViewModel: MyHealthViewModel by activityViewModels()
+        val vm: MyHealthViewModel by activityViewModels()
+        //set the viewmodel
+        myHealthViewModel = vm
         // set the viewmodel in the xml file
         binding.myHealthViewModel = myHealthViewModel
 
         //makes the live data work ig
         binding.lifecycleOwner = this
 
+        addObservers()
 
+
+        return binding.root
+    }
+
+
+    private fun addObservers() {
         //observer for the latest measurement
         myHealthViewModel.latestMeasurement.observe(viewLifecycleOwner, Observer { measurement ->
             //als de latestMeasurement verandert moeten alle teksten ook veranderd worden
@@ -57,9 +68,6 @@ class MyHealthFragment : Fragment() {
                 myHealthViewModel.doneNavigatingToGraphs()
             }
         })
-
-
-        return binding.root
     }
 
 }

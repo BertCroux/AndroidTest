@@ -22,24 +22,37 @@ class MyHealthGraphsFragment : Fragment() {
     //the list of values to display
     lateinit var valuesForGraph: List<Pair<Double, LocalDateTime>>
 
+    lateinit var binding: FragmentMyHealthGraphsBinding
+
+    lateinit var myHealthViewModel: MyHealthViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding: FragmentMyHealthGraphsBinding = DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_my_health_graphs, container, false
         )
 
         //get the viewmodel
-        val myHealthViewModel: MyHealthViewModel by activityViewModels()
+        val vm: MyHealthViewModel by activityViewModels()
+        //set the viewmodel
+        myHealthViewModel = vm
         // set the viewmodel in the xml file
         binding.myHealthViewModel = myHealthViewModel
 
         //makes the live data work ig
         binding.lifecycleOwner = this
 
+        addObservers()
+
+
+        return binding.root
+    }
+
+    private fun addObservers() {
         //observer on when to navigate from the graphs fragment
         myHealthViewModel.navigateFromGraphs.observe(viewLifecycleOwner, Observer {
             //actually navigate to the graphs page
@@ -49,12 +62,10 @@ class MyHealthGraphsFragment : Fragment() {
             }
         })
 
-
         //get the measurements from the viewmodel
         myHealthViewModel.measurements.observe(viewLifecycleOwner, Observer {
             measurements = it
         })
-
 
         //when the button is clicked, a type is sent along with it as string and is stored in the viewmodel
         //so when the type in the viewmodel changes, the measurements have to be mapped to the right type
@@ -69,9 +80,8 @@ class MyHealthGraphsFragment : Fragment() {
                 }
             }
         })
-
-        return binding.root
     }
+
 
     private fun mapMeasurements(type: String): List<Pair<Double, LocalDateTime>> {
         //this returns a list of pairs (tuples) that contain the value and the date
