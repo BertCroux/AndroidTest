@@ -6,6 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -50,12 +54,36 @@ class MyHealthGraphsFragment : Fragment() {
 
         addObservers()
 
+        setupSpinner()
+
 
         return binding.root
     }
 
     fun navigateBack(){
         this.findNavController().navigate(R.id.action_myHealthGraphsFragment_to_myhealth)
+    }
+
+    private fun setupSpinner() {
+        //get the spinner from xml
+        val spinner: Spinner = binding.spinnerHealthYears
+        //create a list of items to put in the spinner
+        val spinnerItems: List<String> = listOf("select", "2022", "2021", "2020")
+        //create an adapter to insert the values and use a custom view (health_spinner_item) to render the items
+        val spinnerAdapter = ArrayAdapter(requireActivity(), R.layout.health_spinner_item, spinnerItems)
+        spinner.adapter = spinnerAdapter
+
+        //override the onselect listeners
+        spinner.onItemSelectedListener = object: OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                val value = parent.getItemAtPosition(position)
+                Log.i("graphs", "item selected! value: $value")
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>) {
+                //do nothing...
+            }
+        }
     }
 
     private fun addObservers() {
