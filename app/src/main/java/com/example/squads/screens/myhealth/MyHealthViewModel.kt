@@ -64,7 +64,7 @@ class MyHealthViewModel : ViewModel() {
     }
 
 
-    //navigation to and from graphs-----------------------------------------------------------------
+    //navigation to graphs-----------------------------------------------------------------
     private val _navigateToGraphs = MutableLiveData<Boolean?>()
     val navigateToGraphs: LiveData<Boolean?>
         get() = _navigateToGraphs
@@ -72,15 +72,6 @@ class MyHealthViewModel : ViewModel() {
     fun doneNavigatingToGraphs() {
         _navigateToGraphs.value = null
     }
-
-    private val _navigateFromGraphs = MutableLiveData<Boolean?>()
-    val navigateFromGraphs: LiveData<Boolean?>
-        get() = _navigateFromGraphs
-
-    fun doneNavigatingFromGraphs() {
-        _navigateFromGraphs.value = null
-    }
-
 
     fun onNavigateToGraphs(type: String) {
         //set type so that the graphsfragment can know what to display
@@ -90,11 +81,5 @@ class MyHealthViewModel : ViewModel() {
         _navigateToGraphs.value = true
     }
 
-    fun onNavigateFromGraphs() {
-        //werkt, maar mss overkill, ga zien om da te doen met fragmentmanager.popBackStack()
-        //zo doet da gwn hetzelfde als uw back button
-        //moet wss ook zien bij die actions van pop to enzo
-        _navigateFromGraphs.value = true
-    }
 
 }

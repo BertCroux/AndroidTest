@@ -46,22 +46,19 @@ class MyHealthGraphsFragment : Fragment() {
         //makes the live data work ig
         binding.lifecycleOwner = this
 
+        binding.myHealthGraphsFragment = this@MyHealthGraphsFragment
+
         addObservers()
 
 
         return binding.root
     }
 
-    private fun addObservers() {
-        //observer on when to navigate from the graphs fragment
-        myHealthViewModel.navigateFromGraphs.observe(viewLifecycleOwner, Observer {
-            //actually navigate to the graphs page
-            if (it == true) {
-                this.findNavController().navigate(R.id.action_myHealthGraphsFragment_to_myhealth)
-                myHealthViewModel.doneNavigatingFromGraphs()
-            }
-        })
+    fun navigateBack(){
+        this.findNavController().navigate(R.id.action_myHealthGraphsFragment_to_myhealth)
+    }
 
+    private fun addObservers() {
         //get the measurements from the viewmodel
         myHealthViewModel.measurements.observe(viewLifecycleOwner, Observer {
             measurements = it
