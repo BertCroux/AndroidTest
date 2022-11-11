@@ -194,7 +194,7 @@ class MyHealthGraphsFragment : Fragment() {
         }
     }
     private fun logValuesForGraphFiltered() {
-        valuesForGraphFiltered?.forEach {
+        valuesForGraphFiltered.forEach {
             Log.i("graphs", it.toString())
         }
     }
