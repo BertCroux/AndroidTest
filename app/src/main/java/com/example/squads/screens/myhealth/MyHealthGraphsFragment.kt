@@ -135,7 +135,7 @@ class MyHealthGraphsFragment : Fragment() {
     private fun getDistinctYearsFromMeasurements(): List<String> {
         var list: MutableList<String> = measurements.map {
             it.MeasuredOn.year.toString()
-        }.distinct().toMutableList()
+        }.distinct().sorted().reversed().toMutableList()
 
         list.add(0, "select")
 
