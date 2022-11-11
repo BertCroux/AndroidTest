@@ -111,11 +111,11 @@ class MyHealthGraphsFragment : Fragment() {
     private fun mapMeasurements(type: String): List<Pair<Double, LocalDateTime>> {
         //this returns a list of pairs (tuples) that contain the value and the date
         when (type) {
-            "weight" -> return measurements.map { Pair(it.Weight, it.MeasuredOn) }
-            "fat" -> return measurements.map { Pair(it.FatPercentage, it.MeasuredOn) }
-            "muscle" -> return measurements.map { Pair(it.MusclePercentage, it.MeasuredOn) }
-            "waist" -> return measurements.map { Pair(it.WaistCircumference, it.MeasuredOn) }
-            "bmi" -> print("apart geval") //TODO BMIshit
+            "Weight" -> return measurements.map { Pair(it.Weight, it.MeasuredOn) }
+            "Fat" -> return measurements.map { Pair(it.FatPercentage, it.MeasuredOn) }
+            "Muscle" -> return measurements.map { Pair(it.MusclePercentage, it.MeasuredOn) }
+            "Waist" -> return measurements.map { Pair(it.WaistCircumference, it.MeasuredOn) }
+            "BMI" -> print("apart geval") //TODO BMIshit
             else -> {
                 throw NotFoundException()
             }
