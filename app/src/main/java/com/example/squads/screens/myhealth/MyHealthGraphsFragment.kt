@@ -23,12 +23,15 @@ class MyHealthGraphsFragment : Fragment() {
 
     lateinit var measurements: List<Measurement>
 
+    lateinit var latestMeasurement: Measurement
+
     //the list of values to display
     lateinit var valuesForGraph: List<Pair<Double, LocalDateTime>>
 
     lateinit var binding: FragmentMyHealthGraphsBinding
 
     lateinit var myHealthViewModel: MyHealthViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,15 +55,17 @@ class MyHealthGraphsFragment : Fragment() {
 
         binding.myHealthGraphsFragment = this@MyHealthGraphsFragment
 
-        addObservers()
+        //get the latest measurement so i can use it in the mapmeasurements function
+//        latestMeasurement = myHealthViewModel.latestMeasurement.value
 
+        addObservers()
         setupSpinner()
 
 
         return binding.root
     }
 
-    fun navigateBack(){
+    fun navigateBack() {
         this.findNavController().navigate(R.id.action_myHealthGraphsFragment_to_myhealth)
     }
 
@@ -70,12 +75,18 @@ class MyHealthGraphsFragment : Fragment() {
         //create a list of items to put in the spinner
         val spinnerItems: List<String> = listOf("select", "2022", "2021", "2020")
         //create an adapter to insert the values and use a custom view (health_spinner_item) to render the items
-        val spinnerAdapter = ArrayAdapter(requireActivity(), R.layout.health_spinner_item, spinnerItems)
+        val spinnerAdapter =
+            ArrayAdapter(requireActivity(), R.layout.health_spinner_item, spinnerItems)
         spinner.adapter = spinnerAdapter
 
         //override the onselect listeners
-        spinner.onItemSelectedListener = object: OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+        spinner.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 val value = parent.getItemAtPosition(position)
                 Log.i("graphs", "item selected! value: $value")
             }
@@ -92,6 +103,11 @@ class MyHealthGraphsFragment : Fragment() {
             measurements = it
         })
 
+        //get the latest measurement from the viewmodel
+        myHealthViewModel.latestMeasurement.observe(viewLifecycleOwner, Observer {
+            latestMeasurement = it
+        })
+
         //when the button is clicked, a type is sent along with it as string and is stored in the viewmodel
         //so when the type in the viewmodel changes, the measurements have to be mapped to the right type
         // in this observer function
@@ -99,23 +115,48 @@ class MyHealthGraphsFragment : Fragment() {
             Log.i("graphs", type ?: "niks")
 
             if (type != null) {
+                //text instellen
+                //change the text to display the type
+                binding.txtCurrentType.text = type
+
+                //lateinit var instellen en txt updaten
                 valuesForGraph = mapMeasurements(type)
-                valuesForGraph.forEach {
-                    Log.i("graphs", it.toString())
-                }
+
+                //is loggen
+//                valuesForGraph.forEach {
+//                    Log.i("graphs", it.toString())
+//                }
             }
         })
     }
 
-
+    //this sets the value of the latest measurement of that type to the value
+    //and returns a list of pairs (tuples) that contain the value and the date
     private fun mapMeasurements(type: String): List<Pair<Double, LocalDateTime>> {
-        //this returns a list of pairs (tuples) that contain the value and the date
         when (type) {
-            "Weight" -> return measurements.map { Pair(it.Weight, it.MeasuredOn) }
-            "Fat" -> return measurements.map { Pair(it.FatPercentage, it.MeasuredOn) }
-            "Muscle" -> return measurements.map { Pair(it.MusclePercentage, it.MeasuredOn) }
-            "Waist" -> return measurements.map { Pair(it.WaistCircumference, it.MeasuredOn) }
-            "BMI" -> print("apart geval") //TODO BMIshit
+            "Weight" -> {
+                binding.txtLatestValue.text = String.format("%.1f kg", latestMeasurement.Weight)
+                return measurements.map { Pair(it.Weight, it.MeasuredOn) }
+            }
+            "Fat" -> {
+                binding.txtLatestValue.text =
+                    String.format("%.1f %%", latestMeasurement.FatPercentage)
+                return measurements.map { Pair(it.FatPercentage, it.MeasuredOn) }
+            }
+            "Muscle" -> {
+                binding.txtLatestValue.text =
+                    String.format("%.1f %%", latestMeasurement.MusclePercentage)
+                return measurements.map { Pair(it.MusclePercentage, it.MeasuredOn) }
+            }
+            "Waist" -> {
+                binding.txtLatestValue.text =
+                    String.format("%.1f cm", latestMeasurement.WaistCircumference)
+                return measurements.map { Pair(it.WaistCircumference, it.MeasuredOn) }
+            }
+            "BMI" -> {
+                //TODO BMIshit
+                print("apart geval")
+            }
             else -> {
                 throw NotFoundException()
             }
