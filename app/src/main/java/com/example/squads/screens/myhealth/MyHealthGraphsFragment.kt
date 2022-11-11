@@ -28,6 +28,9 @@ class MyHealthGraphsFragment : Fragment() {
     //the list of values to display
     lateinit var valuesForGraph: List<Pair<Double, LocalDateTime>>
 
+    //filtered on year (gets initialised by the spinner)
+    lateinit var valuesForGraphFiltered: List<Pair<Double, LocalDateTime>>
+
     lateinit var binding: FragmentMyHealthGraphsBinding
 
     lateinit var myHealthViewModel: MyHealthViewModel
@@ -86,7 +89,21 @@ class MyHealthGraphsFragment : Fragment() {
                 id: Long
             ) {
                 val value = parent.getItemAtPosition(position)
-                Log.i("graphs", "item selected! value: $value")
+                //kinda placeholder, always gets executed
+                if (value == "select") {
+                    valuesForGraphFiltered = emptyList()
+                    return
+                }
+
+//                Log.i("graphs", "lijst voor filtering---------------")
+//                logValuesForGraph()
+
+                //effectief de lijst filteren
+                valuesForGraphFiltered =
+                    valuesForGraph.filter { it.second.year.toString() == value }
+
+//                Log.i("graphs", "lijst na filtering---------------")
+//                logValuesForGraphFiltered()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>) {
@@ -113,8 +130,6 @@ class MyHealthGraphsFragment : Fragment() {
         // in this observer function
         valuesForGraph = emptyList()
         myHealthViewModel.typeDataGraph.observe(viewLifecycleOwner, Observer { type ->
-            Log.i("graphs", type ?: "niks")
-
             if (type != null) {
                 //text instellen
                 //change the text to display the type
@@ -122,11 +137,6 @@ class MyHealthGraphsFragment : Fragment() {
 
                 //lateinit var instellen en txt updaten
                 valuesForGraph = mapMeasurements(type)
-
-                //is loggen
-//                valuesForGraph.forEach {
-//                    Log.i("graphs", it.toString())
-//                }
             }
         })
     }
@@ -176,4 +186,16 @@ class MyHealthGraphsFragment : Fragment() {
         throw NotFoundException()
     }
 
+
+    //helperfunctions
+    private fun logValuesForGraph() {
+        valuesForGraph.forEach {
+            Log.i("graphs", it.toString())
+        }
+    }
+    private fun logValuesForGraphFiltered() {
+        valuesForGraphFiltered?.forEach {
+            Log.i("graphs", it.toString())
+        }
+    }
 }
