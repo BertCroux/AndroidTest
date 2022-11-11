@@ -35,12 +35,20 @@ class MyHealthViewModel : ViewModel() {
         //for now just add fake measurements
         _measurements.value = listOf(
             Measurement(
+                74.5, 32.8, 31.7,
+                132.0, LocalDateTime(2020, 10, 1, 20, 0, 0, 0)
+            ),
+            Measurement(
                 71.7, 29.8, 34.1, 130.5,
                 LocalDateTime(2022, 12, 1, 20, 0, 0, 0)
             ),
             Measurement(
                 72.5, 30.8, 33.7,
                 132.0, LocalDateTime(2022, 10, 1, 20, 0, 0, 0)
+            ),
+            Measurement(
+                73.5, 31.8, 32.7,
+                132.0, LocalDateTime(2021, 10, 1, 20, 0, 0, 0)
             )
         )
     }
