@@ -55,8 +55,6 @@ class MyHealthGraphsFragment : Fragment() {
 
         binding.myHealthGraphsFragment = this@MyHealthGraphsFragment
 
-        //get the latest measurement so i can use it in the mapmeasurements function
-//        latestMeasurement = myHealthViewModel.latestMeasurement.value
 
         addObservers()
         setupSpinner()
@@ -73,7 +71,7 @@ class MyHealthGraphsFragment : Fragment() {
         //get the spinner from xml
         val spinner: Spinner = binding.spinnerHealthYears
         //create a list of items to put in the spinner
-        val spinnerItems: List<String> = listOf("select", "2022", "2021", "2020")
+        val spinnerItems: List<String> = getDistinctYearsFromMeasurements()
         //create an adapter to insert the values and use a custom view (health_spinner_item) to render the items
         val spinnerAdapter =
             ArrayAdapter(requireActivity(), R.layout.health_spinner_item, spinnerItems)
@@ -99,11 +97,13 @@ class MyHealthGraphsFragment : Fragment() {
 
     private fun addObservers() {
         //get the measurements from the viewmodel
+        measurements = myHealthViewModel.measurements.value ?: throw NotFoundException()
         myHealthViewModel.measurements.observe(viewLifecycleOwner, Observer {
             measurements = it
         })
 
         //get the latest measurement from the viewmodel
+        latestMeasurement = myHealthViewModel.latestMeasurement.value ?: throw NotFoundException()
         myHealthViewModel.latestMeasurement.observe(viewLifecycleOwner, Observer {
             latestMeasurement = it
         })
@@ -111,6 +111,7 @@ class MyHealthGraphsFragment : Fragment() {
         //when the button is clicked, a type is sent along with it as string and is stored in the viewmodel
         //so when the type in the viewmodel changes, the measurements have to be mapped to the right type
         // in this observer function
+        valuesForGraph = emptyList()
         myHealthViewModel.typeDataGraph.observe(viewLifecycleOwner, Observer { type ->
             Log.i("graphs", type ?: "niks")
 
@@ -128,6 +129,17 @@ class MyHealthGraphsFragment : Fragment() {
 //                }
             }
         })
+    }
+
+    //get the years to display in the spinner
+    private fun getDistinctYearsFromMeasurements(): List<String> {
+        var list: MutableList<String> = measurements.map {
+            it.MeasuredOn.year.toString()
+        }.distinct().toMutableList()
+
+        list.add(0, "select")
+
+        return list
     }
 
     //this sets the value of the latest measurement of that type to the value
