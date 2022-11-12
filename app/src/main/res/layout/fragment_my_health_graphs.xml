@@ -34,32 +34,48 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="TextContrastCheck" />
 
-        <TextView
-            android:id="@+id/txtTemp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:text="@string/placeholder_grafiek_text"
-            android:textColor="@color/white"
-            android:textSize="20sp"
+        <com.androidplot.xy.XYPlot
+            android:id="@+id/plot"
+            style="@style/APDefacto.Dark"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="40dp"
+            app:domainLineColor="@color/ap_transparent"
+            app:domainOriginLineColor="@color/ap_transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:rangeLineColor="@color/ap_transparent"
+            app:rangeOriginLineColor="@color/ap_transparent" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/txtTemp"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="16dp"-->
+        <!--            android:layout_marginTop="32dp"-->
+        <!--            android:layout_marginEnd="16dp"-->
+        <!--            android:background="@color/black"-->
+        <!--            android:text="@string/placeholder_grafiek_text"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:textSize="20sp"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />-->
 
         <ImageView
             android:id="@+id/btnBackToMyHealth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:contentDescription="@string/back_button_text"
             android:onClick="@{() -> myHealthGraphsFragment.navigateBack()}"
             android:padding="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/btn_back"
-            android:contentDescription="@string/back_button_text" />
+            app:srcCompat="@drawable/btn_back" />
 
         <TextView
             android:id="@+id/txtCurrentType"
@@ -86,9 +102,10 @@
             app:layout_constraintTop_toBottomOf="@+id/txtCurrentType" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="136dp"
+            android:layout_marginTop="142dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/txtLatestValue"

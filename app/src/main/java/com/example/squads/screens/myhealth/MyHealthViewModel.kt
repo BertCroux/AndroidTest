@@ -37,19 +37,43 @@ class MyHealthViewModel : ViewModel() {
         _measurements.value = listOf(
             Measurement(
                 74.5, 32.8, 31.7,
-                132.0, LocalDateTime(2020, 10, 1, 20, 0, 0, 0)
+                132.0, LocalDateTime(2020, 1, 1, 20, 0, 0, 0)
             ),
             Measurement(
-                71.7, 29.8, 34.1, 130.5,
+                85.5, 42.8, 21.7,
+                152.0, LocalDateTime(2020, 2, 1, 20, 0, 0, 0)
+            ),
+            Measurement(
+                72.5, 31.8, 32.7,
+                129.0, LocalDateTime(2020, 3, 1, 20, 0, 0, 0)
+            ),
+            Measurement(
+                71.7, 29.8, 32.1, 130.5,
                 LocalDateTime(2022, 12, 1, 20, 0, 0, 0)
             ),
             Measurement(
-                72.5, 30.8, 33.7,
-                132.0, LocalDateTime(2022, 10, 1, 20, 0, 0, 0)
+                69.5, 31.8, 34.1, 130.5,
+                LocalDateTime(2022, 11, 1, 20, 0, 0, 0)
+            ),
+            Measurement(
+                70.8, 28.8, 37.1, 134.5,
+                LocalDateTime(2022, 10, 1, 20, 0, 0, 0)
+            ),
+            Measurement(
+                68.0, 29.8, 30.7,
+                130.0, LocalDateTime(2022, 9, 1, 20, 0, 0, 0)
             ),
             Measurement(
                 73.5, 31.8, 32.7,
                 132.0, LocalDateTime(2021, 10, 1, 20, 0, 0, 0)
+            ),
+            Measurement(
+                74.5, 30.8, 29.7,
+                139.0, LocalDateTime(2021, 11, 1, 20, 0, 0, 0)
+            ),
+            Measurement(
+                73.5, 31.8, 32.7,
+                132.0, LocalDateTime(2021, 12, 1, 20, 0, 0, 0)
             )
         )
     }
