@@ -140,8 +140,10 @@ class MyHealthGraphsFragment : Fragment() {
         }.distinct().sorted().reversed().toMutableList()
     }
 
-    //this sets the value of the latest measurement of that type
-    //and returns a list of pairs (tuples) that contain the value and the date
+    /**
+     * This function sets the text value to the latest measurement of that type
+     * @return a list of pairs (tuples) that contain the value and the date of measurement
+     */
     private fun mapMeasurements(type: String): List<Pair<Double, LocalDateTime>> {
         when (type) {
             "Weight" -> {
@@ -164,7 +166,7 @@ class MyHealthGraphsFragment : Fragment() {
                 return measurements.map { Pair(it.waistCircumference, it.measuredOn) }
             }
             "BMI" -> {
-                //TODO BMIshit
+                //TODO BMI
                 print("apart geval")
             }
             else -> {
