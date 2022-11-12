@@ -84,17 +84,17 @@ class MyHealthGraphsFragment : Fragment() {
         }
 
 
-        Log.i("graphs", "labels:--------------------")
-        domainLabels.forEach {
-            Log.i("graphs", it.toString())
-        }
+//        Log.i("graphs", "labels:--------------------")
+//        domainLabels.forEach {
+//            Log.i("graphs", it.toString())
+//        }
 
         val arr: Array<Number> = valuesForGraphFiltered.map { it.first }.toTypedArray()
 
-        Log.i("graphs", "values:--------------------")
-        arr.forEach {
-            Log.i("graphs", it.toString())
-        }
+//        Log.i("graphs", "values:--------------------")
+//        arr.forEach {
+//            Log.i("graphs", it.toString())
+//        }
 
         val series1: XYSeries = SimpleXYSeries(
             listOf(* arr),
