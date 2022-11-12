@@ -31,5 +31,4 @@
     <!--reservation tabs-->
     <string name="past_res_text">Planned</string>
     <string name="planned_res_text">Past</string>
-
 </resources>

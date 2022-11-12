@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- the view that is used to display items in the spinner in MyHealthGraphsFragment -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="@color/white"
+    android:paddingStart="10dp"
+    android:paddingBottom="5dp"
+    android:paddingTop="4dp"
+    android:textSize="20sp" />
