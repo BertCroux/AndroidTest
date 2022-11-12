@@ -89,11 +89,6 @@ class MyHealthGraphsFragment : Fragment() {
                 id: Long
             ) {
                 val value = parent.getItemAtPosition(position)
-                //kinda placeholder, always gets executed
-                if (value == "select") {
-                    valuesForGraphFiltered = emptyList()
-                    return
-                }
 
 //                Log.i("graphs", "lijst voor filtering---------------")
 //                logValuesForGraph()
@@ -143,13 +138,9 @@ class MyHealthGraphsFragment : Fragment() {
 
     //get the years to display in the spinner
     private fun getDistinctYearsFromMeasurements(): List<String> {
-        val list: MutableList<String> = measurements.map {
+        return measurements.map {
             it.measuredOn.year.toString()
         }.distinct().sorted().reversed().toMutableList()
-
-        list.add(0, "select")
-
-        return list
     }
 
     //this sets the value of the latest measurement of that type to the value
