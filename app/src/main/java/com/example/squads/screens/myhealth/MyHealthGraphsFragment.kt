@@ -1,10 +1,7 @@
 package com.example.squads.screens.myhealth
-
 import android.annotation.SuppressLint
 import android.content.res.Resources.NotFoundException
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +9,6 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import androidx.annotation.RequiresApi
 import androidx.core.graphics.toColorInt
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -43,7 +39,6 @@ class MyHealthGraphsFragment : Fragment() {
 
     lateinit var myHealthViewModel: MyHealthViewModel
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -73,8 +68,7 @@ class MyHealthGraphsFragment : Fragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    @SuppressLint("ResourceType") //warning R.color.orange
+    @SuppressLint("ResourceType") //suppress warning R.color.orange and R.color.darkorange
     private fun setupPlot() {
         val plot = binding.plot
         plot.clear()
@@ -147,7 +141,6 @@ class MyHealthGraphsFragment : Fragment() {
         this.findNavController().navigate(R.id.action_myHealthGraphsFragment_to_myhealth)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun setupSpinner() {
         //get the spinner from xml
         val spinner: Spinner = binding.spinnerHealthYears
@@ -160,7 +153,6 @@ class MyHealthGraphsFragment : Fragment() {
 
         //override the onselect listeners
         spinner.onItemSelectedListener = object : OnItemSelectedListener {
-            @RequiresApi(Build.VERSION_CODES.O)
             override fun onItemSelected(
                 parent: AdapterView<*>,
                 view: View?,
@@ -183,6 +175,7 @@ class MyHealthGraphsFragment : Fragment() {
                 binding.plot.invalidate() //force redraw the view
             }
 
+            //has to be implemented even though you don't use it
             override fun onNothingSelected(p0: AdapterView<*>) {
                 //do nothing...
             }
@@ -259,16 +252,16 @@ class MyHealthGraphsFragment : Fragment() {
     }
 
 
-    //helperfunctions
-    private fun logValuesForGraph() {
-        valuesForGraph.forEach {
-            Log.i("graphs", it.toString())
-        }
-    }
-
-    private fun logValuesForGraphFiltered() {
-        valuesForGraphFiltered.forEach {
-            Log.i("graphs", it.toString())
-        }
-    }
+    //helper functions for debugging purposes
+//    private fun logValuesForGraph() {
+//        valuesForGraph.forEach {
+//            Log.i("graphs", it.toString())
+//        }
+//    }
+//
+//    private fun logValuesForGraphFiltered() {
+//        valuesForGraphFiltered.forEach {
+//            Log.i("graphs", it.toString())
+//        }
+//    }
 }
