@@ -50,12 +50,12 @@ class MyHealthFragment : Fragment() {
         myHealthViewModel.latestMeasurement.observe(viewLifecycleOwner, Observer { measurement ->
             //als de latestMeasurement verandert moeten alle teksten ook veranderd worden
             measurement.let {
-                binding.txtWeightValue.text = String.format("%.1f", it.Weight)
-                binding.txtFatValue.text = String.format("%.1f", it.FatPercentage)
-                binding.txtMuscleValue.text = String.format("%.1f", it.MusclePercentage)
-                binding.txtWaistCircValue.text = String.format("%.1f", it.WaistCircumference)
+                binding.txtWeightValue.text = String.format("%.1f", it.weight)
+                binding.txtFatValue.text = String.format("%.1f", it.fatPercentage)
+                binding.txtMuscleValue.text = String.format("%.1f", it.musclePercentage)
+                binding.txtWaistCircValue.text = String.format("%.1f", it.waistCircumference)
                 //TODO BMI: moet nog lengte van persoon hebben
-                binding.txtBMIValue.text = String.format("%.1f", it.Weight / (1.8 * 1.8))
+                binding.txtBMIValue.text = String.format("%.1f", it.weight / (1.8 * 1.8))
             }
         })
 

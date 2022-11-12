@@ -144,7 +144,7 @@ class MyHealthGraphsFragment : Fragment() {
     //get the years to display in the spinner
     private fun getDistinctYearsFromMeasurements(): List<String> {
         var list: MutableList<String> = measurements.map {
-            it.MeasuredOn.year.toString()
+            it.measuredOn.year.toString()
         }.distinct().sorted().reversed().toMutableList()
 
         list.add(0, "select")
@@ -157,23 +157,23 @@ class MyHealthGraphsFragment : Fragment() {
     private fun mapMeasurements(type: String): List<Pair<Double, LocalDateTime>> {
         when (type) {
             "Weight" -> {
-                binding.txtLatestValue.text = String.format("%.1f kg", latestMeasurement.Weight)
-                return measurements.map { Pair(it.Weight, it.MeasuredOn) }
+                binding.txtLatestValue.text = String.format("%.1f kg", latestMeasurement.weight)
+                return measurements.map { Pair(it.weight, it.measuredOn) }
             }
             "Fat" -> {
                 binding.txtLatestValue.text =
-                    String.format("%.1f %%", latestMeasurement.FatPercentage)
-                return measurements.map { Pair(it.FatPercentage, it.MeasuredOn) }
+                    String.format("%.1f %%", latestMeasurement.fatPercentage)
+                return measurements.map { Pair(it.fatPercentage, it.measuredOn) }
             }
             "Muscle" -> {
                 binding.txtLatestValue.text =
-                    String.format("%.1f %%", latestMeasurement.MusclePercentage)
-                return measurements.map { Pair(it.MusclePercentage, it.MeasuredOn) }
+                    String.format("%.1f %%", latestMeasurement.musclePercentage)
+                return measurements.map { Pair(it.musclePercentage, it.measuredOn) }
             }
             "Waist" -> {
                 binding.txtLatestValue.text =
-                    String.format("%.1f cm", latestMeasurement.WaistCircumference)
-                return measurements.map { Pair(it.WaistCircumference, it.MeasuredOn) }
+                    String.format("%.1f cm", latestMeasurement.waistCircumference)
+                return measurements.map { Pair(it.waistCircumference, it.measuredOn) }
             }
             "BMI" -> {
                 //TODO BMIshit

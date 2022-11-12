@@ -61,7 +61,7 @@ class MyHealthViewModel : ViewModel() {
         }
 
         //maybe in the api call: query sorted on latest:
-        _latestMeasurement.value = _measurements.value!!.sortedByDescending { it.MeasuredOn }[0]
+        _latestMeasurement.value = _measurements.value!!.sortedByDescending { it.measuredOn }[0]
 
 
         //otherwise get the latest date en filter on that date
