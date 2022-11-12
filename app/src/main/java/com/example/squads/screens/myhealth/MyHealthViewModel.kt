@@ -1,5 +1,6 @@
 package com.example.squads.screens.myhealth
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -57,13 +58,13 @@ class MyHealthViewModel : ViewModel() {
     //set the _latestMeasurement value to the latest measurement
     fun getLatestMeasurement() {
         if (_measurements.value.isNullOrEmpty()) {
+            Log.e("MyHealthViewModel", "the measurements are null or empty")
             return
         }
 
         //maybe in the api call: query sorted on latest:
         _latestMeasurement.value = _measurements.value!!.sortedByDescending { it.measuredOn }[0]
-
-
+        
         //otherwise get the latest date en filter on that date
 //        val dates = _measurements.value!!.map { it.MeasuredOn }
 //        val latestDate: LocalDateTime? = dates.maxOrNull()

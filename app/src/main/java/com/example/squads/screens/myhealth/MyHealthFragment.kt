@@ -48,7 +48,7 @@ class MyHealthFragment : Fragment() {
     private fun addObservers() {
         //observer for the latest measurement
         myHealthViewModel.latestMeasurement.observe(viewLifecycleOwner, Observer { measurement ->
-            //als de latestMeasurement verandert moeten alle teksten ook veranderd worden
+            //if the latestMeasurement changes, all textfields must be updated aswell
             measurement.let {
                 binding.txtWeightValue.text = String.format("%.1f", it.weight)
                 binding.txtFatValue.text = String.format("%.1f", it.fatPercentage)

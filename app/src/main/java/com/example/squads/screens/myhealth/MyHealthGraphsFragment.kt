@@ -126,11 +126,8 @@ class MyHealthGraphsFragment : Fragment() {
         valuesForGraph = emptyList()
         myHealthViewModel.typeDataGraph.observe(viewLifecycleOwner, Observer { type ->
             if (type != null) {
-                //text instellen
-                //change the text to display the type
+                //set lateinit var and update the text field to display the type
                 binding.txtCurrentType.text = type
-
-                //lateinit var instellen en txt updaten
                 valuesForGraph = mapMeasurements(type)
             }
         })
@@ -143,7 +140,7 @@ class MyHealthGraphsFragment : Fragment() {
         }.distinct().sorted().reversed().toMutableList()
     }
 
-    //this sets the value of the latest measurement of that type to the value
+    //this sets the value of the latest measurement of that type
     //and returns a list of pairs (tuples) that contain the value and the date
     private fun mapMeasurements(type: String): List<Pair<Double, LocalDateTime>> {
         when (type) {
