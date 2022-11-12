@@ -9,6 +9,7 @@
         <variable
             name="myHealthViewModel"
             type="com.example.squads.screens.myhealth.MyHealthViewModel" />
+
         <variable
             name="myHealthGraphsFragment"
             type="com.example.squads.screens.myhealth.MyHealthGraphsFragment" />
@@ -24,7 +25,7 @@
             style="@style/title_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:padding="0dp"
             android:text="@string/myhealth_title_text"
             android:textAlignment="center"

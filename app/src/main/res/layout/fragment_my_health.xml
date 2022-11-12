@@ -18,6 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -115,8 +116,8 @@
                         android:layout_height="match_parent"
                         android:layout_margin="16dp"
                         android:layout_weight="1"
-                        android:onClick='@{() -> myHealthViewModel.onNavigateToGraphs("Fat")}'
-                        android:background="@drawable/gray_gradiant_button_upside_down">
+                        android:background="@drawable/gray_gradiant_button_upside_down"
+                        android:onClick='@{() -> myHealthViewModel.onNavigateToGraphs("Fat")}'>
 
                         <TextView
                             android:id="@+id/txtFat"
@@ -171,8 +172,8 @@
                         android:layout_height="match_parent"
                         android:layout_margin="16dp"
                         android:layout_weight="1"
-                        android:onClick='@{() -> myHealthViewModel.onNavigateToGraphs("Muscle")}'
-                        android:background="@drawable/gray_gradiant_button_upside_down">
+                        android:background="@drawable/gray_gradiant_button_upside_down"
+                        android:onClick='@{() -> myHealthViewModel.onNavigateToGraphs("Muscle")}'>
 
                         <TextView
                             android:id="@+id/txtMuscle"
@@ -227,8 +228,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:layout_weight="1"
-                        android:onClick='@{() -> myHealthViewModel.onNavigateToGraphs("Waist")}'
-                        android:background="@drawable/gray_gradiant_button_upside_down">
+                        android:background="@drawable/gray_gradiant_button_upside_down"
+                        android:onClick='@{() -> myHealthViewModel.onNavigateToGraphs("Waist")}'>
 
                         <TextView
                             android:id="@+id/txtWaistCirc"
@@ -282,8 +283,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:layout_weight="1"
-                        android:onClick='@{() -> myHealthViewModel.onNavigateToGraphs("BMI")}'
-                        android:background="@drawable/gray_gradiant_button_upside_down">
+                        android:background="@drawable/gray_gradiant_button_upside_down"
+                        android:onClick='@{() -> myHealthViewModel.onNavigateToGraphs("BMI")}'>
 
                         <TextView
                             android:id="@+id/txtBMI"
