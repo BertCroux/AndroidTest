@@ -7,5 +7,10 @@
     <string name="muscle_percentage_text">Muscle percentage (%)</string>
     <string name="waist_circumference_cm_text">Waist Circumference (cm)</string>
     <string name="body_mass_index_text">Body Mass Index</string>
-    <string name="loading_text">Loading...</string>
+    <string name="loading_text">Loading…</string>
+    <string name="arrow_to_graphs_page_text">Arrow to graphs page</string>
+    <string name="fake_graph_text">Fake graph</string>
+    <string name="placeholder_grafiek_text">placeholder grafiek</string>
+    <string name="back_button_text">Back button</string>
+    <string name="year_text">Year:</string>
 </resources>

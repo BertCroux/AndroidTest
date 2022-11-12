@@ -143,7 +143,7 @@ class MyHealthGraphsFragment : Fragment() {
 
     //get the years to display in the spinner
     private fun getDistinctYearsFromMeasurements(): List<String> {
-        var list: MutableList<String> = measurements.map {
+        val list: MutableList<String> = measurements.map {
             it.measuredOn.year.toString()
         }.distinct().sorted().reversed().toMutableList()
 
