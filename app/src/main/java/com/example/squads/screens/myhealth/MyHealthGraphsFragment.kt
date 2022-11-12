@@ -1,6 +1,8 @@
 package com.example.squads.screens.myhealth
 
+import android.annotation.SuppressLint
 import android.content.res.Resources.NotFoundException
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,14 +12,23 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.annotation.RequiresApi
+import androidx.core.graphics.toColorInt
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.androidplot.xy.LineAndPointFormatter
+import com.androidplot.xy.SimpleXYSeries
+import com.androidplot.xy.XYGraphWidget
+import com.androidplot.xy.XYSeries
 import com.example.squads.R
 import com.example.squads.databinding.FragmentMyHealthGraphsBinding
 import kotlinx.datetime.LocalDateTime
+import java.text.FieldPosition
+import java.text.Format
+import java.text.ParsePosition
 
 class MyHealthGraphsFragment : Fragment() {
 
@@ -29,13 +40,13 @@ class MyHealthGraphsFragment : Fragment() {
     lateinit var valuesForGraph: List<Pair<Double, LocalDateTime>>
 
     //filtered on year (gets initialised by the spinner)
-    lateinit var valuesForGraphFiltered: List<Pair<Double, LocalDateTime>>
+    var valuesForGraphFiltered: List<Pair<Double, LocalDateTime>> = emptyList()
 
     lateinit var binding: FragmentMyHealthGraphsBinding
 
     lateinit var myHealthViewModel: MyHealthViewModel
 
-
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -62,14 +73,83 @@ class MyHealthGraphsFragment : Fragment() {
         addObservers()
         setupSpinner()
 
-
         return binding.root
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("ResourceType") //warning R.color.orange
+    private fun setupPlot() {
+        val plot = binding.plot
+        plot.clear()
+
+        val domainLabels = valuesForGraphFiltered.map { it ->
+            String.format("%d-%s", it.second.dayOfMonth, it.second.monthNumber)
+        }.sorted()
+
+
+        Log.i("graphs", "labels:--------------------")
+        domainLabels.forEach {
+            Log.i("graphs", it.toString())
+        }
+
+        val arr: Array<Number> = valuesForGraphFiltered.map { it.first }.toTypedArray()
+
+        Log.i("graphs", "values:--------------------")
+        arr.forEach {
+            Log.i("graphs", it.toString())
+        }
+
+        val series1: XYSeries = SimpleXYSeries(
+            listOf(* arr),
+            SimpleXYSeries.ArrayFormat.Y_VALS_ONLY,
+            "Series 1"
+        )
+
+        //weird but I have to do this to get the hex value to convert it to color int
+        val orange = resources.getString(R.color.orange).toColorInt()
+        val darkorange = resources.getString(R.color.darkorange).toColorInt()
+
+        val series1Format =
+            LineAndPointFormatter(orange, darkorange, null, null)
+
+
+        //optional: to set the lines to smooth or straight
+//        series1Format.setInterpolationParams(
+//            CatmullRomInterpolator.Params(
+//                10,
+//                CatmullRomInterpolator.Type.Centripetal
+//            )
+//        )
+
+        plot.addSeries(series1, series1Format)
+
+        plot.graph.getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).format = object : Format() {
+            override fun format(
+                obj: Any?,
+                toAppendTo: StringBuffer,
+                pos: FieldPosition
+            ): StringBuffer {
+                val i = Math.round((obj as Number).toFloat())
+                val value = domainLabels[i]
+                return toAppendTo.append(value)
+            }
+
+            override fun parseObject(source: String?, pos: ParsePosition?): Any? {
+                // do nothing really
+                return null
+            }
+        }
+
+        //optioneel to pan and zoom
+//        PanZoom.attach(plot)
+
     }
 
     fun navigateBack() {
         this.findNavController().navigate(R.id.action_myHealthGraphsFragment_to_myhealth)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setupSpinner() {
         //get the spinner from xml
         val spinner: Spinner = binding.spinnerHealthYears
@@ -82,6 +162,7 @@ class MyHealthGraphsFragment : Fragment() {
 
         //override the onselect listeners
         spinner.onItemSelectedListener = object : OnItemSelectedListener {
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onItemSelected(
                 parent: AdapterView<*>,
                 view: View?,
@@ -99,6 +180,9 @@ class MyHealthGraphsFragment : Fragment() {
 
 //                Log.i("graphs", "lijst na filtering---------------")
 //                logValuesForGraphFiltered()
+
+                setupPlot()
+                binding.plot.invalidate() //force redraw the view
             }
 
             override fun onNothingSelected(p0: AdapterView<*>) {
@@ -183,6 +267,7 @@ class MyHealthGraphsFragment : Fragment() {
             Log.i("graphs", it.toString())
         }
     }
+
     private fun logValuesForGraphFiltered() {
         valuesForGraphFiltered.forEach {
             Log.i("graphs", it.toString())
