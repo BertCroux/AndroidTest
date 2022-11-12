@@ -19,10 +19,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.androidplot.xy.LineAndPointFormatter
-import com.androidplot.xy.SimpleXYSeries
-import com.androidplot.xy.XYGraphWidget
-import com.androidplot.xy.XYSeries
+import com.androidplot.xy.*
 import com.example.squads.R
 import com.example.squads.databinding.FragmentMyHealthGraphsBinding
 import kotlinx.datetime.LocalDateTime
@@ -82,9 +79,9 @@ class MyHealthGraphsFragment : Fragment() {
         val plot = binding.plot
         plot.clear()
 
-        val domainLabels = valuesForGraphFiltered.map { it ->
+        val domainLabels = valuesForGraphFiltered.sortedBy { it.second }.map { it ->
             String.format("%d-%s", it.second.dayOfMonth, it.second.monthNumber)
-        }.sorted()
+        }
 
 
         Log.i("graphs", "labels:--------------------")
@@ -122,7 +119,8 @@ class MyHealthGraphsFragment : Fragment() {
 //        )
 
         plot.addSeries(series1, series1Format)
-
+        plot.legend.isVisible = false //remove the legend
+        plot.setDomainStep(StepMode.INCREMENT_BY_FIT, 1.0)
         plot.graph.getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).format = object : Format() {
             override fun format(
                 obj: Any?,
@@ -140,7 +138,7 @@ class MyHealthGraphsFragment : Fragment() {
             }
         }
 
-        //optioneel to pan and zoom
+        //optional to pan and zoom
 //        PanZoom.attach(plot)
 
     }
