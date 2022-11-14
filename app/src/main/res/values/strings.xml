@@ -20,7 +20,7 @@
     <!--mock data for planned reservation fragment (tab)-->
     <string name="monday_mock_text">Monday 03/10</string>
     <string name="workout_type_mock_text">Heavy workout</string>
-    <string name="hour_mock_text">19.00 – 20.00</string>
+    <string name="hour_mock_text">19:00 – 20:00</string>
     <string name="trainer_mock_text">Beast mode</string>
     <!--past reservations-->
     <string name="week_btn">week</string>
