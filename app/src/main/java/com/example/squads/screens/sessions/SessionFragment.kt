@@ -32,7 +32,7 @@ class SessionFragment : Fragment() {
         binding.lifecycleOwner = this
 
 
-        val myListSessionAdapter = MyListSessionAdapter(this, sessionViewModel.sessions)
+        val myListSessionAdapter = MyListSessionAdapter(this, sessionViewModel.language, sessionViewModel.description)
         binding.listView.adapter = myListSessionAdapter;
 
         //observer on when to navigate from the graphs fragment
