@@ -12,11 +12,11 @@ import kotlinx.datetime.toLocalDateTime
 class SessionViewModel : ViewModel() {
 
 
-    public val _sessions = MutableLiveData<List<Session>>()
+    val _sessions = MutableLiveData<List<Session>>()
     val sessions: LiveData<List<Session>>
         get() = _sessions
 
-    val language = arrayOf<String>("C","C++","Java",".Net","Kotlin","Ruby","Rails","Python","Java Script","Php","Ajax","Perl","Hadoop")
+    val language = arrayOf<String>("Mondag 03/10","","Java",".Net","Kotlin","Ruby","Rails","Python","Java Script","Php","Ajax","Perl","Hadoop")
     val description = arrayOf<String>(
         "C programming is considered as the base for other programming languages",
         "C++ is an object-oriented programming language.",
