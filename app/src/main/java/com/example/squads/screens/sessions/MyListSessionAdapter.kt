@@ -1,16 +1,19 @@
 package com.example.squads.screens.sessions
 
+import android.app.Activity
 import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Adapter
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.example.squads.R
+import java.security.AccessController.getContext
 
 class MyListSessionAdapter(private val context: SessionFragment, private val title: Array<String>, private val description: Array<String>)
-    : ArrayAdapter<String>(context, R.layout.session_list, title) {
+    : ArrayAdapter<String>(context.requireContext(), R.layout.session_list, title) {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
