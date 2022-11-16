@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".screens.exercises.ExercisesFragment">
+
+    <data>
+        <variable
+            name="myExercisesViewModel"
+            type="com.example.squads.screens.exercises.ExercisesViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:paddingHorizontal="16dp">
+
+        <TextView
+            android:id="@+id/exercises_title"
+            style="@style/title_style"
+            android:padding="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Exercises"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck" />
+
+        <HorizontalScrollView
+            android:id="@+id/exercises_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exercises_title">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/exercises_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </HorizontalScrollView>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/exercises_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exercises_scrollview" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

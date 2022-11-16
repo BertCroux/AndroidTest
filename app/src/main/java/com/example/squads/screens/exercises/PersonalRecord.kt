@@ -1,6 +1,6 @@
 package com.example.squads.screens.exercises
 
-import java.time.LocalDateTime
+import java.time.LocalDate
 
 data class PersonalRecord(
     val id: Int,
@@ -8,5 +8,5 @@ data class PersonalRecord(
     val exerciseId: Int,
     val amountOfReps: Int,
     val weightUsed: Double,
-    val achievedOn: LocalDateTime
+    val achievedOn: LocalDate
 )
