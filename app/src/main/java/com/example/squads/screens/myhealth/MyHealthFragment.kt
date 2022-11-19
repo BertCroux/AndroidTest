@@ -55,7 +55,13 @@ class MyHealthFragment : Fragment() {
                 binding.txtMuscleValue.text = String.format("%.1f", it.musclePercentage)
                 binding.txtWaistCircValue.text = String.format("%.1f", it.waistCircumference)
                 //TODO BMI: moet nog lengte van persoon hebben
-                binding.txtBMIValue.text = String.format("%.1f", it.weight / (1.8 * 1.8))
+                var bmi = it.weight / (1.7 * 1.7)
+//                Log.i("graphs", bmi.toString())
+                binding.txtBMIValue.text = String.format("%.1f", bmi)
+                //to fit in the slider, the bmi must be between 15.5 and 27.9 and should be rounded
+                if (bmi < 15.5)  bmi = 15.5
+                if (bmi > 27.9) bmi = 27.9
+                binding.sliderEffectieveWaarde.value = (Math.round(bmi*10.0)/10).toFloat()
             }
         })
 
