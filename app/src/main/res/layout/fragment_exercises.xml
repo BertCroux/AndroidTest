@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".screens.exercises.ExercisesFragment">
 
     <data>
         <variable
-            name="myExercisesViewModel"
+            name="exercisesViewModel"
             type="com.example.squads.screens.exercises.ExercisesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:background="@color/black"
-        android:paddingHorizontal="16dp">
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
         <TextView
             android:id="@+id/exercises_title"
@@ -22,7 +21,7 @@
             android:padding="0dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Exercises"
+            android:text="@string/exercises"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +40,7 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/exercises_tabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"/>
         </HorizontalScrollView>
 
         <androidx.viewpager2.widget.ViewPager2

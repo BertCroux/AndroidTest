@@ -1,6 +1,6 @@
-package com.example.squads.screens.exercises
+package com.example.squads.screens.exercises.models
 
-import java.time.LocalDate
+import kotlinx.datetime.LocalDate
 
 data class PersonalRecord(
     val id: Int,

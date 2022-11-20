@@ -1,4 +1,4 @@
-package com.example.squads.screens.exercises
+package com.example.squads.screens.exercises.models
 
 data class ExerciseType(
     val id: Int,
