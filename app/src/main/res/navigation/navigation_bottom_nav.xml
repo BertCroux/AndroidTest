@@ -37,5 +37,9 @@
             app:popUpTo="@id/myhealth"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.example.squads.screens.account.AccountFragment"
+        android:label="fragment_account" />
 
 </navigation>
