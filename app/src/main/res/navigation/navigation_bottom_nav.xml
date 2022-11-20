@@ -23,6 +23,7 @@
         <action
             android:id="@+id/action_myhealth_to_myHealthGraphsFragment"
             app:destination="@id/myHealthGraphsFragment"
+            app:enterAnim="@anim/slide_in_right"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment
@@ -32,6 +33,7 @@
         <action
             android:id="@+id/action_myHealthGraphsFragment_to_myhealth"
             app:destination="@id/myhealth"
+            app:enterAnim="@android:anim/slide_in_left"
             app:popUpTo="@id/myhealth"
             app:popUpToInclusive="true" />
     </fragment>
