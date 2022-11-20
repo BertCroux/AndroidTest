@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 
 class AccountViewModel : ViewModel()  {
     //list of all the users attributes
-    private val _attributes = MutableLiveData<Account>()
+    private val _account = MutableLiveData<Account>()
     val account: LiveData<Account>
-        get() = _attributes
+        get() = _account
     init {
         getAccountData()
     }
@@ -17,7 +17,7 @@ class AccountViewModel : ViewModel()  {
     //get all the current user from the API
     fun getAccountData() {
         //for fake data :)
-        _attributes.value = Account(
+        _account.value = Account(
             523, "Kevin", "De Tester","Kevin@DeTester@protonmail.com", "+32 458 684 726", Address(
                 "Raamvanonderstraat", "21", "Brugge", 8000
             ), 172, "Moeilijk te been & gebroken arm", "Veel pijnstillers", "KevinIsCool31"

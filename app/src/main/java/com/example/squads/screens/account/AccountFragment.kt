@@ -34,8 +34,6 @@ class AccountFragment : Fragment() {
         //set the viewmodel
         accountViewModel = vm
 
-        // set the viewmodel in the xml file
-        binding.accountViewModel = accountViewModel
 
         //implements the live data
         binding.lifecycleOwner = this

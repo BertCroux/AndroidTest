@@ -2,11 +2,6 @@
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <data>
-        <variable
-            name="accountViewModel"
-            type="com.example.squads.screens.account.AccountViewModel" />
-    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -90,15 +85,9 @@
                         android:id="@+id/persdtcarddropdown"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="gone">
+                        android:orientation="vertical">
 
-                        <LinearLayout
-                            style="@style/layoutaccountorientation"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="5dp">
+                        <LinearLayout style="@style/layoutaccountorientation">
 
                             <TextView
                                 android:id="@+id/emailtitel"
@@ -127,10 +116,7 @@
 
                         <LinearLayout
                             style="@style/layoutaccountorientation"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp">
+                            android:layout_marginTop="5dp">
 
                             <TextView
                                 android:id="@+id/phone_titel"
@@ -159,10 +145,8 @@
 
                         <LinearLayout
                             style="@style/layoutaccountorientation"
-                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp">
+                            android:layout_marginTop="5dp">
 
                             <TextView
                                 android:id="@+id/address_titel"
@@ -191,10 +175,7 @@
 
                         <LinearLayout
                             style="@style/layoutaccountorientation"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp">
+                            android:layout_marginTop="5dp">
 
                             <TextView
                                 android:id="@+id/lengte_titel"
@@ -222,10 +203,7 @@
 
                         <LinearLayout
                             style="@style/layoutaccountorientation"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp">
+                            android:layout_marginTop="5dp">
 
                             <TextView
                                 android:id="@+id/issues_titel"
@@ -253,10 +231,7 @@
 
                         <LinearLayout
                             style="@style/layoutaccountorientation"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp">
+                            android:layout_marginTop="5dp">
 
                             <TextView
                                 android:id="@+id/drugs_used_titel"
@@ -284,10 +259,7 @@
 
                         <LinearLayout
                             style="@style/layoutaccountorientation"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp">
+                            android:layout_marginTop="5dp">
 
                             <TextView
                                 android:id="@+id/pwd_titel"
@@ -343,14 +315,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility="gone">
+                        android:visibility="visible">
 
                         <LinearLayout
                             style="@style/layoutaccountorientation"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="5dp">
+                            android:layout_height="match_parent">
 
                             <TextView
                                 android:id="@+id/cardtitel"
@@ -378,10 +347,8 @@
 
                         <LinearLayout
                             style="@style/layoutaccountorientation"
-                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp">
+                            android:layout_marginTop="5dp">
 
                             <TextView
                                 android:id="@+id/tokens_titel"
@@ -438,7 +405,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility="gone">
+                        android:visibility="visible">
 
                         <TextView
                             android:id="@+id/policy"
@@ -481,11 +448,8 @@
                     <LinearLayout
                         android:id="@+id/apptourcarddropdown"
                         style="@style/layoutaccountorientation"
-                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="5dp"
-                        android:visibility="gone">
+                        android:visibility="visible">
 
                         <TextView
                             android:id="@+id/tour"
