@@ -5,4 +5,7 @@
     <string name="account">Account</string>
     <string name="naam">Naam</string>
     <string name="user_id">User-ID:</string>
+    <string name="my_membership">My Membership</string>
+    <string name="email">Email:</string>
+    <string name="youremail_mail_com">youremail@mail.com</string>
 </resources>
