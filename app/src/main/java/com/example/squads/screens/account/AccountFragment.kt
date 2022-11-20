@@ -1,8 +1,11 @@
 package com.example.squads.screens.account
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -35,7 +38,10 @@ class AccountFragment : Fragment() {
         //implements the live data
         binding.lifecycleOwner = this
 
+        //add observer to the live data
         addObservers()
+        //set the click listeners for the buttons
+        setupButtons()
 
         return binding.root
     }
@@ -63,4 +69,38 @@ class AccountFragment : Fragment() {
             }
         })
     }
+
+    private fun setupButtons() {
+        binding.apply {
+            persdtcard.setOnClickListener {
+                changeVisibility(persdtcarddropdown)
+            }
+            membershipcard.setOnClickListener {
+                changeVisibility(membershipcarddropdown)
+            }
+            privacycard.setOnClickListener {
+                changeVisibility(privacycarddropdown)
+            }
+            apptourcard.setOnClickListener {
+                changeVisibility(apptourcarddropdown)
+            }
+            webpage.setOnClickListener {
+                val openURL = Intent(Intent.ACTION_VIEW)
+                openURL.data = Uri.parse("https://www.squads.training/")
+                startActivity(openURL)
+            }
+        }
+
+    }
+
+    private fun changeVisibility(view: View) {
+        if (view.isVisible) {
+            view.visibility = View.GONE
+        } else {
+            view.visibility = View.VISIBLE
+        }
+    }
+
+
+
 }

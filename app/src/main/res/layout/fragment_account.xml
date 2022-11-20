@@ -71,8 +71,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
-                    android:orientation="vertical"
-                    android:visibility="visible">
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/personal_details"
@@ -87,19 +86,18 @@
                         android:background="@android:color/white" />
 
                     <LinearLayout
+                        android:id="@+id/persdtcarddropdown"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:paddingBottom="40dp"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <LinearLayout
+                            style="@style/layoutaccountorientation"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
-                            android:layout_marginBottom="5dp"
-                            style="@style/layoutaccountorientation"
-                            >
+                            android:layout_marginBottom="5dp">
 
                             <TextView
                                 android:id="@+id/emailtitel"
@@ -127,11 +125,11 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            style="@style/layoutaccountorientation"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            style="@style/layoutaccountorientation">
+                            android:layout_marginBottom="5dp">
 
                             <TextView
                                 android:id="@+id/phone_titel"
@@ -159,11 +157,11 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            style="@style/layoutaccountorientation"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="5dp"
-                            android:layout_marginBottom="35dp"
-                            style="@style/layoutaccountorientation">
+                            android:layout_marginBottom="5dp">
 
                             <TextView
                                 android:id="@+id/address_titel"
@@ -191,12 +189,11 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            style="@style/layoutaccountorientation"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            style="@style/layoutaccountorientation"
-                            >
+                            android:layout_marginBottom="5dp">
 
                             <TextView
                                 android:id="@+id/lengte_titel"
@@ -223,12 +220,11 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            style="@style/layoutaccountorientation"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            style="@style/layoutaccountorientation"
-                            >
+                            android:layout_marginBottom="5dp">
 
                             <TextView
                                 android:id="@+id/issues_titel"
@@ -255,12 +251,11 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            style="@style/layoutaccountorientation"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            style="@style/layoutaccountorientation"
-                            >
+                            android:layout_marginBottom="5dp">
 
                             <TextView
                                 android:id="@+id/drugs_used_titel"
@@ -287,12 +282,11 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            style="@style/layoutaccountorientation"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            style="@style/layoutaccountorientation"
-                            >
+                            android:layout_marginBottom="5dp">
 
                             <TextView
                                 android:id="@+id/pwd_titel"
@@ -328,8 +322,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
-                    android:orientation="vertical"
-                    android:visibility="visible">
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/membership"
@@ -344,18 +337,18 @@
                         android:background="@android:color/white" />
 
                     <LinearLayout
+                        android:id="@+id/membershipcarddropdown"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <LinearLayout
+                            style="@style/layoutaccountorientation"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="20dp"
-                            android:layout_marginBottom="5dp"
-                            style="@style/layoutaccountorientation"
-                            >
+                            android:layout_marginBottom="5dp">
 
                             <TextView
                                 android:id="@+id/cardtitel"
@@ -382,12 +375,11 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            style="@style/layoutaccountorientation"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            style="@style/layoutaccountorientation"
-                            >
+                            android:layout_marginBottom="5dp">
 
                             <TextView
                                 android:id="@+id/tokens_titel"
@@ -423,8 +415,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
-                    android:orientation="vertical"
-                    android:visibility="visible">
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/privacy_policy"
@@ -440,10 +431,11 @@
                         android:paddingTop="5dp" />
 
                     <LinearLayout
+                        android:id="@+id/privacycarddropdown"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <TextView
                             android:id="@+id/policy"
@@ -468,8 +460,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
-                    android:orientation="vertical"
-                    android:visibility="visible">
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/app_tour"
@@ -484,11 +475,13 @@
                         android:background="@android:color/white" />
 
                     <LinearLayout
+                        android:id="@+id/apptourcarddropdown"
+                        style="@style/layoutaccountorientation"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="20dp"
                         android:layout_marginBottom="5dp"
-                        style="@style/layoutaccountorientation">
+                        android:visibility="gone">
 
                         <TextView
                             android:id="@+id/tour"
@@ -512,17 +505,31 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
-                    android:orientation="vertical"
-                    android:visibility="visible">
+                    android:orientation="vertical">
 
-                    <TextView
+                    <Button
                         android:id="@+id/webpage"
                         style="@style/title_style_account"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/to_webpage" />
+                        android:background="@color/white"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:letterSpacing="0"
+                        android:minHeight="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
+                        android:text="@string/to_webpage"
+                        android:textAlignment="textStart"
+                        android:textAllCaps="false"
+                        android:textColor="#fff"
+                        app:backgroundTint="#FF000000"
+                        app:iconPadding="0dp" />
 
                     <View
+                        style="@style/title_style_account"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@android:color/white" />
