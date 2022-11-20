@@ -1,10 +1,12 @@
 package com.example.squads.screens.account
+import android.R
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -73,16 +75,16 @@ class AccountFragment : Fragment() {
     private fun setupButtons() {
         binding.apply {
             persdtcard.setOnClickListener {
-                changeVisibility(persdtcarddropdown)
+                changeVisibility(persdtcarddropdown, personalDetails)
             }
             membershipcard.setOnClickListener {
-                changeVisibility(membershipcarddropdown)
+                changeVisibility(membershipcarddropdown, membership)
             }
             privacycard.setOnClickListener {
-                changeVisibility(privacycarddropdown)
+                changeVisibility(privacycarddropdown, privacyPolicy)
             }
             apptourcard.setOnClickListener {
-                changeVisibility(apptourcarddropdown)
+                changeVisibility(apptourcarddropdown, appTour)
             }
             webpage.setOnClickListener {
                 val openURL = Intent(Intent.ACTION_VIEW)
@@ -93,11 +95,13 @@ class AccountFragment : Fragment() {
 
     }
 
-    private fun changeVisibility(view: View) {
+    private fun changeVisibility(view: View, textview: TextView) {
         if (view.isVisible) {
             view.visibility = View.GONE
+            textview.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_down_float, 0)
         } else {
             view.visibility = View.VISIBLE
+            textview.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_up_float, 0)
         }
     }
 

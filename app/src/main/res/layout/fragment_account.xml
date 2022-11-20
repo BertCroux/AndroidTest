@@ -18,7 +18,7 @@
             style="@style/title_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="15sp"
             android:gravity="center"
             android:includeFontPadding="false"
             android:paddingBottom="0dp"
@@ -78,7 +78,8 @@
                         style="@style/title_style_account"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/personal_details" />
+                        android:text="@string/personal_details"
+                        app:drawableEndCompat="@android:drawable/arrow_down_float" />
 
                     <View
                         android:layout_width="match_parent"
@@ -329,7 +330,8 @@
                         style="@style/title_style_account"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/membership" />
+                        android:text="@string/membership"
+                        app:drawableEndCompat="@android:drawable/arrow_down_float" />
 
                     <View
                         android:layout_width="match_parent"
@@ -422,7 +424,8 @@
                         style="@style/title_style_account"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/privacy_policy" />
+                        android:text="@string/privacy_policy"
+                        app:drawableEndCompat="@android:drawable/arrow_down_float" />
 
                     <View
                         android:layout_width="match_parent"
@@ -467,7 +470,8 @@
                         style="@style/title_style_account"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/apptour" />
+                        android:text="@string/apptour"
+                        app:drawableEndCompat="@android:drawable/arrow_down_float" />
 
                     <View
                         android:layout_width="match_parent"
@@ -507,31 +511,17 @@
                     android:layout_marginBottom="15dp"
                     android:orientation="vertical">
 
-                    <Button
+                    <TextView
                         android:id="@+id/webpage"
                         style="@style/title_style_account"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:insetTop="0dp"
-                        android:insetBottom="0dp"
-                        android:letterSpacing="0"
-                        android:minHeight="0dp"
-                        android:paddingLeft="0dp"
-                        android:paddingTop="0dp"
-                        android:paddingRight="0dp"
-                        android:paddingBottom="0dp"
-                        android:text="@string/to_webpage"
-                        android:textAlignment="textStart"
-                        android:textAllCaps="false"
-                        android:textColor="#fff"
-                        app:backgroundTint="#FF000000"
-                        app:iconPadding="0dp" />
+                        android:text="@string/to_webpage" />
 
                     <View
                         style="@style/title_style_account"
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="1sp"
                         android:background="@android:color/white" />
 
                 </LinearLayout>
@@ -548,7 +538,7 @@
                     android:paddingStart="50dp"
                     android:paddingEnd="50dp"
                     android:text="@string/logout"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     app:cornerRadius="2dp"
                     app:rippleColor="#33AAAAAA"
                     app:strokeColor="@color/white"
