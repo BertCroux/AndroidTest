@@ -19,6 +19,12 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/title_dim</item>
     </style>
+    <style name="title_style_account">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/title_dim</item>
+    </style>
 
     <style name="past_period_btn_style">
         <item name="android:layout_width">wrap_content</item>
