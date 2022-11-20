@@ -52,7 +52,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scrollView3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_marginTop="200dp"
             android:paddingBottom="65dp"
@@ -538,9 +538,21 @@
 
                 <Button
                     android:id="@+id/logout_button"
-                    android:layout_width="match_parent"
+                    style="@style/small_text_account"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/logout" />
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:padding="10dp"
+                    android:paddingStart="50dp"
+                    android:paddingEnd="50dp"
+                    android:text="@string/logout"
+                    android:textSize="20dp"
+                    app:cornerRadius="2dp"
+                    app:rippleColor="#33AAAAAA"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="2dp" />
 
 
             </LinearLayout>
