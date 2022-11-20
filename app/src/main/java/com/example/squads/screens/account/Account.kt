@@ -2,6 +2,7 @@ package com.example.squads.screens.account
 
 data class Account (
 
+        val userId: Int,
         val email: String,
         val phoneNumber: String,
         val address: Address,
