@@ -8,7 +8,7 @@ class AccountViewModel : ViewModel()  {
     //list of all the users attributes
     private val _attributes = MutableLiveData<Account>()
     val account: LiveData<Account>
-        get() = account
+        get() = _attributes
     init {
         getAccountData()
     }
@@ -18,7 +18,7 @@ class AccountViewModel : ViewModel()  {
     fun getAccountData() {
         //for fake data :)
         _attributes.value = Account(
-            "Kevin@DeTester@protonmail.com", "+32 458 684 726", Address(
+            523, "Kevin", "De Tester","Kevin@DeTester@protonmail.com", "+32 458 684 726", Address(
                 "Raamvanonderstraat", "21", "Brugge", 8000
             ), 172, "Moeilijk te been & gebroken arm", "Veel pijnstillers", "KevinIsCool31"
         )

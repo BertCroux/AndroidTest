@@ -3,6 +3,8 @@ package com.example.squads.screens.account
 data class Account (
 
         val userId: Int,
+        val firstName: String,
+        val lastName: String,
         val email: String,
         val phoneNumber: String,
         val address: Address,
