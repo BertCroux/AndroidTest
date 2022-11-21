@@ -40,11 +40,11 @@
     <fragment
         android:id="@+id/settings"
         android:name="com.example.squads.screens.account.AccountFragment"
-        android:label="fragment_account" />
+        android:label="fragment_account" >
     </fragment>
     <fragment
-        android:id="@+id/settings"
-        android:name="com.example.squads.screens.account.AccountFragment"
-        android:label="fragment_account" />
+        android:id="@+id/exercises"
+        android:name="com.example.squads.screens.exercises.ExercisesFragment"
+        android:label="fragment_exercises" >
     </fragment>
 </navigation>
