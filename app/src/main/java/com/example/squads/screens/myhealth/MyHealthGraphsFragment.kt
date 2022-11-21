@@ -243,6 +243,9 @@ class MyHealthGraphsFragment : Fragment() {
             "BMI" -> {
                 //TODO BMI
                 print("apart geval")
+                binding.txtLatestValue.text =
+                    String.format("%.1f", latestMeasurement.weight / (1.7*1.7))
+                return measurements.map { Pair(it.weight / (1.8*1.8), it.measuredOn)}
             }
             else -> {
                 throw NotFoundException()
