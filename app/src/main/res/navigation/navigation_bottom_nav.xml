@@ -41,5 +41,10 @@
         android:id="@+id/settings"
         android:name="com.example.squads.screens.account.AccountFragment"
         android:label="fragment_account" />
-
+    </fragment>
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.example.squads.screens.account.AccountFragment"
+        android:label="fragment_account" />
+    </fragment>
 </navigation>
