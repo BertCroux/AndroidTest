@@ -85,7 +85,8 @@
                         android:id="@+id/persdtcarddropdown"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <LinearLayout style="@style/layoutaccountorientation">
 
@@ -315,7 +316,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <LinearLayout
                             style="@style/layoutaccountorientation"
@@ -405,7 +406,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <TextView
                             android:id="@+id/policy"
@@ -449,7 +450,7 @@
                         android:id="@+id/apptourcarddropdown"
                         style="@style/layoutaccountorientation"
                         android:layout_height="match_parent"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <TextView
                             android:id="@+id/tour"
