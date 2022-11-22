@@ -73,7 +73,7 @@ class MyHealthGraphsFragment : Fragment() {
         val plot = binding.plot
         plot.clear()
 
-        val domainLabels = valuesForGraphFiltered.sortedBy { it.second }.map { it ->
+        val domainLabels = valuesForGraphFiltered.map { it ->
             String.format("%d-%s", it.second.dayOfMonth, it.second.monthNumber)
         }
 
@@ -164,9 +164,9 @@ class MyHealthGraphsFragment : Fragment() {
 //                Log.i("graphs", "lijst voor filtering---------------")
 //                logValuesForGraph()
 
-                //effectief de lijst filteren
+                //effectief de lijst filteren en sorteren
                 valuesForGraphFiltered =
-                    valuesForGraph.filter { it.second.year.toString() == value }
+                    valuesForGraph.filter { it.second.year.toString() == value }.sortedBy { it.second }
 
 //                Log.i("graphs", "lijst na filtering---------------")
 //                logValuesForGraphFiltered()
