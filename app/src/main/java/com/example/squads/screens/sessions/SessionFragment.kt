@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.squads.R
 import com.example.squads.databinding.FragmentSessionsBinding
 
@@ -30,6 +31,9 @@ class SessionFragment : Fragment() {
 
         //makes the live data work ig
         binding.lifecycleOwner = this
+
+
+        binding.sessionList.layoutManager = LinearLayoutManager(activity)
 
 
         val myListSessionAdapter = MyListSessionAdapter(sessionViewModel.sessions)
