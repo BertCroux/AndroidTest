@@ -23,40 +23,38 @@ import kotlinx.datetime.toJavaLocalDateTime
 import org.w3c.dom.Text
 import java.time.format.DateTimeFormatter
 
-class MyListSessionAdapter(private val dataSet: LiveData<List<Session>>, val sessionBinding : SessionListBinding) :
+class MyListSessionAdapter(private val dataSet: LiveData<List<Session>>) :
     RecyclerView.Adapter<MyListSessionAdapter.ViewHolder>() {
 
     lateinit var context : Context
-
-
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(sessionBinding.root)
+    lateinit var binding: SessionListBinding
+    inner class ViewHolder(val binding: SessionListBinding) : RecyclerView.ViewHolder(binding.root)
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.session_list, viewGroup, false)
+        binding = SessionListBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
 
         context = viewGroup.context
 
-        return ViewHolder(view)
+        return ViewHolder(binding)
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
-        sessionBinding.buttonSession.setOnClickListener {
-            sessionBinding.constraintLayout.background = this.context.resources.getDrawable(R.drawable.gradiant_button)
-        }
-        sessionBinding.constraintLayout.background = this.context.resources.getDrawable(R.drawable.gray_gradiant_button)
 
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-        sessionBinding.workoutNameTrainer.text = "with ${dataSet.value!!.get(position).trainer}"
-        sessionBinding.dateOfSession.text = dataSet.value!!.get(position).startDate.dayOfWeek.toString()
-        sessionBinding.spotsleft.text = "${dataSet.value!!.get(position).spotsLeft.toString()} spots left"
-        sessionBinding.workoutTypeText.text = dataSet.value!!.get(position).typeOfSession
-        sessionBinding.workoutDateText.text = "${dataSet.value!!.get(position).startDate.hour}:${dataSet.value!!.get(position).startDate.minute} " +
+
+        viewHolder.binding.buttonSession.setOnClickListener {
+            viewHolder.binding.constraintLayout.background = this.context.resources.getDrawable(R.drawable.gradiant_button)
+            viewHolder.binding.buttonSession.setImageResource(R.drawable.ic_cancel)
+        }
+
+        binding.workoutNameTrainer.text = "with ${dataSet.value!!.get(position).trainer}"
+        binding.dateOfSession.text = dataSet.value!!.get(position).startDate.dayOfWeek.toString()
+        binding.spotsleft.text = "${dataSet.value!!.get(position).spotsLeft.toString()} spots left"
+        binding.workoutTypeText.text = dataSet.value!!.get(position).typeOfSession
+        binding.workoutDateText.text = "${dataSet.value!!.get(position).startDate.hour}:${dataSet.value!!.get(position).startDate.minute} " +
                 "${dataSet.value!!.get(position).endDate.hour}:${dataSet.value!!.get(position).endDate.minute}"
 
     }

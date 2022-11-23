@@ -16,8 +16,6 @@ import com.example.squads.databinding.SessionListBinding
 
 class SessionFragment : Fragment() {
 
-    lateinit var SessionBinding : SessionListBinding
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +27,6 @@ class SessionFragment : Fragment() {
             inflater, R.layout.fragment_sessions, container, false
         )
 
-        SessionBinding =  DataBindingUtil.inflate(inflater, R.layout.fragment_sessions, container, false)
 
 
         //get the viewmodel
@@ -40,7 +37,7 @@ class SessionFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.sessionList.layoutManager = LinearLayoutManager(activity)
 
-        val myListSessionAdapter = MyListSessionAdapter(sessionViewModel.sessions, SessionBinding)
+        val myListSessionAdapter = MyListSessionAdapter(sessionViewModel.sessions)
         binding.sessionList.adapter = myListSessionAdapter;
 
 
