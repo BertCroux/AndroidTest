@@ -61,16 +61,16 @@
             app:layout_constraintTop_toBottomOf="@+id/textView"
             app:srcCompat="@drawable/btn_forward" />
 
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="411dp"
-            android:layout_height="538dp"
-            android:layout_marginTop="47dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/session_list"
+            android:layout_width="410dp"
+            android:layout_height="494dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
-            app:layout_constraintVertical_bias="0.35000002"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
         <!--            android:id="@+id/constraintLayout"-->

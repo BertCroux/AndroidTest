@@ -12,40 +12,23 @@ import kotlinx.datetime.toLocalDateTime
 class SessionViewModel : ViewModel() {
 
 
-
-
-
-    val weekDays = arrayOf<LocalDateTime>(
-        LocalDateTime(2022, 11, 1, 19, 0, 0, 0),
-        LocalDateTime(2022, 11, 2, 19, 0, 0, 0),
-        LocalDateTime(2022, 11, 3, 19, 0, 0, 0),
-        LocalDateTime(2022, 11, 4, 19, 0, 0, 0),
-        LocalDateTime(2022, 11, 5, 19, 0, 0, 0),
-        LocalDateTime(2022, 11, 6, 19, 0, 0, 0),
-        LocalDateTime(2022, 11, 7, 19, 0, 0, 0))
-
-    val typeOfTraining = arrayOf<String>("Heavy workout","Heavy workout","Yoga",".Heavy workout","Heavy workout","Heavy workout", "Heavy workout")
-    val trainer = arrayOf<String>("Beast mode","Beast mode","Hells","Beast mode","Beast mode","Beast mode", "Beast mode")
-
-
     val _sessions = MutableLiveData<List<Session>>()
     val sessions: LiveData<List<Session>>
         get() = _sessions
 
     fun getSessions(){
-        /*_sessions.value = listOf(
+        _sessions.value = listOf(
             Session(
                 LocalDateTime(2022, 11, 1, 19, 0, 0, 0),
-                LocalDateTime(2022, 11, 1, 12, 0, 0, 0),
+                LocalDateTime(2022, 11, 1, 20, 0, 0, 0),
                 "Heavy workout", "Beast mode.", 6
             ),
             Session(
                 LocalDateTime(2022, 11, 2, 19, 0, 0, 0),
-                LocalDateTime(2022, 11, 2, 12, 0, 0, 0),
+                LocalDateTime(2022, 11, 2, 20, 0, 0, 0),
                 "Yoga", "Hells.", 5
             )
-        )*/
-
+        )
     }
     init {
         getSessions()

@@ -32,8 +32,10 @@ class SessionFragment : Fragment() {
         binding.lifecycleOwner = this
 
 
-        val myListSessionAdapter = MyListSessionAdapter(this, sessionViewModel.weekDays, sessionViewModel.typeOfTraining, sessionViewModel.trainer)
-        binding.listView.adapter = myListSessionAdapter;
+        val myListSessionAdapter = MyListSessionAdapter(sessionViewModel.sessions)
+        binding.sessionList.adapter = myListSessionAdapter;
+
+
 
         //observer on when to navigate from the graphs fragment
         sessionViewModel.navigateFromSession.observe(viewLifecycleOwner, Observer {
