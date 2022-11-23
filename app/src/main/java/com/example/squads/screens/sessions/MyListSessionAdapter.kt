@@ -1,5 +1,6 @@
 package com.example.squads.screens.sessions
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.text.Layout
@@ -23,6 +24,8 @@ import java.time.format.DateTimeFormatter
 class MyListSessionAdapter(private val dataSet: LiveData<List<Session>>) :
     RecyclerView.Adapter<MyListSessionAdapter.ViewHolder>() {
 
+    lateinit var context : Context
+
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
@@ -32,13 +35,16 @@ class MyListSessionAdapter(private val dataSet: LiveData<List<Session>>) :
         val SessionDate: TextView
         val SessionHour: TextView
         val SessionBox : ConstraintLayout
-
+        val SessionSpotsleft : TextView
+        val SessionTrainer : TextView
         init {
             // Define click listener for the ViewHolder's View.
             SessionType = view.findViewById(R.id.workout_type_text)
             SessionDate = view.findViewById(R.id.dateOfSession)
             SessionHour = view.findViewById(R.id.workout_date_text)
             SessionBox = view.findViewById(R.id.constraintLayout)
+            SessionSpotsleft = view.findViewById(R.id.spotsleft)
+            SessionTrainer = view.findViewById(R.id.workout_name_trainer)
         }
     }
 
@@ -48,6 +54,7 @@ class MyListSessionAdapter(private val dataSet: LiveData<List<Session>>) :
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.session_list, viewGroup, false)
 
+        context = viewGroup.context
 
 
         return ViewHolder(view)
@@ -56,13 +63,16 @@ class MyListSessionAdapter(private val dataSet: LiveData<List<Session>>) :
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
-        viewHolder.SessionBox.setBackgroundColor()
+        viewHolder.SessionBox.background = this.context.resources.getDrawable(R.drawable.gray_gradiant_button)
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
+        viewHolder.SessionTrainer.text = "with ${dataSet.value!!.get(position).trainer}"
+        viewHolder.SessionDate.text = dataSet.value!!.get(position).startDate.dayOfWeek.toString()
+        viewHolder.SessionSpotsleft.text = "${dataSet.value!!.get(position).spotsLeft.toString()} spots left"
         viewHolder.SessionType.text = dataSet.value!!.get(position).typeOfSession
-        viewHolder.SessionDate.text = dataSet.value!!.get(position).startDate.toString()
-        viewHolder.SessionHour.text = dataSet.value!!.get(position).endDate.toString()
+        viewHolder.SessionHour.text = "${dataSet.value!!.get(position).startDate.hour}:${dataSet.value!!.get(position).startDate.minute} " +
+                "${dataSet.value!!.get(position).endDate.hour}:${dataSet.value!!.get(position).endDate.minute}"
 
 
 
