@@ -1,4 +1,4 @@
-package com.example.squads.screens.reservations.tabs
+package com.example.squads.screens.reservations.tabs.planned
 
 import android.content.Context
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.squads.R
 import com.example.squads.databinding.FragmentPlannedReservationsBinding
 import com.example.squads.screens.reservations.Reservation
@@ -37,6 +38,10 @@ class PlannedReservationsFragment : Fragment() {
             createReservation(it)
         }*/
 
+
+        binding.plannedReservationList.adapter = PlannedReservationAdapter(sharedViewModel.plannedReservation)
+        binding.plannedReservationList.layoutManager = LinearLayoutManager(context)
+
         return binding.root
     }
 
@@ -48,6 +53,7 @@ class PlannedReservationsFragment : Fragment() {
      * LayoutInflater is used to 'convert' the XML into the corresponding kotlin objects.
      * @see https://developer.android.com/reference/android/content/Context
      */
+    /*
     fun createReservation(reservation: Reservation) {
         val inflater = activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val plannedReservation = inflater.inflate(R.layout.planned_reservation, null)
@@ -57,4 +63,5 @@ class PlannedReservationsFragment : Fragment() {
         binding.pastReservationContainer.addView(plannedReservation,
             binding.pastReservationContainer.childCount - 1);
     }
+     */
 }

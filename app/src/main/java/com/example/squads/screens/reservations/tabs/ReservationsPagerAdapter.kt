@@ -2,6 +2,8 @@ package com.example.squads.screens.reservations.tabs
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.squads.screens.reservations.tabs.past.PastReservationsFragment
+import com.example.squads.screens.reservations.tabs.planned.PlannedReservationsFragment
 
 /**
  * Implementation for the tabs in a ViewPager2 View.

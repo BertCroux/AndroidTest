@@ -1,4 +1,4 @@
-package com.example.squads.screens.reservations.tabs
+package com.example.squads.screens.reservations.tabs.past
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -26,6 +26,9 @@ class PastReservationsFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding: FragmentPastReservationsBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_past_reservations, container, false)
+
+
+
         return binding.root
     }
 }
