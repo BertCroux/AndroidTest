@@ -1,6 +1,5 @@
 package com.example.squads.screens.reservations.tabs.planned
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +10,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.squads.R
 import com.example.squads.databinding.FragmentPlannedReservationsBinding
-import com.example.squads.screens.reservations.Reservation
 import com.example.squads.screens.reservations.ReservationViewModel
 
 class PlannedReservationsFragment : Fragment() {
@@ -39,29 +37,13 @@ class PlannedReservationsFragment : Fragment() {
         }*/
 
 
+        //add binding to xml !!
+
         binding.plannedReservationList.adapter = PlannedReservationAdapter(sharedViewModel.plannedReservation)
-        binding.plannedReservationList.layoutManager = LinearLayoutManager(context)
+        binding.plannedReservationList.layoutManager = LinearLayoutManager(activity)
+        binding.lifecycleOwner = this
 
         return binding.root
     }
 
-
-    /**
-     * create a planned reservation with the use of a layout inflater.
-     * getSystemService is a method that we want to use to access LayoutInflater.
-     *
-     * LayoutInflater is used to 'convert' the XML into the corresponding kotlin objects.
-     * @see https://developer.android.com/reference/android/content/Context
-     */
-    /*
-    fun createReservation(reservation: Reservation) {
-        val inflater = activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val plannedReservation = inflater.inflate(R.layout.planned_reservation, null)
-
-        //makes custom reservation based of the list in the sharedViewModel?
-
-        binding.pastReservationContainer.addView(plannedReservation,
-            binding.pastReservationContainer.childCount - 1);
-    }
-     */
 }

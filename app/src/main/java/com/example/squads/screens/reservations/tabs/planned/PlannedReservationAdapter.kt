@@ -1,5 +1,6 @@
 package com.example.squads.screens.reservations.tabs.planned
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
@@ -15,6 +16,7 @@ class PlannedReservationAdapter(private val dataSet: LiveData<List<Reservation>>
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
+        Log.d("PRA", "triggered II")
         binding = PlannedReservationsListBinding.inflate(
             LayoutInflater.from(viewGroup.context),
             viewGroup, false
@@ -23,7 +25,11 @@ class PlannedReservationAdapter(private val dataSet: LiveData<List<Reservation>>
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        binding.
+        Log.d("PRA", "triggered")
+        binding.day.text = dataSet.value?.get(position)?.beginDate.toString()
+        binding.workoutTypeText.text = dataSet.value?.get(position)?.trainerType.toString()
+        binding.workoutDateText.text = dataSet.value?.get(position)?.beginDate.toString()
+        binding.trainerText.text = dataSet.value?.get(position)?.trainerName
     }
 
     override fun getItemCount() = dataSet.value!!.size
