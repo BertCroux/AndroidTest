@@ -20,7 +20,9 @@ class ExercisesFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+        //set binding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_exercises, container, false)
+        binding.lifecycleOwner = this
 
         //set View model
         val vm: ExercisesViewModel by activityViewModels()
@@ -32,8 +34,6 @@ class ExercisesFragment : Fragment() {
         TabLayoutMediator(binding.exerciseTabLayout, binding.exercisePager) {tab, position ->
             tab.text = exerciseVM.exercises.value?.get(position)?.name
         }.attach()
-
-        binding.lifecycleOwner = this
 
         return binding.root
     }
