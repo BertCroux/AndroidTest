@@ -1,4 +1,4 @@
-package com.example.squads.database
+package com.example.squads.database.reservations
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

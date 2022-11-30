@@ -1,10 +1,10 @@
-package com.example.squads.database
+package com.example.squads.database.exercises
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "exercise")
-data class ExerciseType(
+data class Exercise(
     @PrimaryKey
     val id: Int,
     val name: String,

@@ -1,4 +1,4 @@
-package com.example.squads.database
+package com.example.squads.database.accounts
 
 data class Address (
     val street: String,
