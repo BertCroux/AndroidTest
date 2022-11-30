@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Space
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintAttribute
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import com.example.squads.R
 import com.example.squads.databinding.FragmentExerciseDetailBinding
@@ -32,14 +34,14 @@ class ExerciseDetailFragment(val exercise: Exercise?, val personalRecords: List<
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_exercise_detail, container, false)
 
         binding.exerciseImage.setImageResource(context?.resources?.getIdentifier(exercise?.imageUrl, "drawable", context?.packageName) ?: -1)
-        binding.exerciseExplanation.text = exercise?.explanation
 
         personalRecords.forEach { pr -> binding.exerciseRecords.addView(createRecord(pr.amountOfReps, pr.achievedOn, pr.weightUsed)) }
 
         return binding.root
     }
 
-    fun createRecord(reps: Int, date: LocalDate, weight: Double): LinearLayout {
+    fun createRecord(reps: Int, date: LocalDate, weight: Double): View {
+        val record: View = LayoutInflater.from(context).inflate(R.layout.fragment_personal_record, null, false)
         var ll: LinearLayout = LinearLayout(context)
         ll.background = resources.getDrawable(R.drawable.gray_gradiant_button_upside_down)
         ll.orientation = LinearLayout.HORIZONTAL
