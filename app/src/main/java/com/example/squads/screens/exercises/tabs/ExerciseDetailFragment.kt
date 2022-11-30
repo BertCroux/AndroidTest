@@ -14,7 +14,7 @@ import com.example.squads.screens.exercises.models.Exercise
 import com.example.squads.screens.exercises.models.PersonalRecord
 import com.example.squads.screens.exercises.PersonalRecordListAdapter
 
-class ExerciseDetailFragment(val exercise: Exercise?, val personalRecords: LiveData<List<PersonalRecord>>) : Fragment() {
+class ExerciseDetailFragment(private val exercise: Exercise?, private val personalRecords: LiveData<List<PersonalRecord>>) : Fragment() {
     lateinit var binding: FragmentExerciseDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,8 +31,6 @@ class ExerciseDetailFragment(val exercise: Exercise?, val personalRecords: LiveD
         val prListAdapter = PersonalRecordListAdapter(personalRecords)
         binding.prList.adapter = prListAdapter
         binding.prList.layoutManager = LinearLayoutManager(activity)
-
-        //personalRecords.value?.forEach { pr -> binding.exerciseRecords.addView(createRecord(pr.amountOfReps, pr.achievedOn, pr.weightUsed)) }
 
         return binding.root
     }

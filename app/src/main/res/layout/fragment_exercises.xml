@@ -38,7 +38,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/exercise_pager"
             android:layout_width="match_parent"
-            android:layout_height="1000dp"
+            android:layout_height="wrap_content"
             />
 
 
