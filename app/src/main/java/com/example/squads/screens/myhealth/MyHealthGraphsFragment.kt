@@ -18,6 +18,7 @@ import androidx.navigation.fragment.findNavController
 import com.androidplot.xy.*
 import com.example.squads.R
 import com.example.squads.databinding.FragmentMyHealthGraphsBinding
+import com.example.squads.domain.Measurement
 import kotlinx.datetime.LocalDateTime
 import java.text.FieldPosition
 import java.text.Format
@@ -190,10 +191,7 @@ class MyHealthGraphsFragment : Fragment() {
         })
 
         //get the latest measurement from the viewmodel
-        latestMeasurement = myHealthViewModel.latestMeasurement.value ?: throw NotFoundException()
-        myHealthViewModel.latestMeasurement.observe(viewLifecycleOwner, Observer {
-            latestMeasurement = it
-        })
+        latestMeasurement = myHealthViewModel.latestMeasurement
 
         //when the button is clicked, a type is sent along with it as string and is stored in the viewmodel
         //so when the type in the viewmodel changes, the measurements have to be mapped to the right type

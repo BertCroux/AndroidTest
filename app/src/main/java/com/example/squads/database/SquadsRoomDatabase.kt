@@ -8,34 +8,42 @@ import com.example.squads.database.accounts.Account
 import com.example.squads.database.accounts.AccountDao
 import com.example.squads.database.exercises.Exercise
 import com.example.squads.database.exercises.ExerciseDao
-import com.example.squads.database.measurements.Measurement
-import com.example.squads.database.measurements.MeasurementDao
+import com.example.squads.database.measurements.DatabaseMeasurement
+import com.example.squads.database.measurements.DatabaseMeasurementDao
 import com.example.squads.database.personalrecords.PersonalRecord
 import com.example.squads.database.personalrecords.PersonalRecordDao
 import com.example.squads.database.reservations.Reservation
 import com.example.squads.database.reservations.ReservationDao
 
-@Database(entities = arrayOf(Account::class, Exercise::class, Measurement::class, PersonalRecord::class, Reservation::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(DatabaseMeasurement::class), version = 1, exportSchema = false)
+@androidx.room.TypeConverters(TypeConverters::class)
 public abstract class SquadsRoomDatabase : RoomDatabase() {
-    abstract fun accountDao(): AccountDao
-    abstract fun exerciseDao(): ExerciseDao
-    abstract fun measurementDao(): MeasurementDao
-    abstract fun personalRecordDao(): PersonalRecordDao
-    abstract fun reservationDao(): ReservationDao
+    //abstract fun accountDao(): AccountDao
+    //abstract fun exerciseDao(): ExerciseDao
+    abstract val measurementDao: DatabaseMeasurementDao
+    //abstract fun personalRecordDao(): PersonalRecordDao
+    //abstract fun reservationDao(): ReservationDao
 
     companion object {
         @Volatile
         private var INSTANCE: SquadsRoomDatabase? = null
 
-        fun getDatabase(context: Context): SquadsRoomDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    SquadsRoomDatabase::class.java,
-                    "squads_database"
-                ).build()
-                INSTANCE = instance
-                instance
+        fun getInstance(context: Context): SquadsRoomDatabase {
+            synchronized(this) {
+                var instance = INSTANCE
+
+                if (instance == null) {
+                    instance = Room.databaseBuilder(
+                        context.applicationContext,
+                        SquadsRoomDatabase::class.java,
+                        "squadsDb"
+                    )
+                        .fallbackToDestructiveMigration()
+                        .build()
+                    INSTANCE = instance
+                }
+
+                return instance
             }
         }
     }
