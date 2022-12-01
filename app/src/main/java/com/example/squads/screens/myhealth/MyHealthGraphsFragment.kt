@@ -29,10 +29,10 @@ class MyHealthGraphsFragment : Fragment() {
 
     lateinit var latestMeasurement: Measurement
 
-    //the list of values to display
+    // the list of values to display
     lateinit var valuesForGraph: List<Pair<Double, LocalDateTime>>
 
-    //filtered on year (gets initialised by the spinner)
+    // filtered on year (gets initialised by the spinner)
     var valuesForGraphFiltered: List<Pair<Double, LocalDateTime>> = emptyList()
 
     lateinit var binding: FragmentMyHealthGraphsBinding
@@ -49,18 +49,17 @@ class MyHealthGraphsFragment : Fragment() {
             inflater, R.layout.fragment_my_health_graphs, container, false
         )
 
-        //get the viewmodel
+        // get the viewmodel
         val vm: MyHealthViewModel by activityViewModels()
-        //set the viewmodel
+        // set the viewmodel
         myHealthViewModel = vm
         // set the viewmodel in the xml file
         binding.myHealthViewModel = myHealthViewModel
 
-        //makes the live data work ig
+        // makes the live data work ig
         binding.lifecycleOwner = this
 
         binding.myHealthGraphsFragment = this@MyHealthGraphsFragment
-
 
         addObservers()
         setupSpinner()
@@ -68,7 +67,7 @@ class MyHealthGraphsFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("ResourceType") //suppress warning R.color.orange and R.color.darkorange
+    @SuppressLint("ResourceType") // suppress warning R.color.orange and R.color.darkorange
     private fun setupPlot() {
         val plot = binding.plot
         plot.clear()
@@ -76,7 +75,6 @@ class MyHealthGraphsFragment : Fragment() {
         val domainLabels = valuesForGraphFiltered.map { it ->
             String.format("%d-%s", it.second.dayOfMonth, it.second.monthNumber)
         }
-
 
 //        Log.i("graphs", "labels:--------------------")
 //        domainLabels.forEach {
@@ -96,15 +94,14 @@ class MyHealthGraphsFragment : Fragment() {
             "Series 1"
         )
 
-        //weird but I have to do this to get the hex value to convert it to color int
+        // weird but I have to do this to get the hex value to convert it to color int
         val orange = resources.getString(R.color.orange).toColorInt()
         val darkorange = resources.getString(R.color.darkorange).toColorInt()
 
         val series1Format =
             LineAndPointFormatter(orange, darkorange, null, null)
 
-
-        //optional: to set the lines to smooth or straight
+        // optional: to set the lines to smooth or straight
 //        series1Format.setInterpolationParams(
 //            CatmullRomInterpolator.Params(
 //                10,
@@ -113,7 +110,7 @@ class MyHealthGraphsFragment : Fragment() {
 //        )
 
         plot.addSeries(series1, series1Format)
-        plot.legend.isVisible = false //remove the legend
+        plot.legend.isVisible = false // remove the legend
         plot.setDomainStep(StepMode.INCREMENT_BY_FIT, 1.0)
         plot.graph.getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).format = object : Format() {
             override fun format(
@@ -132,9 +129,8 @@ class MyHealthGraphsFragment : Fragment() {
             }
         }
 
-        //optional to pan and zoom
+        // optional to pan and zoom
 //        PanZoom.attach(plot)
-
     }
 
     fun navigateBack() {
@@ -142,16 +138,16 @@ class MyHealthGraphsFragment : Fragment() {
     }
 
     private fun setupSpinner() {
-        //get the spinner from xml
+        // get the spinner from xml
         val spinner: Spinner = binding.spinnerHealthYears
-        //create a list of items to put in the spinner
+        // create a list of items to put in the spinner
         val spinnerItems: List<String> = getDistinctYearsFromMeasurements()
-        //create an adapter to insert the values and use a custom view (health_spinner_item) to render the items
+        // create an adapter to insert the values and use a custom view (health_spinner_item) to render the items
         val spinnerAdapter =
             ArrayAdapter(requireActivity(), R.layout.health_spinner_item, spinnerItems)
         spinner.adapter = spinnerAdapter
 
-        //override the onselect listeners
+        // override the onselect listeners
         spinner.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
@@ -164,7 +160,7 @@ class MyHealthGraphsFragment : Fragment() {
 //                Log.i("graphs", "lijst voor filtering---------------")
 //                logValuesForGraph()
 
-                //effectief de lijst filteren en sorteren
+                // effectief de lijst filteren en sorteren
                 valuesForGraphFiltered =
                     valuesForGraph.filter { it.second.year.toString() == value }.sortedBy { it.second }
 
@@ -172,43 +168,52 @@ class MyHealthGraphsFragment : Fragment() {
 //                logValuesForGraphFiltered()
 
                 setupPlot()
-                binding.plot.invalidate() //force redraw the view
+                binding.plot.invalidate() // force redraw the view
             }
 
-            //has to be implemented even though you don't use it
+            // has to be implemented even though you don't use it
             override fun onNothingSelected(p0: AdapterView<*>) {
-                //do nothing...
+                // do nothing...
             }
         }
     }
 
     private fun addObservers() {
-        //get the measurements from the viewmodel
+        // get the measurements from the viewmodel
         measurements = myHealthViewModel.measurements.value ?: throw NotFoundException()
-        myHealthViewModel.measurements.observe(viewLifecycleOwner, Observer {
-            measurements = it
-        })
+        myHealthViewModel.measurements.observe(
+            viewLifecycleOwner,
+            Observer {
+                measurements = it
+            }
+        )
 
-        //get the latest measurement from the viewmodel
+        // get the latest measurement from the viewmodel
         latestMeasurement = myHealthViewModel.latestMeasurement.value ?: throw NotFoundException()
-        myHealthViewModel.latestMeasurement.observe(viewLifecycleOwner, Observer {
-            latestMeasurement = it
-        })
+        myHealthViewModel.latestMeasurement.observe(
+            viewLifecycleOwner,
+            Observer {
+                latestMeasurement = it
+            }
+        )
 
-        //when the button is clicked, a type is sent along with it as string and is stored in the viewmodel
-        //so when the type in the viewmodel changes, the measurements have to be mapped to the right type
+        // when the button is clicked, a type is sent along with it as string and is stored in the viewmodel
+        // so when the type in the viewmodel changes, the measurements have to be mapped to the right type
         // in this observer function
         valuesForGraph = emptyList()
-        myHealthViewModel.typeDataGraph.observe(viewLifecycleOwner, Observer { type ->
-            if (type != null) {
-                //set lateinit var and update the text field to display the type
-                binding.txtCurrentType.text = type
-                valuesForGraph = mapMeasurements(type)
+        myHealthViewModel.typeDataGraph.observe(
+            viewLifecycleOwner,
+            Observer { type ->
+                if (type != null) {
+                    // set lateinit var and update the text field to display the type
+                    binding.txtCurrentType.text = type
+                    valuesForGraph = mapMeasurements(type)
+                }
             }
-        })
+        )
     }
 
-    //get the years to display in the spinner
+    // get the years to display in the spinner
     private fun getDistinctYearsFromMeasurements(): List<String> {
         return measurements.map {
             it.measuredOn.year.toString()
@@ -241,11 +246,11 @@ class MyHealthGraphsFragment : Fragment() {
                 return measurements.map { Pair(it.waistCircumference, it.measuredOn) }
             }
             "BMI" -> {
-                //TODO BMI
+                // TODO BMI
                 print("apart geval")
                 binding.txtLatestValue.text =
-                    String.format("%.1f", latestMeasurement.weight / (1.7*1.7))
-                return measurements.map { Pair(it.weight / (1.8*1.8), it.measuredOn)}
+                    String.format("%.1f", latestMeasurement.weight / (1.7 * 1.7))
+                return measurements.map { Pair(it.weight / (1.8 * 1.8), it.measuredOn) }
             }
             else -> {
                 throw NotFoundException()
@@ -254,8 +259,7 @@ class MyHealthGraphsFragment : Fragment() {
         throw NotFoundException()
     }
 
-
-    //helper functions for debugging purposes
+    // helper functions for debugging purposes
 //    private fun logValuesForGraph() {
 //        valuesForGraph.forEach {
 //            Log.i("graphs", it.toString())
