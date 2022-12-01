@@ -15,7 +15,7 @@ class MyHealthViewModel(application: Application) : AndroidViewModel(application
     private val repository = MeasurementRepository(database)
 
     val measurements = repository.allMeasurements
-    val latestMeasurement = repository.latestMeasurement
+    val latestMeasurement = repository.latest
 
     // variable so the graphsfragment knows what to display
     private val _typeDataGraph = MutableLiveData<String?>()

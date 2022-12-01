@@ -11,7 +11,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 private const val BASE_URL =
-    "https://localhost:25153/measurements"
+    "https://localhost:25153/measurements/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())

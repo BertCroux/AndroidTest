@@ -191,7 +191,7 @@ class MyHealthGraphsFragment : Fragment() {
         })
 
         //get the latest measurement from the viewmodel
-        latestMeasurement = myHealthViewModel.latestMeasurement
+        latestMeasurement = myHealthViewModel.latestMeasurement!!
 
         //when the button is clicked, a type is sent along with it as string and is stored in the viewmodel
         //so when the type in the viewmodel changes, the measurements have to be mapped to the right type

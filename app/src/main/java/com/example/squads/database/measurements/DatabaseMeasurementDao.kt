@@ -13,7 +13,7 @@ interface DatabaseMeasurementDao {
     fun getAllMeasurements(): LiveData<List<DatabaseMeasurement>>
 
     @Query("SELECT * FROM measurement ORDER BY measuredOn DESC LIMIT 1")
-    fun getLatestMeasurement(): DatabaseMeasurement
+    fun getLatestMeasurement(): LiveData<DatabaseMeasurement>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(measurement: DatabaseMeasurement)

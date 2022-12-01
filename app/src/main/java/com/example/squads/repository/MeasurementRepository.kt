@@ -18,10 +18,15 @@ class MeasurementRepository(private val database: SquadsRoomDatabase) {
         it.asDomain()
     }
 
-    val latestMeasurement: Measurement = database.measurementDao.getLatestMeasurement().asDomain()
+
+    val latest = Transformations.map(database.measurementDao.getLatestMeasurement()) {
+        it.asDomain()
+    }.value
+
+    //val latestMeasurement = database.measurementDao.getLatestMeasurement().asDomain()
 
     suspend fun refreshMeasurements() {
-        withContext(Dispatchers.IO) {
+        withContext(Dispatchers.Default) {
             val measurements = MeasurementApi.retrofitService.getAllMeasurementsFromUser(1).await()
             database.measurementDao.insertAll(*measurements.asDatabase())
         }
