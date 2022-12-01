@@ -46,8 +46,11 @@ class MyListSessionAdapter(private val dataSet: LiveData<List<Session>>) :
 
 
         viewHolder.binding.buttonSession.setOnClickListener {
+
             viewHolder.binding.constraintLayout.background = this.context.resources.getDrawable(R.drawable.gradiant_button)
             viewHolder.binding.buttonSession.setImageResource(R.drawable.ic_cancel)
+
+            //create new reservation => session
         }
 
         binding.workoutNameTrainer.text = "with ${dataSet.value!!.get(position).trainer}"
