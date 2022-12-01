@@ -36,5 +36,9 @@
     <string name="book_session_lbl">Book a session</string>
     <string name="nameOfTrainer">with Hells</string>
     <string name="spotsleft">6 spots left</string>
+    <!--strings for mylistsession-->
+    <string name="workoutnametrainer_text">With %s</string>
+    <string name="spotslef_text">%s spots left</string>
+    <string name="workoutdate_text">%d:%d %d:%d</string>
 
 </resources>

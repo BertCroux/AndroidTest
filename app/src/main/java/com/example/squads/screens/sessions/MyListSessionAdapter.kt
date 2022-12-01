@@ -13,11 +13,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.RequiresApi
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.squads.R
 import com.example.squads.databinding.SessionListBinding
+import com.google.android.material.internal.ContextUtils.getActivity
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.toJavaLocalDateTime
 import org.w3c.dom.Text
@@ -47,18 +50,17 @@ class MyListSessionAdapter(private val dataSet: LiveData<List<Session>>) :
 
         viewHolder.binding.buttonSession.setOnClickListener {
 
-            viewHolder.binding.constraintLayout.background = this.context.resources.getDrawable(R.drawable.gradiant_button)
+            viewHolder.binding.constraintLayout.background = AppCompatResources.getDrawable(context, R.drawable.gradiant_button)
             viewHolder.binding.buttonSession.setImageResource(R.drawable.ic_cancel)
 
             //create new reservation => session
         }
 
-        binding.workoutNameTrainer.text = "with ${dataSet.value!!.get(position).trainer}"
-        binding.dateOfSession.text = dataSet.value!!.get(position).startDate.dayOfWeek.toString()
-        binding.spotsleft.text = "${dataSet.value!!.get(position).spotsLeft.toString()} spots left"
-        binding.workoutTypeText.text = dataSet.value!!.get(position).typeOfSession
-        binding.workoutDateText.text = "${dataSet.value!!.get(position).startDate.hour}:${dataSet.value!!.get(position).startDate.minute} " +
-                "${dataSet.value!!.get(position).endDate.hour}:${dataSet.value!!.get(position).endDate.minute}"
+        binding.workoutNameTrainer.text = context.getString(R.string.workoutnametrainer_text, dataSet.value!![position].trainer)
+        binding.dateOfSession.text = dataSet.value!![position].startDate.dayOfWeek.toString()
+        binding.spotsleft.text = context.getString(R.string.spotslef_text, dataSet.value!![position].spotsLeft)
+        binding.workoutTypeText.text = dataSet.value!![position].typeOfSession
+        binding.workoutDateText.text = context.getString(R.string.workoutdate_text, dataSet.value!![position].startDate.hour, dataSet.value!![position].startDate.minute, dataSet.value!!.get(position).endDate.hour, dataSet.value!!.get(position).endDate.minute)
 
     }
 
