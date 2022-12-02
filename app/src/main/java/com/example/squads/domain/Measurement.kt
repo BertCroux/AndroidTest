@@ -12,6 +12,5 @@ data class Measurement(
     val fatPercentage: Double,
     val musclePercentage: Double,
     val waistCircumference: Double,
-    val measuredOn: Date,
-    val bmi: Double
+    val measuredOn: Date
 )

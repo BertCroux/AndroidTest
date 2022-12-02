@@ -22,7 +22,6 @@ data class DatabaseMeasurement(
     val musclePercentage: Double,
     val waistCircumference: Double,
     val measuredOn: String,
-    val bmi: Double
 )
 
 fun List<DatabaseMeasurement>.asDomain(): List<Measurement> {
@@ -33,8 +32,7 @@ fun List<DatabaseMeasurement>.asDomain(): List<Measurement> {
             fatPercentage = it.fatPercentage,
             musclePercentage = it.musclePercentage,
             waistCircumference = it.waistCircumference,
-            measuredOn = SimpleDateFormat("dd/mm/yyyy").parse(it.measuredOn),
-            bmi = it.bmi
+            measuredOn = SimpleDateFormat("dd/mm/yyyy").parse(it.measuredOn)
         )
     }
 }
@@ -46,7 +44,6 @@ fun DatabaseMeasurement.asDomain(): Measurement {
         fatPercentage = fatPercentage,
         musclePercentage = musclePercentage,
         waistCircumference = waistCircumference,
-        measuredOn = SimpleDateFormat("dd/mm/yyyy").parse(measuredOn),
-        bmi = bmi
+        measuredOn = SimpleDateFormat("dd/mm/yyyy").parse(measuredOn)
     )
 }

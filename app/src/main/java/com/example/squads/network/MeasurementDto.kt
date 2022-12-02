@@ -27,8 +27,8 @@ data class MeasurementDto (
     val measuredOn: String,
     @Json(name = "waistCircumference")
     val waistCircumfercence: Double,
-    @Json(name = "bmi")
-    val bmi: Double
+    //@Json(name = "bmi")
+    //val bmi: Double
 )
 
 fun MeasurementDtoContainer.asDomain(): List<Measurement> {
@@ -40,7 +40,6 @@ fun MeasurementDtoContainer.asDomain(): List<Measurement> {
             musclePercentage = it.musclePercentage,
             waistCircumference = it.waistCircumfercence,
             measuredOn = SimpleDateFormat("dd/mm/yyyy").parse(it.measuredOn),
-            bmi = it.bmi
         )
     }
 }
@@ -54,7 +53,6 @@ fun MeasurementDtoContainer.asDatabase(): Array<DatabaseMeasurement> {
             musclePercentage = it.musclePercentage,
             waistCircumference = it.waistCircumfercence,
             measuredOn = SimpleDateFormat("dd/mm/yyyy").parse(it.measuredOn).toString(),
-            bmi = it.bmi
         )
     }.toTypedArray()
 }
@@ -67,6 +65,5 @@ fun MeasurementDto.asDatabase(): DatabaseMeasurement {
         musclePercentage = musclePercentage,
         waistCircumference = waistCircumfercence,
         measuredOn = SimpleDateFormat("dd/mm/yyyy").parse(measuredOn).toString(),
-        bmi = bmi
     )
 }
