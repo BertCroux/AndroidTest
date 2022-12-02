@@ -15,7 +15,7 @@ private const val BASE_URL =
     "https://squadsacceptancea01.azurewebsites.net/measurements/"
 
 private val moshi = Moshi.Builder()
-    //.add(KotlinJsonAdapterFactory())
+    .add(KotlinJsonAdapterFactory())
     .build()
 
 
@@ -33,8 +33,8 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface MeasurementApiService {
-    @GET("/{userId}")
-    fun getAllMeasurementsFromUserAsync(@Path("userId") userId: Int): Deferred<MeasurementDtoContainer>
+    @GET("{userId}")
+    fun getAllMeasurementsFromUserAsync(@Path("userId") userId: Int): Deferred<List<MeasurementDto>>
 }
 
 object MeasurementApi {

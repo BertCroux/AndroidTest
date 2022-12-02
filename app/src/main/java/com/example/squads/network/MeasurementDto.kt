@@ -7,11 +7,12 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import okhttp3.RequestBody
 import java.text.SimpleDateFormat
 
 data class MeasurementDtoContainer(
     @Json(name = "body")
-    val measurementDto: List<MeasurementDto>
+    val replyBody: List<MeasurementDto>
 )
 
 data class MeasurementDto (
@@ -32,7 +33,7 @@ data class MeasurementDto (
 )
 
 fun MeasurementDtoContainer.asDomain(): List<Measurement> {
-    return measurementDto.map {
+    return replyBody.map {
         Measurement(
             id = it.id,
             weight = it.weight,
@@ -44,8 +45,8 @@ fun MeasurementDtoContainer.asDomain(): List<Measurement> {
     }
 }
 
-fun MeasurementDtoContainer.asDatabase(): Array<DatabaseMeasurement> {
-    return measurementDto.map {
+fun List<MeasurementDto>.asDatabase(): Array<DatabaseMeasurement> {
+    return this.map {
         DatabaseMeasurement(
             id = it.id,
             weight = it.weight,
