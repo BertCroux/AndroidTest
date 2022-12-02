@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Squads</string>
+    <string name="com_auth0_domain">dev-gfralrybz0kc8g4m.us.auth0.com</string>
+
     <!--navigation string resources-->
     <string name="navigation_home">Home</string>
     <string name="navigation_reservation">Reservations</string>

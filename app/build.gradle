@@ -15,6 +15,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [auth0Domain: "@string/com_auth0_domain", auth0Scheme: "demo"]
     }
 
     buildTypes {
@@ -54,4 +55,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation 'com.androidplot:androidplot-core:1.5.10'
+
+    // Add the Auth0 Android SDK
+    implementation 'com.auth0.android:auth0:2.+'
 }
