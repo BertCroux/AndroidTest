@@ -13,7 +13,7 @@
         android:icon="@drawable/ic_exercise"
         android:title="@string/navigation_exercises" />
     <item
-        android:id="@+id/health"
+        android:id="@+id/myhealth"
         android:icon="@drawable/ic_health"
         android:title="@string/navigation_health" />
 

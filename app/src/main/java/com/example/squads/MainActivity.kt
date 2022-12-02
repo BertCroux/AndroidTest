@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         // They're used in the same order as defined in the Collection
         // e.g. home fragment shows at the first menu item in the action bar
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.home, R.id.reservations, R.id.session)
+            setOf(R.id.home, R.id.reservations, R.id.settings, R.id.session)
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
     }

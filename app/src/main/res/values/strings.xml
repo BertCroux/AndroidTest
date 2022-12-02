@@ -2,8 +2,8 @@
     <string name="app_name">Squads</string>
     <!--navigation string resources-->
     <string name="navigation_home">Home</string>
-    <string name="navigation_reservation">Reserv.</string>
-    <string name="navigation_exercises">Exerc.</string>
+    <string name="navigation_reservation">Reservations</string>
+    <string name="navigation_exercises">Exercises</string>
     <string name="navigation_health">Health</string>
     <string name="navigation_settings">Settings</string>
     <!--fragment home string resources-->
@@ -40,5 +40,5 @@
     <string name="workoutnametrainer_text">With %s</string>
     <string name="spotslef_text">%s spots left</string>
     <string name="workoutdate_text">%d:%d %d:%d</string>
-
+    <string name="exercises">Exercises</string>
 </resources>
