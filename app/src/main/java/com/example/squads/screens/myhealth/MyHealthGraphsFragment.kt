@@ -23,6 +23,7 @@ import kotlinx.datetime.LocalDateTime
 import java.text.FieldPosition
 import java.text.Format
 import java.text.ParsePosition
+import java.util.Date
 
 class MyHealthGraphsFragment : Fragment() {
 
@@ -31,10 +32,10 @@ class MyHealthGraphsFragment : Fragment() {
     lateinit var latestMeasurement: Measurement
 
     //the list of values to display
-    lateinit var valuesForGraph: List<Pair<Double, LocalDateTime>>
+    lateinit var valuesForGraph: List<Pair<Double, Date>>
 
     //filtered on year (gets initialised by the spinner)
-    var valuesForGraphFiltered: List<Pair<Double, LocalDateTime>> = emptyList()
+    var valuesForGraphFiltered: List<Pair<Double, Date>> = emptyList()
 
     lateinit var binding: FragmentMyHealthGraphsBinding
 
@@ -75,7 +76,7 @@ class MyHealthGraphsFragment : Fragment() {
         plot.clear()
 
         val domainLabels = valuesForGraphFiltered.map { it ->
-            String.format("%d-%s", it.second.dayOfMonth, it.second.monthNumber)
+            String.format("%d-%s", LocalDateTime.parse(it.second.toString()).dayOfMonth, LocalDateTime.parse(it.second.toString()).monthNumber)
         }
 
 
@@ -209,7 +210,7 @@ class MyHealthGraphsFragment : Fragment() {
     //get the years to display in the spinner
     private fun getDistinctYearsFromMeasurements(): List<String> {
         return measurements.map {
-            it.measuredOn.year.toString()
+            it.measuredOn.toString()
         }.distinct().sorted().reversed().toMutableList()
     }
 
@@ -217,7 +218,7 @@ class MyHealthGraphsFragment : Fragment() {
      * This function sets the text value to the latest measurement of that type
      * @return a list of pairs (tuples) that contain the value and the date of measurement
      */
-    private fun mapMeasurements(type: String): List<Pair<Double, LocalDateTime>> {
+    private fun mapMeasurements(type: String): List<Pair<Double, Date>> {
         when (type) {
             "Weight" -> {
                 binding.txtLatestValue.text = String.format("%.1f kg", latestMeasurement.weight)

@@ -8,6 +8,9 @@ import com.example.squads.domain.Measurement
 import com.example.squads.network.MeasurementDto
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
+import java.text.SimpleDateFormat
 import java.util.Date
 
 @Entity(tableName = "measurement")
@@ -18,7 +21,7 @@ data class DatabaseMeasurement(
     val fatPercentage: Double,
     val musclePercentage: Double,
     val waistCircumference: Double,
-    val measuredOn: LocalDateTime,
+    val measuredOn: String,
     val bmi: Double
 )
 
@@ -30,7 +33,7 @@ fun List<DatabaseMeasurement>.asDomain(): List<Measurement> {
             fatPercentage = it.fatPercentage,
             musclePercentage = it.musclePercentage,
             waistCircumference = it.waistCircumference,
-            measuredOn = it.measuredOn,
+            measuredOn = SimpleDateFormat("dd/mm/yyyy").parse(it.measuredOn),
             bmi = it.bmi
         )
     }
@@ -43,7 +46,7 @@ fun DatabaseMeasurement.asDomain(): Measurement {
         fatPercentage = fatPercentage,
         musclePercentage = musclePercentage,
         waistCircumference = waistCircumference,
-        measuredOn = measuredOn,
+        measuredOn = SimpleDateFormat("dd/mm/yyyy").parse(measuredOn),
         bmi = bmi
     )
 }

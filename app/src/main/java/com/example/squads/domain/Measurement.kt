@@ -3,6 +3,7 @@ package com.example.squads.domain
 import com.example.squads.database.measurements.DatabaseMeasurement
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
+import java.text.SimpleDateFormat
 import java.util.Date
 
 data class Measurement(
@@ -11,6 +12,6 @@ data class Measurement(
     val fatPercentage: Double,
     val musclePercentage: Double,
     val waistCircumference: Double,
-    val measuredOn: LocalDateTime,
+    val measuredOn: Date,
     val bmi: Double
 )

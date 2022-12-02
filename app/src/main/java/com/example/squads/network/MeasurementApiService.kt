@@ -1,5 +1,6 @@
 package com.example.squads.network
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
@@ -7,11 +8,10 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.POST
 import retrofit2.http.Path
 
 private const val BASE_URL =
-    "https://localhost:25153/measurements/"
+    "http://10.0.2.2:5000/measurements/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -22,16 +22,17 @@ private val client = OkHttpClient.Builder()
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .baseUrl(BASE_URL)
     .client(client)
     .build()
 
 interface MeasurementApiService {
     @GET("/{userId}")
-    suspend fun getAllMeasurementsFromUser(@Path("userId") userId: Int): Deferred<MeasurementDtoContainer>
+    fun getAllMeasurementsFromUserAsync(@Path("userId") userId: Int): Deferred<MeasurementDtoContainer>
 
     @GET("/{userId}/latest")
-    suspend fun getLatestMeasurementsFromUser(@Path("userId") userId: Int): Deferred<MeasurementDto>
+    fun getLatestMeasurementsFromUser(@Path("userId") userId: Int): Deferred<MeasurementDto>
 }
 
 object MeasurementApi {
