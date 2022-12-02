@@ -21,7 +21,7 @@ private val client = OkHttpClient.Builder()
     .build()
 
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .addConverterFactory(MoshiConverterFactory.create(moshi).asLenient())
     .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .baseUrl(BASE_URL)
     .client(client)
@@ -30,9 +30,6 @@ private val retrofit = Retrofit.Builder()
 interface MeasurementApiService {
     @GET("/{userId}")
     fun getAllMeasurementsFromUserAsync(@Path("userId") userId: Int): Deferred<MeasurementDtoContainer>
-
-    @GET("/{userId}/latest")
-    fun getLatestMeasurementsFromUser(@Path("userId") userId: Int): Deferred<MeasurementDto>
 }
 
 object MeasurementApi {

@@ -23,10 +23,10 @@ data class MeasurementDto (
     val fatPercentage: Double,
     @Json(name = "musclePercentage")
     val musclePercentage: Double,
-    @Json(name = "measurementDate")
-    val measuredOn: String,
     @Json(name = "waistCircumference")
     val waistCircumfercence: Double,
+    @Json(name = "measurementDate")
+    val measuredOn: String,
     //@Json(name = "bmi")
     //val bmi: Double
 )
