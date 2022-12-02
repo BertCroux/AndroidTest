@@ -58,8 +58,8 @@ jobs:
           cache: gradle
 
       # Run Debug Linter
-      - name: Run Debug Linter
-        run: ./gradlew lintDebug
+      # - name: Run Debug Linter
+      #   run: ./gradlew lintDebug
 
       # Upload Linter Report
       - name: Upload Linter Reports
@@ -88,8 +88,8 @@ jobs:
           cache: gradle
 
       # Build Debug APK
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug
+      # - name: Build Debug APK
+      #   run: ./gradlew assembleDebug
 
       # Upload APK
       - name: Upload APK
