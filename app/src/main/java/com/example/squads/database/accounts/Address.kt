@@ -1,8 +1,8 @@
 package com.example.squads.database.accounts
 
 data class Address (
-    val street: String,
-    val number: String,
-    val city: String,
-    val zipCode: Int,
+    val addressLine1: String,
+    val addressLine2: String,
+    val zipCode: String,
+    val city: String
 )

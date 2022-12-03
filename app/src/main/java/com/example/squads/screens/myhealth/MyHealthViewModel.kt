@@ -1,13 +1,11 @@
 package com.example.squads.screens.myhealth
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.squads.database.SquadsRoomDatabase
-import com.example.squads.repository.MeasurementRepository
+import com.example.squads.repository.measurements.MeasurementRepository
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
-import kotlinx.datetime.LocalDateTime
 
 class MyHealthViewModel(application: Application) : AndroidViewModel(application) {
     // list of all the users measurements

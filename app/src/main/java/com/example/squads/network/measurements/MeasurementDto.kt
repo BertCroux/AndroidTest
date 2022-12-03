@@ -1,13 +1,8 @@
-package com.example.squads.network
+package com.example.squads.network.measurements
 
 import com.example.squads.database.measurements.DatabaseMeasurement
-import com.example.squads.domain.Measurement
+import com.example.squads.domain.measurements.Measurement
 import com.squareup.moshi.Json
-import kotlinx.datetime.Instant
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
-import okhttp3.RequestBody
 import java.text.SimpleDateFormat
 
 data class MeasurementDtoContainer(

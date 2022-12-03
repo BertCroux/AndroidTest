@@ -1,4 +1,4 @@
-package com.example.squads.domain
+package com.example.squads.domain.measurements
 
 import com.example.squads.database.measurements.DatabaseMeasurement
 import kotlinx.datetime.Instant

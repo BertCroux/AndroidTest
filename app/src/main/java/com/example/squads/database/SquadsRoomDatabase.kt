@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.squads.database.accounts.Account
+import com.example.squads.database.accounts.DatabaseAccount
 import com.example.squads.database.accounts.AccountDao
 import com.example.squads.database.exercises.Exercise
 import com.example.squads.database.exercises.ExerciseDao
@@ -15,10 +15,10 @@ import com.example.squads.database.personalrecords.PersonalRecordDao
 import com.example.squads.database.reservations.Reservation
 import com.example.squads.database.reservations.ReservationDao
 
-@Database(entities = arrayOf(DatabaseMeasurement::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(DatabaseMeasurement::class, DatabaseAccount::class), version = 2, exportSchema = false)
 @androidx.room.TypeConverters(TypeConverters::class)
 public abstract class SquadsRoomDatabase : RoomDatabase() {
-    //abstract fun accountDao(): AccountDao
+    abstract val accountDao: AccountDao
     //abstract fun exerciseDao(): ExerciseDao
     abstract val measurementDao: DatabaseMeasurementDao
     //abstract fun personalRecordDao(): PersonalRecordDao

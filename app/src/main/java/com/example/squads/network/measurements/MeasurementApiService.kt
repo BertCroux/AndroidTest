@@ -1,4 +1,4 @@
-package com.example.squads.network
+package com.example.squads.network.measurements
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi

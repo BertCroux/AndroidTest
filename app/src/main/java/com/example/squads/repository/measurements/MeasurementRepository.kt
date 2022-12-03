@@ -1,10 +1,10 @@
-package com.example.squads.repository
+package com.example.squads.repository.measurements
 
 import androidx.lifecycle.Transformations
 import com.example.squads.database.SquadsRoomDatabase
 import com.example.squads.database.measurements.asDomain
-import com.example.squads.network.MeasurementApi
-import com.example.squads.network.asDatabase
+import com.example.squads.network.measurements.MeasurementApi
+import com.example.squads.network.measurements.asDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

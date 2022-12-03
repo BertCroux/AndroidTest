@@ -1,17 +1,9 @@
 package com.example.squads.database.measurements
 
-import androidx.databinding.adapters.Converters
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
-import com.example.squads.domain.Measurement
-import com.example.squads.network.MeasurementDto
-import kotlinx.datetime.Instant
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
+import com.example.squads.domain.measurements.Measurement
 import java.text.SimpleDateFormat
-import java.util.Date
 
 @Entity(tableName = "measurement")
 data class DatabaseMeasurement(

@@ -18,7 +18,7 @@ import androidx.navigation.fragment.findNavController
 import com.androidplot.xy.*
 import com.example.squads.R
 import com.example.squads.databinding.FragmentMyHealthGraphsBinding
-import com.example.squads.domain.Measurement
+import com.example.squads.domain.measurements.Measurement
 import kotlinx.datetime.LocalDateTime
 import java.text.FieldPosition
 import java.text.Format
