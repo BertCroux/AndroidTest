@@ -15,5 +15,4 @@ data class Account (
         val lengthInCm: Int,
         val physicalIssues: String,
         val drugsUsed: String,
-        val password: String
 )
