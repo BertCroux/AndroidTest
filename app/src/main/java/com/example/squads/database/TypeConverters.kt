@@ -1,21 +1,24 @@
 package com.example.squads.database
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.room.TypeConverter
-import kotlinx.datetime.Instant
+import kotlinx.datetime.LocalDateTime
+import java.time.Instant
 import java.util.*
 
-public class TypeConverters {
-    companion object {
-        @TypeConverter
-        @JvmStatic
-        fun fromInstant(value: Instant): Long {
-            return value.toEpochMilliseconds()
-        }
+/**
+ * Class for converting a string to LocalDateTime.
+ */
+class Converters {
+    @RequiresApi(Build.VERSION_CODES.O)
+    @TypeConverter
+    fun fromString(value: String?): Date? {
+        return Date.from(Instant.parse(value))
+    }
 
-        @TypeConverter
-        @JvmStatic
-        fun toInstant(value: Long): Instant {
-            return Instant.fromEpochMilliseconds(value)
-        }
+    @TypeConverter
+    fun dateToString(date: Date?): String {
+        return date.toString()
     }
 }

@@ -15,8 +15,8 @@ import com.example.squads.database.personalrecords.PersonalRecordDao
 import com.example.squads.database.reservations.Reservation
 import com.example.squads.database.reservations.ReservationDao
 
-@Database(entities = arrayOf(DatabaseMeasurement::class, DatabaseAccount::class), version = 2, exportSchema = false)
-@androidx.room.TypeConverters(TypeConverters::class)
+@Database(entities = arrayOf(DatabaseMeasurement::class, DatabaseAccount::class), version = 3, exportSchema = false)
+@androidx.room.TypeConverters(Converters::class)
 public abstract class SquadsRoomDatabase : RoomDatabase() {
     abstract val accountDao: AccountDao
     //abstract fun exerciseDao(): ExerciseDao

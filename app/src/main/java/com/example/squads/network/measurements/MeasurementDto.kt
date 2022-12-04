@@ -1,9 +1,16 @@
 package com.example.squads.network.measurements
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.squads.database.measurements.DatabaseMeasurement
 import com.example.squads.domain.measurements.Measurement
 import com.squareup.moshi.Json
+import kotlinx.datetime.LocalDate
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.util.*
 
 data class MeasurementDtoContainer(
     @Json(name = "body")
@@ -27,6 +34,7 @@ data class MeasurementDto (
     //val bmi: Double
 )
 
+@RequiresApi(Build.VERSION_CODES.O)
 fun MeasurementDtoContainer.asDomain(): List<Measurement> {
     return replyBody.map {
         Measurement(
@@ -35,11 +43,15 @@ fun MeasurementDtoContainer.asDomain(): List<Measurement> {
             fatPercentage = it.fatPercentage,
             musclePercentage = it.musclePercentage,
             waistCircumference = it.waistCircumfercence,
-            measuredOn = SimpleDateFormat("dd/mm/yyyy").parse(it.measuredOn),
+            measuredOn = Date.from(Instant.parse(it.measuredOn))
         )
     }
 }
 
+/**
+ * "2022-11-01T00:00:00" fromat from dates
+ */
+@RequiresApi(Build.VERSION_CODES.O)
 fun List<MeasurementDto>.asDatabase(): Array<DatabaseMeasurement> {
     return this.map {
         DatabaseMeasurement(
@@ -48,11 +60,12 @@ fun List<MeasurementDto>.asDatabase(): Array<DatabaseMeasurement> {
             fatPercentage = it.fatPercentage,
             musclePercentage = it.musclePercentage,
             waistCircumference = it.waistCircumfercence,
-            measuredOn = SimpleDateFormat("dd/mm/yyyy").parse(it.measuredOn).toString(),
+            measuredOn = Date.from(LocalDateTime.parse(it.measuredOn).atZone(ZoneId.systemDefault()).toInstant())
         )
     }.toTypedArray()
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 fun MeasurementDto.asDatabase(): DatabaseMeasurement {
     return DatabaseMeasurement(
         id = id,
@@ -60,6 +73,6 @@ fun MeasurementDto.asDatabase(): DatabaseMeasurement {
         fatPercentage = fatPercentage,
         musclePercentage = musclePercentage,
         waistCircumference = waistCircumfercence,
-        measuredOn = SimpleDateFormat("dd/mm/yyyy").parse(measuredOn).toString(),
+        measuredOn = Date.from(Instant.parse(measuredOn))
     )
 }

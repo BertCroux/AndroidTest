@@ -186,7 +186,7 @@ class MyHealthGraphsFragment : Fragment() {
 
     private fun addObservers() {
         //get the measurements from the viewmodel
-        measurements = myHealthViewModel.measurements.value ?: throw NotFoundException()
+        measurements = myHealthViewModel.measurements.value!!
         myHealthViewModel.measurements.observe(viewLifecycleOwner, Observer {
             measurements = it
         })

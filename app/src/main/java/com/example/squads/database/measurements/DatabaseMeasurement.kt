@@ -1,9 +1,13 @@
 package com.example.squads.database.measurements
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.squads.domain.measurements.Measurement
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.util.*
 
 @Entity(tableName = "measurement")
 data class DatabaseMeasurement(
@@ -13,9 +17,10 @@ data class DatabaseMeasurement(
     val fatPercentage: Double,
     val musclePercentage: Double,
     val waistCircumference: Double,
-    val measuredOn: String,
+    val measuredOn: Date,
 )
 
+@RequiresApi(Build.VERSION_CODES.O)
 fun List<DatabaseMeasurement>.asDomain(): List<Measurement> {
     return map {
         Measurement(
@@ -24,11 +29,12 @@ fun List<DatabaseMeasurement>.asDomain(): List<Measurement> {
             fatPercentage = it.fatPercentage,
             musclePercentage = it.musclePercentage,
             waistCircumference = it.waistCircumference,
-            measuredOn = SimpleDateFormat("dd/mm/yyyy").parse(it.measuredOn)
-        )
+            measuredOn = it.measuredOn)
+
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 fun DatabaseMeasurement.asDomain(): Measurement {
     return Measurement(
         id = id,
@@ -36,6 +42,6 @@ fun DatabaseMeasurement.asDomain(): Measurement {
         fatPercentage = fatPercentage,
         musclePercentage = musclePercentage,
         waistCircumference = waistCircumference,
-        measuredOn = SimpleDateFormat("dd/mm/yyyy").parse(measuredOn)
+        measuredOn = measuredOn
     )
 }
