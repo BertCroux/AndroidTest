@@ -52,7 +52,7 @@ fun MeasurementDtoContainer.asDatabase(): Array<DatabaseMeasurement> {
             fatPercentage = it.fatPercentage,
             musclePercentage = it.musclePercentage,
             waistCircumference = it.waistCircumfercence,
-            measuredOn = SimpleDateFormat("dd/mm/yyyy").parse(it.measuredOn).toString(),
+            measuredOn = "",
         )
     }.toTypedArray()
 }

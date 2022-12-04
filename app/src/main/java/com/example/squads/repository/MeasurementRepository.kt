@@ -23,7 +23,7 @@ class MeasurementRepository(private val database: SquadsRoomDatabase) {
     suspend fun refreshMeasurements() {
         withContext(Dispatchers.IO) {
             val measurements = MeasurementApi.retrofitService.getAllMeasurementsFromUserAsync(1).await()
-            database.measurementDao.insertAll(*measurements.asDatabase())
+            //database.measurementDao.insertAll(*measurements.asDatabase())
         }
     }
 }
