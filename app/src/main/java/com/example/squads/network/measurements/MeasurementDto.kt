@@ -1,6 +1,7 @@
 package com.example.squads.network.measurements
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.squads.database.measurements.DatabaseMeasurement
 import com.example.squads.domain.measurements.Measurement
@@ -53,7 +54,7 @@ fun MeasurementDtoContainer.asDomain(): List<Measurement> {
  */
 @RequiresApi(Build.VERSION_CODES.O)
 fun List<MeasurementDto>.asDatabase(): Array<DatabaseMeasurement> {
-    return this.map {
+    val x = this.map {
         DatabaseMeasurement(
             id = it.id,
             weight = it.weight,
@@ -63,6 +64,14 @@ fun List<MeasurementDto>.asDatabase(): Array<DatabaseMeasurement> {
             measuredOn = Date.from(LocalDateTime.parse(it.measuredOn).atZone(ZoneId.systemDefault()).toInstant())
         )
     }.toTypedArray()
+
+    //temporary logging
+    x.iterator().forEach {
+        Log.d("MeasurementDto", it.toString())
+    }
+
+
+    return x
 }
 
 @RequiresApi(Build.VERSION_CODES.O)

@@ -1,8 +1,10 @@
 package com.example.squads.screens.myhealth
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.squads.database.SquadsRoomDatabase
+import com.example.squads.database.measurements.asDomain
 import com.example.squads.repository.measurements.MeasurementRepository
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
@@ -12,8 +14,12 @@ class MyHealthViewModel(application: Application) : AndroidViewModel(application
     private val database = SquadsRoomDatabase.getInstance(application.applicationContext)
     private val repository = MeasurementRepository(database)
 
-    val measurements = repository.allMeasurements
-    val latestMeasurement = repository.latest
+    val measurements = Transformations.map(repository.allMeasurements.asLiveData()) {
+        it.asDomain()
+    }
+    val latestMeasurement = Transformations.map(repository.latest.asLiveData()) {
+        it.asDomain()
+    }
 
     // variable so the graphsfragment knows what to display
     private val _typeDataGraph = MutableLiveData<String?>()

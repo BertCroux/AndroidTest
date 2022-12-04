@@ -6,14 +6,15 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
+//TODO from flow to livedata?
 
 @Dao
 interface DatabaseMeasurementDao {
     @Query("SELECT * FROM measurement")
-    fun getAllMeasurements(): LiveData<List<DatabaseMeasurement>>
+    fun getAllMeasurements(): Flow<List<DatabaseMeasurement>>
 
     @Query("SELECT * FROM measurement ORDER BY measuredOn DESC LIMIT 1")
-    fun getLatestMeasurement(): LiveData<DatabaseMeasurement>
+    fun getLatestMeasurement(): Flow<DatabaseMeasurement>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(measurement: DatabaseMeasurement)
