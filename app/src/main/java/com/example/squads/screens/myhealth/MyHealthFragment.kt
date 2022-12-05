@@ -49,7 +49,7 @@ class MyHealthFragment : Fragment() {
 
     private fun addObservers() {
         // observer for the latest measurement
-        /*myHealthViewModel.latestMeasurement.observe(
+        myHealthViewModel.latestMeasurement.observe(
             viewLifecycleOwner,
             Observer { measurement ->
                 // if the latestMeasurement changes, all textfields must be updated aswell
@@ -68,7 +68,7 @@ class MyHealthFragment : Fragment() {
                     binding.sliderEffectieveWaarde.value = (Math.round(bmi * 10.0) / 10).toFloat()
                 }
             }
-        )*/
+        )
 
         // observer on when to navigate to the graphs fragment
         myHealthViewModel.navigateToGraphs.observe(
