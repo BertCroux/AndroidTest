@@ -21,7 +21,7 @@ fun List<Session>.asDomain(): List<Session> {
     return map {
         Session(
             id = it.id,
-            beginDate = it.beginDate,
+            startDate = it.startDate,
             endDate = it.endDate,
             SessionType = it.SessionType,
             Instructor = it.Instructor
