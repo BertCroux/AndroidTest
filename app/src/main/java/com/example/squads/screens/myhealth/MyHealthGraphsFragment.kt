@@ -27,15 +27,15 @@ import java.util.Date
 
 class MyHealthGraphsFragment : Fragment() {
 
-    lateinit var measurements: List<Measurement>
+    var measurements: List<Measurement>? = null
 
-    lateinit var latestMeasurement: Measurement
+    var latestMeasurement: Measurement? = null
 
     //the list of values to display
-    lateinit var valuesForGraph: List<Pair<Double, Date>>
+    var valuesForGraph: List<Pair<Double, Date>>? = null
 
     //filtered on year (gets initialised by the spinner)
-    var valuesForGraphFiltered: List<Pair<Double, Date>> = emptyList()
+    var valuesForGraphFiltered: List<Pair<Double, Date?>> = emptyList()
 
     lateinit var binding: FragmentMyHealthGraphsBinding
 
@@ -168,12 +168,13 @@ class MyHealthGraphsFragment : Fragment() {
 
                 //effectief de lijst filteren en sorteren
                 valuesForGraphFiltered =
-                    valuesForGraph.filter { it.second.year.toString() == value }.sortedBy { it.second }
+                    (valuesForGraph?.filter { it.second?.year.toString() == value }?.sortedBy { it.second }
+                        ?:
 
-//                Log.i("graphs", "lijst na filtering---------------")
-//                logValuesForGraphFiltered()
+                //                Log.i("graphs", "lijst na filtering---------------")
+                //                logValuesForGraphFiltered()
 
-                setupPlot()
+                        setupPlot( )) as List<Pair<Double, Date?>>
                 binding.plot.invalidate() //force redraw the view
             }
 
@@ -186,13 +187,13 @@ class MyHealthGraphsFragment : Fragment() {
 
     private fun addObservers() {
         //get the measurements from the viewmodel
-        measurements = myHealthViewModel.measurements.value!!
+        measurements = myHealthViewModel.measurements.value
         myHealthViewModel.measurements.observe(viewLifecycleOwner, Observer {
             measurements = it
         })
 
         //get the latest measurement from the viewmodel
-        latestMeasurement = myHealthViewModel.latestMeasurement.value!!
+        latestMeasurement = myHealthViewModel.latestMeasurement.value
 
         //when the button is clicked, a type is sent along with it as string and is stored in the viewmodel
         //so when the type in the viewmodel changes, the measurements have to be mapped to the right type
@@ -209,48 +210,47 @@ class MyHealthGraphsFragment : Fragment() {
 
     //get the years to display in the spinner
     private fun getDistinctYearsFromMeasurements(): List<String> {
-        return measurements.map {
+        return measurements?.map {
             it.measuredOn.toString()
-        }.distinct().sorted().reversed().toMutableList()
+        }?.distinct()?.sorted()?.reversed()?.toMutableList() ?: emptyList()
     }
 
     /**
      * This function sets the text value to the latest measurement of that type
      * @return a list of pairs (tuples) that contain the value and the date of measurement
      */
-    private fun mapMeasurements(type: String): List<Pair<Double, Date>> {
+    private fun mapMeasurements(type: String): List<Pair<Double, Date>>? {
         when (type) {
             "Weight" -> {
-                binding.txtLatestValue.text = String.format("%.1f kg", latestMeasurement.weight)
-                return measurements.map { Pair(it.weight, it.measuredOn) }
+                binding.txtLatestValue.text = latestMeasurement?.let { String.format("%.1f kg", it.weight) }
+                return measurements?.map { Pair(it.weight, it.measuredOn) }
             }
             "Fat" -> {
                 binding.txtLatestValue.text =
-                    String.format("%.1f %%", latestMeasurement.fatPercentage)
-                return measurements.map { Pair(it.fatPercentage, it.measuredOn) }
+                    latestMeasurement?.let { String.format("%.1f %%", it.fatPercentage) }
+                return measurements?.map { Pair(it.fatPercentage, it.measuredOn) }
             }
             "Muscle" -> {
                 binding.txtLatestValue.text =
-                    String.format("%.1f %%", latestMeasurement.musclePercentage)
-                return measurements.map { Pair(it.musclePercentage, it.measuredOn) }
+                    latestMeasurement?.let { String.format("%.1f %%", it.musclePercentage) }
+                return measurements?.map { Pair(it.musclePercentage, it.measuredOn) }
             }
             "Waist" -> {
                 binding.txtLatestValue.text =
-                    String.format("%.1f cm", latestMeasurement.waistCircumference)
-                return measurements.map { Pair(it.waistCircumference, it.measuredOn) }
+                    latestMeasurement?.let { String.format("%.1f cm", it.waistCircumference) }
+                return measurements?.map { Pair(it.waistCircumference, it.measuredOn) }
             }
             "BMI" -> {
                 //TODO BMI
                 print("apart geval")
                 binding.txtLatestValue.text =
-                    String.format("%.1f", latestMeasurement.weight / (1.7*1.7))
-                return measurements.map { Pair(it.weight / (1.8*1.8), it.measuredOn)}
+                    String.format("%.1f", (latestMeasurement?.weight)?.div((1.7*1.7)) ?: "")
+                return measurements?.map { Pair(it.weight / (1.8*1.8), it.measuredOn)}
             }
             else -> {
                 throw NotFoundException()
             }
         }
-        throw NotFoundException()
     }
 
 
