@@ -16,6 +16,16 @@
         android:label="fragment_reservations"
         tools:layout="@layout/fragment_reservations" />
     <fragment
+        android:id="@+id/session"
+        android:name="com.example.squads.screens.sessions.SessionFragment"
+        android:label="fragment_session"
+        tools:layout="@layout/fragment_sessions">
+        <action
+            android:id="@+id/action_homeFragment_to_SessionFragment"
+            app:destination="@id/session"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
         android:id="@+id/myhealth"
         android:name="com.example.squads.screens.myhealth.MyHealthFragment"
         android:label="fragment_my_health"
@@ -47,4 +57,5 @@
         android:name="com.example.squads.screens.exercises.ExercisesFragment"
         android:label="fragment_exercises" >
     </fragment>
+
 </navigation>

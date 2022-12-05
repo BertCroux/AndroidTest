@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+        name="homeFragment"
+        type="com.example.squads.screens.home.HomeFragment"/>
+
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".screens.home.HomeFragment"
     android:background="@color/black"
     >
-
     <ImageView
         android:id="@+id/home_image"
         android:layout_width="wrap_content"
@@ -51,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/home_image" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/book_btn"
+        android:id="@+id/bookBtn"
         android:text="@string/book_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,4 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/information_text"
         app:layout_constraintVertical_bias="0.35000000"
         style="@style/primary_button_style" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
