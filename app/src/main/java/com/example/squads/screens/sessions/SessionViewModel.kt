@@ -1,17 +1,32 @@
 package com.example.squads.screens.sessions
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.lifecycle.*
+import com.example.squads.database.SquadsRoomDatabase
+import com.example.squads.database.measurements.asDomain
+import com.example.squads.database.sessions.asDomain
+import com.example.squads.repository.measurements.MeasurementRepository
+import com.example.squads.repository.sessions.SessionRepository
 import com.example.squads.screens.reservations.Reservation
+import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
-class SessionViewModel : ViewModel() {
+@RequiresApi(Build.VERSION_CODES.O)
+class SessionViewModel(application: Application) : AndroidViewModel(application) {
 
+    // list of all the users measurements
+    private val database = SquadsRoomDatabase.getInstance(application.applicationContext)
+    private val repository = SessionRepository(database)
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    val AllSessions = Transformations.map(repository.allSessions.asLiveData()) {
+        it.asDomain()
+    }
     val _sessions = MutableLiveData<List<Session>>()
     val sessions: LiveData<List<Session>>
         get() = _sessions
@@ -32,6 +47,9 @@ class SessionViewModel : ViewModel() {
     }
     init {
         getSessions()
+        viewModelScope.launch {
+            repository.refreshSessions()
+        }
     }
 
 

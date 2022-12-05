@@ -14,19 +14,8 @@ import kotlinx.coroutines.flow.Flow
 interface SessionDao {
     @Query("SELECT * FROM session")
     fun GetWeekOverView(): Flow<List<Session>>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(session: Session)
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
-fun List<Session>.asDomain(): List<Session> {
-    return map {
-        Session(
-            id = it.id,
-            startDate = it.startDate,
-            endDate = it.endDate,
-            SessionType = it.SessionType,
-            Instructor = it.Instructor
-
-        )
-
-    }
-}
