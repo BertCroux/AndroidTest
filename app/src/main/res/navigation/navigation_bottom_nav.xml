@@ -45,6 +45,7 @@
     <fragment
         android:id="@+id/exercises"
         android:name="com.example.squads.screens.exercises.ExercisesFragment"
-        android:label="fragment_exercises" >
+        android:label="fragment_exercises"
+        tools:layout="@layout/fragment_exercises">
     </fragment>
 </navigation>

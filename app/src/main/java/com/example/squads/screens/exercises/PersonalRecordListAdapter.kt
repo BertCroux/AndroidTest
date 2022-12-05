@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.squads.databinding.PersonalRecordListBinding
 import com.example.squads.screens.exercises.models.PersonalRecord
 
-class PersonalRecordListAdapter(private val dataSet: LiveData<List<PersonalRecord>>): RecyclerView.Adapter<PersonalRecordListAdapter.ViewHolder>() {
+class PersonalRecordListAdapter(private val dataSet: LiveData<List<PersonalRecord>>?): RecyclerView.Adapter<PersonalRecordListAdapter.ViewHolder>() {
 
     lateinit var context: Context
     lateinit var binding:PersonalRecordListBinding
@@ -22,10 +22,11 @@ class PersonalRecordListAdapter(private val dataSet: LiveData<List<PersonalRecor
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        binding.prDate.text = dataSet.value!![position].achievedOn.toString()
-        binding.prWeight.text = dataSet.value!![position].weightUsed.toString()
-        binding.prReps.text = dataSet.value!![position].amountOfReps.toString()
+        binding.prDate.text = dataSet?.value!![position].achievedOn.toString()
+        binding.prWeight.text = dataSet?.value!![position].weightUsed.toString()
+        binding.prReps.text = dataSet?.value!![position].amountOfReps.toString()
     }
 
-    override fun getItemCount() = dataSet.value!!.size
+    override fun getItemCount() = dataSet?.value?.size ?: 0
+
 }
