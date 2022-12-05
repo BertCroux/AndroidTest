@@ -1,6 +1,6 @@
 package com.example.squads
 
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /**

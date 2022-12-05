@@ -15,7 +15,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.androidplot.xy.*
+import com.androidplot.xy.LineAndPointFormatter
+import com.androidplot.xy.SimpleXYSeries
+import com.androidplot.xy.StepMode
+import com.androidplot.xy.XYGraphWidget
+import com.androidplot.xy.XYSeries
 import com.example.squads.R
 import com.example.squads.databinding.FragmentMyHealthGraphsBinding
 import kotlinx.datetime.LocalDateTime
