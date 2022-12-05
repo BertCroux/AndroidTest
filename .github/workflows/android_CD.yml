@@ -36,21 +36,21 @@ jobs:
         id: sign_app
         with:
           releaseDirectory: app/build/outputs/apk/release/
-          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-          alias: ${{ secrets.SIGNING_ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }} # done
+          alias: ${{ secrets.SIGNING_ALIAS }} # done
+          keyStorePassword: ${{ secrets.PASSWORD }} # done
+          keyPassword: ${{ secrets.PASSWORD }} # done
 
       # Rename Signed APK
       - name: Rename Release APK
-        run: mv ${{steps.sign_app.outputs.signedReleaseFile}} ${{ env.APK_FILENAME }}.apk
+        run: mv ${{steps.sign_app.outputs.signedReleaseFile}} ${{ env.APK_FILENAME }}.apk # done
 
       # Upload Signed APK
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ env.APK_FILENAME }}.apk
-          path: ${{ env.APK_FILENAME }}.apk
+          name: ${{ env.APK_FILENAME }}.apk # done 
+          path: ${{ env.APK_FILENAME }}.apk # done
 
 
   release_apk:
@@ -62,13 +62,13 @@ jobs:
       - name: Download APK
         uses: actions/download-artifact@v2
         with:
-          name: ${{ env.APK_FILENAME }}.apk
+          name: ${{ env.APK_FILENAME }}.apk # done 
 
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # TODO
         with:
           tag_name: v0.${{ github.run_number }}
           release_name: Release v0.${{ github.run_number }}
@@ -77,11 +77,11 @@ jobs:
         id: upload_release_asset
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # TODO
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.APK_FILENAME }}.apk
-          asset_name: ${{ env.APK_FILENAME }}.apk
+          asset_path: ${{ env.APK_FILENAME }}.apk # Done
+          asset_name: ${{ env.APK_FILENAME }}.apk # Done
           asset_content_type: application/zip
 
 #       - name: Upload Signed APK to Server
@@ -98,7 +98,7 @@ jobs:
         uses: willo32/google-drive-upload-action@v1
         with:
           target: ${{ env.APK_FILENAME }}.apk
-          credentials: ${{ secrets.GOOGLE_DRIVE_CREDENTIALS }}
-          parent_folder_id: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
-          name: ${{ env.APK_FILENAME }}_v0.${{ github.run_number }}.apk 
+          credentials: ${{ secrets.GOOGLE_DRIVE_CREDENTIALS }} # TODO
+          parent_folder_id: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }} # TODO
+          name: ${{ env.APK_FILENAME }}_v0.${{ github.run_number }}.apk  # Done
 
