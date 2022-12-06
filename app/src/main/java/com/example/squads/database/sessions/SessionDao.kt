@@ -1,13 +1,9 @@
 package com.example.squads.database.sessions
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.squads.database.measurements.DatabaseMeasurement
-import com.example.squads.domain.measurements.Measurement
 import kotlinx.coroutines.flow.Flow
 
 @Dao

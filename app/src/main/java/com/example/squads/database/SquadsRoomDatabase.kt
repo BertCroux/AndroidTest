@@ -14,11 +14,12 @@ import com.example.squads.database.personalrecords.PersonalRecord
 import com.example.squads.database.personalrecords.PersonalRecordDao
 import com.example.squads.database.reservations.Reservation
 import com.example.squads.database.reservations.ReservationDao
+import com.example.squads.database.sessions.Session
 import com.example.squads.database.sessions.SessionDao
 
-@Database(entities = arrayOf(DatabaseMeasurement::class, DatabaseAccount::class), version = 3, exportSchema = false)
+@Database(entities = [DatabaseMeasurement::class, DatabaseAccount::class, Session::class], version = 3, exportSchema = false)
 @androidx.room.TypeConverters(Converters::class)
-public abstract class SquadsRoomDatabase : RoomDatabase() {
+abstract class SquadsRoomDatabase : RoomDatabase() {
     abstract val accountDao: AccountDao
     //abstract fun exerciseDao(): ExerciseDao
     abstract val measurementDao: DatabaseMeasurementDao
