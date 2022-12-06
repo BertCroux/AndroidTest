@@ -17,7 +17,7 @@ data class DatabaseAccount (
         val physicalIssues: String,
         val drugsUsed: String,
         val addressLine1: String,
-        val addressLine2: String,
+        val addressLine2: String?,
         val zipCode: String,
         val city: String
 )
@@ -31,7 +31,7 @@ fun DatabaseAccount.asDomain(): Account {
                 phoneNumber = phoneNumber,
                 address = Address(
                         addressLine1 = addressLine1,
-                        addressLine2 = addressLine2,
+                        addressLine2 = addressLine2?:"",
                         zipCode = zipCode,
                         city = city
                 ),

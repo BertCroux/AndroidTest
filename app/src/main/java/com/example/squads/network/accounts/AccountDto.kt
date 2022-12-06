@@ -22,14 +22,14 @@ data class AccountDto (
 
 data class AddressDto (
     var addressLine1: String,
-    var addressLine2: String,
+    var addressLine2: String?,
     var zipCode: String,
     var city: String
 )
 
 fun AccountDto.asDatabase(): DatabaseAccount {
     Log.d("AccountDto", this.toString())
-    return DatabaseAccount(
+    val x =  DatabaseAccount(
         userId = userId,
         firstName = firstName,
         lastName = lastName,
@@ -43,4 +43,7 @@ fun AccountDto.asDatabase(): DatabaseAccount {
         physicalIssues = physicalIssues,
         drugsUsed = drugsUsed
     )
+    Log.d("AccountDto", x.toString());
+
+    return x;
 }

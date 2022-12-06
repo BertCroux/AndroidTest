@@ -3,6 +3,7 @@ package com.example.squads.screens.account
 import android.app.Application
 import androidx.lifecycle.*
 import com.example.squads.database.SquadsRoomDatabase
+import com.example.squads.database.accounts.asDomain
 import com.example.squads.repository.accounts.AccountRepository
 import com.example.squads.screens.myhealth.MyHealthViewModel
 import kotlinx.coroutines.launch
@@ -16,7 +17,9 @@ class AccountViewModel(application: Application) : AndroidViewModel(application)
     val account: LiveData<Account>
         get() = _account*/
 
-    val account = repository.account
+    val account = Transformations.map(repository.account.asLiveData()) {
+        it.asDomain()
+    }
 
     init {
         viewModelScope.launch {
