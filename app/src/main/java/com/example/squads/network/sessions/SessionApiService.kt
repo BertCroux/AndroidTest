@@ -6,14 +6,14 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
+import okhttp3.internal.http.hasBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.*
 
 private const val BASE_URL =
-    "https://squadsacceptancea01.azurewebsites.net/session/week"
+    "https://squadsacceptancea01.azurewebsites.net/session/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -33,9 +33,13 @@ private val retrofit = Retrofit.Builder()
     .client(client)
     .build()
 
+data class RequestId(
+    val Id : Int?
+)
+
 interface SessionApiService {
-    @GET("{userId}")
-    fun GetWeekOverView(@Path("userId") userId: Int): Deferred<List<SessionDto>>
+    @HTTP(method = "POST", path = "week/")
+    fun GetWeekOverView(@Body id: RequestId ): Deferred<List<SessionDto>>
 }
 
 object SessionApi {

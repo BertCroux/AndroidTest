@@ -60,7 +60,7 @@ fun List<SessionDto>.asDatabase(): Array<Session> {
         Session(
             id = it.SessionId,
             startDate = Date.from(LocalDateTime.parse(it.StartDate).atZone(ZoneId.systemDefault()).toInstant()),
-            endDate = Date.from(Instant.parse(it.EndDate)),
+            endDate = Date.from(LocalDateTime.parse(it.EndDate).atZone(ZoneId.systemDefault()).toInstant()),
             SessionType = it.SessionType,
             Instructor = it.Instructor
         )

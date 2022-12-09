@@ -70,18 +70,5 @@ fun List<MeasurementDto>.asDatabase(): Array<DatabaseMeasurement> {
         Log.d("MeasurementDto", it.toString())
     }
 
-
     return x
-}
-
-@RequiresApi(Build.VERSION_CODES.O)
-fun MeasurementDto.asDatabase(): DatabaseMeasurement {
-    return DatabaseMeasurement(
-        id = id,
-        weight = weight,
-        fatPercentage = fatPercentage,
-        musclePercentage = musclePercentage,
-        waistCircumference = waistCircumfercence,
-        measuredOn = Date.from(Instant.parse(measuredOn))
-    )
 }
