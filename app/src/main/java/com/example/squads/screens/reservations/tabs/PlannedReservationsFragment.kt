@@ -39,6 +39,7 @@ class PlannedReservationsFragment : Fragment() {
             createReservation(it)
         }*/
 
+
         return binding.root
     }
 
