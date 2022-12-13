@@ -65,21 +65,6 @@ class ReservationViewModel : ViewModel() {
     fun getPastReservations() {
         Log.d("ReservationViewModel", Clock.System.now().toLocalDateTime(TimeZone.UTC).toString())
 
-        //logging
-        _reservations.forEach {
-            Log.d("ReservationViewModel", "------------------------------------------")
-
-            Log.d("ReservationViewModel", it.endDate.toString())
-            Log.d("ReservationViewModel", Clock.System.now()
-                .toLocalDateTime(TimeZone.UTC).toString())
-            Log.d("ReservationViewModel",
-                (it.endDate < Clock.System.now().toLocalDateTime(TimeZone.UTC)).toString()
-            )
-            Log.d("ReservationViewModel",
-                (it.endDate > Clock.System.now().toLocalDateTime(TimeZone.UTC)).toString()
-            )
-            Log.d("ReservationViewModel", "------------------------------------------")
-        }
 
         _pastReservations.value = _reservations.filter {
             Clock.System.now().toLocalDateTime(TimeZone.UTC) > it.endDate
