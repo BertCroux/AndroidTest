@@ -1,5 +1,6 @@
 package com.example.squads.screens.reservations
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,6 +13,21 @@ class ReservationViewModel : ViewModel() {
 
     // reservations of 'a user' (not specified atm)
     private val _reservations = listOf(
+        Reservation(
+            LocalDateTime(2022, 10, 3, 19, 0, 0, 0),
+            LocalDateTime(2022, 10, 3, 19, 0, 0, 0),
+            "Heavy workout", "Beast mode"
+        ),
+        Reservation(
+            LocalDateTime(2022, 12, 15, 19, 0, 0, 0),
+            LocalDateTime(2022, 12, 15, 19, 0, 0, 0),
+            "Heavy workout", "Beast mode"
+        ),
+        Reservation(
+            LocalDateTime(2022, 12, 16, 19, 0, 0, 0),
+            LocalDateTime(2022, 12, 16, 19, 0, 0, 0),
+            "Heavy workout", "Beast mode"
+        ),
         Reservation(
             LocalDateTime(2022, 10, 3, 19, 0, 0, 0),
             LocalDateTime(2022, 10, 3, 19, 0, 0, 0),
@@ -38,7 +54,7 @@ class ReservationViewModel : ViewModel() {
      */
     fun getPlannedReservations() {
         _plannedReservations.value = _reservations.filter {
-            it.endDate >= Clock.System.now().toLocalDateTime(TimeZone.UTC)
+            it.endDate > Clock.System.now().toLocalDateTime(TimeZone.UTC)
         }
     }
 
@@ -47,8 +63,26 @@ class ReservationViewModel : ViewModel() {
      *
      */
     fun getPastReservations() {
+        Log.d("ReservationViewModel", Clock.System.now().toLocalDateTime(TimeZone.UTC).toString())
+
+        //logging
+        _reservations.forEach {
+            Log.d("ReservationViewModel", "------------------------------------------")
+
+            Log.d("ReservationViewModel", it.endDate.toString())
+            Log.d("ReservationViewModel", Clock.System.now()
+                .toLocalDateTime(TimeZone.UTC).toString())
+            Log.d("ReservationViewModel",
+                (it.endDate < Clock.System.now().toLocalDateTime(TimeZone.UTC)).toString()
+            )
+            Log.d("ReservationViewModel",
+                (it.endDate > Clock.System.now().toLocalDateTime(TimeZone.UTC)).toString()
+            )
+            Log.d("ReservationViewModel", "------------------------------------------")
+        }
+
         _pastReservations.value = _reservations.filter {
-            it.endDate < Clock.System.now().toLocalDateTime(TimeZone.UTC)
+            Clock.System.now().toLocalDateTime(TimeZone.UTC) > it.endDate
         }
     }
 }

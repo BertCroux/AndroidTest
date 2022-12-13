@@ -1,6 +1,7 @@
 package com.example.squads.screens.reservations.tabs
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
@@ -13,7 +14,11 @@ import com.example.squads.screens.reservations.Reservation
 class PlannedReservationAdaptor(private val dataSet: LiveData<List<Reservation>>) :
     RecyclerView.Adapter<PlannedReservationAdaptor.ViewHolder>() {
 
-    lateinit var context : Context
+
+    init {
+        Log.d("Test", "adaptor is called!")
+    }
+
     lateinit var binding: PlannedReservationBinding
     inner class ViewHolder(val binding: PlannedReservationBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -22,15 +27,16 @@ class PlannedReservationAdaptor(private val dataSet: LiveData<List<Reservation>>
         // Create a new view, which defines the UI of the list item
         binding = PlannedReservationBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
 
-        context = viewGroup.context
 
         return ViewHolder(binding)
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+        Log.d("test", "123")
 
 
+        binding.textView3.text = "hi"
         /*
         binding.workoutNameTrainer.text = context.getString(R.string.workoutnametrainer_text, dataSet.value!![position].trainer)
         binding.dateOfSession.text = dataSet.value!![position].startDate.dayOfWeek.toString()
