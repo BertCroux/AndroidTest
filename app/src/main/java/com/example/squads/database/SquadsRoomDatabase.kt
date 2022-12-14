@@ -17,7 +17,7 @@ import com.example.squads.database.reservations.ReservationDao
 import com.example.squads.database.sessions.Session
 import com.example.squads.database.sessions.SessionDao
 
-@Database(entities = [DatabaseMeasurement::class, DatabaseAccount::class, Session::class], version = 3, exportSchema = false)
+@Database(entities = [DatabaseMeasurement::class, DatabaseAccount::class, Session::class], version = 4, exportSchema = false)
 @androidx.room.TypeConverters(Converters::class)
 abstract class SquadsRoomDatabase : RoomDatabase() {
     abstract val accountDao: AccountDao

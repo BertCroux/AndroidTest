@@ -12,6 +12,6 @@ interface SessionDao {
     fun GetWeekOverView(): Flow<List<Session>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(session: Session)
+    suspend fun insert(session: kotlin.Array<com.example.squads.database.sessions.Session>)
 }
 

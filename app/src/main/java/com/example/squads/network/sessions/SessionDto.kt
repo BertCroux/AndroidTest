@@ -3,11 +3,7 @@ package com.example.squads.network.sessions
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
-import com.example.squads.database.measurements.DatabaseMeasurement
 import com.example.squads.database.sessions.Session
-import com.example.squads.domain.measurements.Measurement
-import com.example.squads.network.measurements.MeasurementDto
-import com.example.squads.network.measurements.MeasurementDtoContainer
 import com.squareup.moshi.Json
 import java.time.Instant
 import java.time.LocalDateTime
@@ -27,7 +23,7 @@ data class SessionDto (
     @Json(name = "endDate")
     val EndDate : String,
     @Json(name = "amountOfReservations")
-    val AmoutOfReservations : Int,
+    val AmountOfReservations : Int,
     @Json(name = "sessionType")
     val SessionType : String,
     @Json(name = "instructor")
@@ -46,7 +42,8 @@ fun SessionDtoContainer.asDomain(): List<Session> {
             startDate = Date.from(Instant.parse(it.StartDate)),
             endDate = Date.from(Instant.parse(it.EndDate)),
             SessionType = it.SessionType,
-            Instructor = it.Instructor
+            Instructor = it.Instructor,
+            spotsLeft = it.AmountOfReservations
         )
     }
 }
@@ -62,7 +59,9 @@ fun List<SessionDto>.asDatabase(): Array<Session> {
             startDate = Date.from(LocalDateTime.parse(it.StartDate).atZone(ZoneId.systemDefault()).toInstant()),
             endDate = Date.from(LocalDateTime.parse(it.EndDate).atZone(ZoneId.systemDefault()).toInstant()),
             SessionType = it.SessionType,
-            Instructor = it.Instructor
+            Instructor = it.Instructor,
+            spotsLeft = it.AmountOfReservations,
+
         )
     }.toTypedArray()
 
@@ -70,7 +69,6 @@ fun List<SessionDto>.asDatabase(): Array<Session> {
     x.iterator().forEach {
         Log.d("MeasurementDto", it.toString())
     }
-
 
     return x
 }

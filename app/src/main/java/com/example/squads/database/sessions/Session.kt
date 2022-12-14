@@ -14,6 +14,7 @@ data class Session(
     val endDate: Date,
     val SessionType: String,
     val Instructor: String,
+    val spotsLeft: Int
 )
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -24,8 +25,8 @@ fun List<Session>.asDomain(): List<Session> {
             startDate = it.startDate,
             endDate = it.endDate,
             SessionType = it.SessionType,
-            Instructor = it.Instructor
-
+            Instructor = it.Instructor,
+            spotsLeft = it.spotsLeft,
         )
 
     }

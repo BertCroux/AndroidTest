@@ -1,11 +1,11 @@
 package com.example.squads.repository.sessions
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.squads.database.SquadsRoomDatabase
 import com.example.squads.network.sessions.SessionApi
 import com.example.squads.network.sessions.asDatabase
-import com.example.squads.network.sessions.asDomain
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -16,7 +16,11 @@ class SessionRepository(private val database: SquadsRoomDatabase) {
     suspend fun refreshSessions() {
         withContext(Dispatchers.IO) {
             val sessions = SessionApi.retrofitService.GetWeekOverView(1).await()
-            //database.sessionDto.insert(sessions.asDomai[0])
+            sessions.replyBody.forEach {
+                Log.d("SessionRepo", it.toString())
+            }
+            val sessionsList = sessions.replyBody
+            database.sessionDto.insert(sessionsList.asDatabase())
         }
     }
 }

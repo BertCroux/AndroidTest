@@ -2,6 +2,7 @@ package com.example.squads.screens.sessions
 
 import android.app.Application
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
 import com.example.squads.database.SquadsRoomDatabase
@@ -24,15 +25,13 @@ class SessionViewModel(application: Application) : AndroidViewModel(application)
     private val repository = SessionRepository(database)
 
     @RequiresApi(Build.VERSION_CODES.O)
-    val AllSessions = Transformations.map(repository.allSessions.asLiveData()) {
+    val sessions = Transformations.map(repository.allSessions.asLiveData()) {
         it.asDomain()
     }
-    val _sessions = MutableLiveData<List<Session>>()
-    val sessions: LiveData<List<Session>>
-        get() = _sessions
 
     fun getSessions(){
-        _sessions.value = listOf(
+        Log.d("SessionViewModel", sessions.value.toString())
+        /*_sessions.value = listOf(
             Session(
                 LocalDateTime(2022, 11, 1, 19, 0, 0, 0),
                 LocalDateTime(2022, 11, 1, 20, 0, 0, 0),
@@ -43,13 +42,13 @@ class SessionViewModel(application: Application) : AndroidViewModel(application)
                 LocalDateTime(2022, 11, 2, 20, 0, 0, 0),
                 "Yoga", "Hells.", 5
             )
-        )
+        )*/
     }
     init {
-        getSessions()
         viewModelScope.launch {
             repository.refreshSessions()
         }
+        getSessions()
     }
 
 
