@@ -10,7 +10,7 @@ import com.example.squads.R
 import com.example.squads.databinding.PlannedReservationBinding
 import com.example.squads.screens.reservations.Reservation
 
-class PlannedReservationAdaptor(private val dataSet: LiveData<List<Reservation>>) :
+class PlannedReservationAdaptor(private val dataSet: LiveData<List<Reservation>>?) :
     RecyclerView.Adapter<PlannedReservationAdaptor.ViewHolder>() {
     lateinit var context : Context
 
@@ -29,7 +29,7 @@ class PlannedReservationAdaptor(private val dataSet: LiveData<List<Reservation>>
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
-        binding.textView3.text = dataSet.value!![position].trainerType
+        binding.textView3.text = dataSet?.value!![position].trainerType
         binding.trainerText.text = dataSet.value!![position].trainerName
         binding.workoutDateText.text = context.getString(R.string.workoutdate_text,
             dataSet.value!![position].beginDate.hour,
@@ -40,5 +40,5 @@ class PlannedReservationAdaptor(private val dataSet: LiveData<List<Reservation>>
     }
 
     // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = dataSet.value!!.size
+    override fun getItemCount() = dataSet?.value?.size ?: 0
 }
