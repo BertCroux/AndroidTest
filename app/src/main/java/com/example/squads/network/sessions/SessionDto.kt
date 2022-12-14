@@ -15,7 +15,7 @@ import java.time.ZoneId
 import java.util.*
 
 data class SessionDtoContainer(
-    @Json(name = "body")
+    @Json(name = "sessions")
     val replyBody: List<SessionDto>
 )
 
@@ -26,7 +26,7 @@ data class SessionDto (
     val StartDate : String,
     @Json(name = "endDate")
     val EndDate : String,
-    @Json(name = "amoutOfReservations")
+    @Json(name = "amountOfReservations")
     val AmoutOfReservations : Int,
     @Json(name = "sessionType")
     val SessionType : String,

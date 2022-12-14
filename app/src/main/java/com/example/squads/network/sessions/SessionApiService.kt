@@ -33,13 +33,10 @@ private val retrofit = Retrofit.Builder()
     .client(client)
     .build()
 
-data class RequestId(
-    val Id : Int?
-)
 
 interface SessionApiService {
-    @HTTP(method = "POST", path = "week/")
-    fun GetWeekOverView(@Body id: RequestId ): Deferred<List<SessionDto>>
+    @GET("week/{id}")
+    fun GetWeekOverView(@Path("id") id: Int): Deferred<SessionDtoContainer>
 }
 
 object SessionApi {
