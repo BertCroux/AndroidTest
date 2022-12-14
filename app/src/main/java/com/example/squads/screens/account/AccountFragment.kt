@@ -3,6 +3,7 @@ import android.R
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,8 +53,11 @@ class AccountFragment : Fragment() {
 
     private fun addObservers() {
         //observer for the latest measurement
+
+        Log.d("test", accountViewModel.account.value.toString())
         accountViewModel.account.observe(viewLifecycleOwner, Observer { acc ->
             //if the account changes, all must be updated
+            Log.d("test", acc.toString())
             acc.let {
                 binding.name.text = String.format("%s %s", it?.firstName, it?.lastName)
                 binding.userId.text = String.format("User-ID: %d", it?.userId)

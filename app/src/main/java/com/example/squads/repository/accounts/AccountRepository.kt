@@ -13,13 +13,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class AccountRepository(private val database: SquadsRoomDatabase) {
-    val account = MutableLiveData(database.accountDao.getAccountDetails(1).value?.asDomain())
+    val account = database.accountDao.getAccountDetails(1)
 
     suspend fun refreshAccount() {
         withContext(Dispatchers.IO) {
             try {
                 val account = AccountApi.retrofitService.getUserDetailsAsync(1).await()
                 database.accountDao.insert(account.asDatabase())
+                Log.e("AccountRepository", account.toString())
             }catch(e: Exception) {
                 Log.e("AccountRepository", e.message.toString())
             }
