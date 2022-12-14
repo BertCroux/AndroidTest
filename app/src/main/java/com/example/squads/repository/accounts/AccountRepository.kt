@@ -17,8 +17,12 @@ class AccountRepository(private val database: SquadsRoomDatabase) {
 
     suspend fun refreshAccount() {
         withContext(Dispatchers.IO) {
-            val account = AccountApi.retrofitService.getUserDetailsAsync(1).await()
-            database.accountDao.insert(account.asDatabase())
+            try {
+                val account = AccountApi.retrofitService.getUserDetailsAsync(1).await()
+                database.accountDao.insert(account.asDatabase())
+            }catch(e: Exception) {
+                Log.e("AccountRepository", e.message.toString())
+            }
         }
     }
 }

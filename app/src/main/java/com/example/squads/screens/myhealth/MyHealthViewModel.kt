@@ -14,9 +14,11 @@ class MyHealthViewModel(application: Application) : AndroidViewModel(application
     private val database = SquadsRoomDatabase.getInstance(application.applicationContext)
     private val repository = MeasurementRepository(database)
 
-    val measurements = Transformations.map(repository.allMeasurements.asLiveData()) {
+    /*val measurements = Transformations.map(repository.allMeasurements.asLiveData()) {
         it.asDomain()
-    }
+    }*/
+    val measurements = repository.measurements
+
     val latestMeasurement = Transformations.map(repository.latest.asLiveData()) {
         it.asDomain()
     }

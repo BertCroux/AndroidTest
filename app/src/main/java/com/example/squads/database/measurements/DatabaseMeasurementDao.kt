@@ -16,9 +16,9 @@ interface DatabaseMeasurementDao {
     @Query("SELECT * FROM measurement ORDER BY measuredOn DESC LIMIT 1")
     fun getLatestMeasurement(): Flow<DatabaseMeasurement>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(measurement: DatabaseMeasurement)
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg measurements: DatabaseMeasurement)
 }
