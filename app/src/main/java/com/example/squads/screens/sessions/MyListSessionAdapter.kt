@@ -5,13 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.lifecycle.LiveData
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.squads.R
 import com.example.squads.database.sessions.Session
 import com.example.squads.databinding.SessionListBinding
 
-class MyListSessionAdapter(private val dataSet: LiveData<List<Session>>?) :
-    RecyclerView.Adapter<MyListSessionAdapter.ViewHolder>() {
+class MyListSessionAdapter() :
+    ListAdapter<Session, MyListSessionAdapter.ViewHolder>(SessionDiffCallback()) {
 
     lateinit var context : Context
     lateinit var binding: SessionListBinding
@@ -32,6 +34,7 @@ class MyListSessionAdapter(private val dataSet: LiveData<List<Session>>?) :
 
 
 
+
         viewHolder.binding.buttonSession.setOnClickListener {
 
             viewHolder.binding.constraintLayout.background = AppCompatResources.getDrawable(context, R.drawable.gradiant_button)
@@ -40,15 +43,24 @@ class MyListSessionAdapter(private val dataSet: LiveData<List<Session>>?) :
             //create new reservation => session
         }
 
-        binding.workoutNameTrainer.text = context.getString(R.string.workoutnametrainer_text, dataSet?.value!![position].Instructor)
+        binding.workoutNameTrainer.text = context.getString(R.string.workoutnametrainer_text, getItem(position).Instructor)
         //binding.dateOfSession.text = dataSet.value!![position].startDate.dayOfWeek.toString()
         //binding.spotsleft.text = context.getString(R.string.spotslef_text, dataSet.value!![position]) spotsleft?
-        binding.workoutTypeText.text = dataSet?.value!![position].SessionType
+        binding.workoutTypeText.text = getItem(position).SessionType
         //binding.workoutDateText.text = context.getString(R.string.workoutdate_text, dataSet.value!![position].startDate.hour, dataSet.value!![position].startDate.minute, dataSet.value!!.get(position).endDate.hour, dataSet.value!!.get(position).endDate.minute)
 
     }
 
     // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = dataSet?.value?.size ?: 0
 
+}
+
+class SessionDiffCallback: DiffUtil.ItemCallback<Session>() {
+    override fun areItemsTheSame(oldItem: Session, newItem: Session): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Session, newItem: Session): Boolean {
+        return oldItem == newItem
+    }
 }

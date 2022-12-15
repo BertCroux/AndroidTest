@@ -11,22 +11,19 @@ import kotlinx.coroutines.launch
 
 class AccountViewModel(application: Application) : AndroidViewModel(application)  {
     private val database = SquadsRoomDatabase.getInstance(application.applicationContext)
-    private val repository = AccountRepository(database)
+    val repository = AccountRepository(database)
 
     //list of all the users attributes
 /*    private val _account = MutableLiveData<Account>()
     val account: LiveData<Account>
         get() = _account*/
 
-    val account = Transformations.map(repository.account) {
-        it.asDomain()
-    }
 
     init {
         viewModelScope.launch {
             repository.refreshAccount()
         }
-        Log.d("AccountVM", account.value.toString())
+        Log.d("AccountVM", repository.account.value.toString())
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {

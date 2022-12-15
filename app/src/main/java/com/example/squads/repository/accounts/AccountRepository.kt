@@ -13,7 +13,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class AccountRepository(private val database: SquadsRoomDatabase) {
-    val account = database.accountDao.getAccountDetails(1)
+    val account: LiveData<Account> = Transformations.map(database.accountDao.getAccountDetails(1)) {
+        //Log.d("AccountRepository", it.toString());
+        it?.asDomain()
+    }
 
     suspend fun refreshAccount() {
         withContext(Dispatchers.IO) {

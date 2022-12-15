@@ -54,8 +54,8 @@ class AccountFragment : Fragment() {
     private fun addObservers() {
         //observer for the latest measurement
 
-        Log.d("test", accountViewModel.account.value.toString())
-        accountViewModel.account.observe(viewLifecycleOwner, Observer { acc ->
+        Log.d("test", accountViewModel.repository.account.value.toString())
+        accountViewModel.repository.account.observe(viewLifecycleOwner, Observer { acc ->
             //if the account changes, all must be updated
             Log.d("test", acc.toString())
             acc.let {

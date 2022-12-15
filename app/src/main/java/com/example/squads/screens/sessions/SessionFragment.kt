@@ -40,7 +40,7 @@ class SessionFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.sessionList.layoutManager = LinearLayoutManager(activity)
 
-        val myListSessionAdapter = MyListSessionAdapter(sessionViewModel.sessions)
+        val myListSessionAdapter = MyListSessionAdapter()
         binding.sessionList.adapter = myListSessionAdapter;
 
         sessionViewModel.sessions.observe(viewLifecycleOwner) { it ->
@@ -48,6 +48,7 @@ class SessionFragment : Fragment() {
                 Log.d("SessionFragment", it.toString())
 
             }
+            myListSessionAdapter.submitList(it)
         }
 
 
