@@ -10,8 +10,9 @@ import java.util.Date
 data class Reservation(
     @PrimaryKey
     val id: Int,
-    val beginDate: LocalDateTime,
-    val endDate: LocalDateTime,
+    val beginDate: Date,
+    val endDate: Date,
     val trainerType: String,
-    val trainerName: String
+    val trainerName: String,
+    val sessionId: Int
 )

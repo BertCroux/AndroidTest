@@ -13,4 +13,9 @@ interface AccountDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(account: DatabaseAccount)
+
+    //get reservations
+    //we will filter (aka map)this later in android
+    @Query("SELECT * FROM reservation")
+    fun getReservations(): LiveData<Reservation>
 }

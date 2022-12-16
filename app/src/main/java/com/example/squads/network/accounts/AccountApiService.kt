@@ -1,5 +1,6 @@
 package com.example.squads.network.accounts
 
+import com.example.squads.network.sessions.SessionDtoContainer
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -59,6 +60,13 @@ interface AccountApiService {
 
     @PUT("{userId}/reserve_session")
     fun ReserveSession(@Body Reservation : Reservation ) : Deferred<AccountDto>
+
+    //reservations
+    @GET("{id}/past_reservations")
+    fun past_reservations(@Path("id") id: Int): Deferred<SessionDtoContainer>
+
+    @GET("{id}/planned_reservations")
+    fun planned_reservations(@Path("id") id:Int): Deferred<SessionDtoContainer>
 }
 
 object AccountApi {

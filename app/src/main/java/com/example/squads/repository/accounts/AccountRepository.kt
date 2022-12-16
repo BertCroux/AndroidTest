@@ -19,6 +19,10 @@ class AccountRepository(private val database: SquadsRoomDatabase) {
         it?.asDomain()
     }
 
+    val reservations : LiveData<com.example.squads.domain.accounts.Reservation> = Transformations.map(database.accountDao.getReservations()) {
+        it.asDomain()
+    }
+
     suspend fun refreshAccount() {
         withContext(Dispatchers.IO) {
             try {
