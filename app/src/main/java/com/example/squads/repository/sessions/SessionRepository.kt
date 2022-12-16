@@ -16,10 +16,17 @@ class SessionRepository(private val database: SquadsRoomDatabase) {
     suspend fun refreshSessions() {
         withContext(Dispatchers.IO) {
             try {
-                val sessions = SessionApi.retrofitService.GetWeekOverView(1).await()
-                val sessionsList = sessions.replyBody
+                val thisWeekSessions = SessionApi.retrofitService.getCurrentWeekSessionOverview(1).await()
+
+                val nextWeekSessions = SessionApi.retrofitService.getNextWeekSessionOverview(1).await()
+
+                val thisWeekSessionsList = thisWeekSessions.replyBody
+                val nextWeeksessionsList = nextWeekSessions.replyBody
+
                 //val checkSession = SessionApi.retrofitService.
-                database.sessionDto.insert(sessionsList.asDatabase())
+                database.sessionDto.insert(thisWeekSessionsList.asDatabase())
+                database.sessionDto.insert(nextWeeksessionsList.asDatabase())
+
             }catch(e: Exception) {
                 Log.e("SessionRepository", e.message.toString())
             }

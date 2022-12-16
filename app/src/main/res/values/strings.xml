@@ -39,7 +39,7 @@
     <!--strings for mylistsession-->
     <string name="workoutnametrainer_text">With %s</string>
     <string name="spotslef_text">%s spots left</string>
-    <string name="workoutdate_text">%d:%d %d:%d</string>
+    <string name="workoutdate_text">%s - %s</string>
     <string name="exercises">Exercises</string>
 
     <string name="past_reservation_text">%d/%d/%d</string>

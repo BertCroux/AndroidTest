@@ -1,12 +1,10 @@
 package com.example.squads.network.sessions
 
-import com.example.squads.network.measurements.MeasurementDto
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
-import okhttp3.internal.http.hasBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -35,8 +33,12 @@ private val retrofit = Retrofit.Builder()
 
 
 interface SessionApiService {
-    @GET("week/{id}")
-    fun GetWeekOverView(@Path("id") id: Int): Deferred<SessionDtoContainer>
+    @GET("currentWeek/{id}")
+    fun getCurrentWeekSessionOverview(@Path("id") id: Int): Deferred<SessionDtoContainer>
+
+    @GET("nextWeek/{id}")
+    fun getNextWeekSessionOverview(@Path("id") id: Int): Deferred<SessionDtoContainer>
+
 }
 
 object SessionApi {

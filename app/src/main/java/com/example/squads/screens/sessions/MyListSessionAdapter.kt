@@ -1,16 +1,20 @@
 package com.example.squads.screens.sessions
 
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.squads.R
 import com.example.squads.database.sessions.Session
 import com.example.squads.databinding.SessionListBinding
+import java.text.SimpleDateFormat
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 class MyListSessionAdapter() :
     ListAdapter<Session, MyListSessionAdapter.ViewHolder>(SessionDiffCallback()) {
@@ -30,10 +34,8 @@ class MyListSessionAdapter() :
     }
 
     // Replace the contents of a view (invoked by the layout manager)
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-
-
-
 
         viewHolder.binding.buttonSession.setOnClickListener {
 
@@ -43,16 +45,23 @@ class MyListSessionAdapter() :
             //create new reservation => session
         }
 
+
+        val simpleDateFormat = SimpleDateFormat("EEE dd/MM")
+
+        val simpelTimeFormat = SimpleDateFormat("HH:mm")
+
         binding.workoutNameTrainer.text = context.getString(R.string.workoutnametrainer_text, getItem(position).Instructor)
-        //binding.dateOfSession.text = dataSet.value!![position].startDate.dayOfWeek.toString()
-        //binding.spotsleft.text = context.getString(R.string.spotslef_text, dataSet.value!![position]) spotsleft?
+        binding.dateOfSession.text = simpleDateFormat.format(getItem(position).startDate)
+
+        binding.spotsleft.text = context.getString(R.string.spotslef_text, (6 - (getItem(position).spotsLeft)).toString())
+
         binding.workoutTypeText.text = getItem(position).SessionType
-        //binding.workoutDateText.text = context.getString(R.string.workoutdate_text, dataSet.value!![position].startDate.hour, dataSet.value!![position].startDate.minute, dataSet.value!!.get(position).endDate.hour, dataSet.value!!.get(position).endDate.minute)
-
+        binding.workoutDateText.text =
+            context.getString(
+                R.string.workoutdate_text
+                , simpelTimeFormat.format(getItem(position).startDate)
+                , simpelTimeFormat.format(getItem(position).endDate))
     }
-
-    // Return the size of your dataset (invoked by the layout manager)
-
 }
 
 class SessionDiffCallback: DiffUtil.ItemCallback<Session>() {
