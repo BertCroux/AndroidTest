@@ -38,6 +38,7 @@ class MyListSessionAdapter() :
         viewHolder.binding.buttonSession.setOnClickListener {
             if(getItem(position).canSignUp){
                 //Reserveren van sessie
+
             }
             if(getItem(position).canCancel){
             }

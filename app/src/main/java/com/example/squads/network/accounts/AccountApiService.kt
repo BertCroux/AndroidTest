@@ -8,12 +8,14 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.PUT
 import retrofit2.http.Path
 
 private const val BASE_URL =
-    "https://squadsacceptancea01.azurewebsites.net/user/"
+    //"https://squadsacceptancea01.azurewebsites.net/user/"
+    "https://localhost:25153/user/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -33,12 +35,30 @@ private val retrofit = Retrofit.Builder()
     .client(client)
     .build()
 
+data class Reservation (
+    val userId: Int,
+    val SessionId: Int,
+)
+
+
 interface AccountApiService {
     @GET("{userId}")
     fun getUserDetailsAsync(@Path("userId") userId: Int): Deferred<AccountDto>
 
+    //put
+    //https://localhost:25153/user/1/reserve_session
 
-    @PUT
+    /*{
+        "Reservation" : {
+        "UserId" : 1,
+        "SessionId": 22
+    }
+    }
+    */
+
+
+    @PUT("{userId}/reserve_session")
+    fun ReserveSession(@Body Reservation : Reservation ) : Deferred<AccountDto>
 }
 
 object AccountApi {
