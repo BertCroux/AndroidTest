@@ -6,14 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.squads.database.accounts.DatabaseAccount
 import com.example.squads.database.accounts.AccountDao
+import com.example.squads.database.accounts.Reservation
+import com.example.squads.database.accounts.ReservationDao
 import com.example.squads.database.exercises.Exercise
 import com.example.squads.database.exercises.ExerciseDao
 import com.example.squads.database.measurements.DatabaseMeasurement
 import com.example.squads.database.measurements.DatabaseMeasurementDao
 import com.example.squads.database.personalrecords.PersonalRecord
 import com.example.squads.database.personalrecords.PersonalRecordDao
-import com.example.squads.database.reservations.Reservation
-import com.example.squads.database.reservations.ReservationDao
 import com.example.squads.database.sessions.Session
 import com.example.squads.database.sessions.SessionDao
 
@@ -24,6 +24,8 @@ abstract class SquadsRoomDatabase : RoomDatabase() {
     //abstract fun exerciseDao(): ExerciseDao
     abstract val measurementDao: DatabaseMeasurementDao
     abstract val sessionDto: SessionDao
+
+    abstract val reservationDao: ReservationDao
 
     //abstract fun personalRecordDao(): PersonalRecordDao
     //abstract fun reservationDao(): ReservationDao

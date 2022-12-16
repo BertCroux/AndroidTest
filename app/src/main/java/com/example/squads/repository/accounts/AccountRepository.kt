@@ -19,7 +19,7 @@ class AccountRepository(private val database: SquadsRoomDatabase) {
         it?.asDomain()
     }
 
-    val reservations : LiveData<com.example.squads.domain.accounts.Reservation> = Transformations.map(database.accountDao.getReservations()) {
+    val reservations : LiveData<com.example.squads.domain.accounts.Reservation> = Transformations.map(database.reservationDao.getReservations()) {
         it.asDomain()
     }
 
@@ -42,6 +42,7 @@ class AccountRepository(private val database: SquadsRoomDatabase) {
             try {
                 val reservation = AccountApi.retrofitService.ReserveSession(reservation).await()
 
+                database.accountDao.insert(reservation.asDatabase())
                 // saving in room database of Reservations
                 Log.e("AccountRepository", account.toString())
             }catch(e: Exception) {
