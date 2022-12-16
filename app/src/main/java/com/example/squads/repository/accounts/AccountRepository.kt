@@ -37,7 +37,8 @@ class AccountRepository(private val database: SquadsRoomDatabase) {
         withContext(Dispatchers.IO) {
             try {
                 val reservation = AccountApi.retrofitService.ReserveSession(reservation).await()
-                database.
+
+                // saving in room database of Reservations
                 Log.e("AccountRepository", account.toString())
             }catch(e: Exception) {
                 Log.e("AccountRepository", e.message.toString())
