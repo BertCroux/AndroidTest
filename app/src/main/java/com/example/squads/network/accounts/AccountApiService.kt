@@ -9,6 +9,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 private const val BASE_URL =
@@ -35,6 +36,9 @@ private val retrofit = Retrofit.Builder()
 interface AccountApiService {
     @GET("{userId}")
     fun getUserDetailsAsync(@Path("userId") userId: Int): Deferred<AccountDto>
+
+
+    @PUT
 }
 
 object AccountApi {

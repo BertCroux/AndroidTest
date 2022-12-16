@@ -9,24 +9,37 @@ import java.util.Date
 @Entity(tableName = "session")
 data class Session(
     @PrimaryKey
-    val id: Int,
+    val sessionId: Int,
     val startDate: Date,
     val endDate: Date,
     val SessionType: String,
     val Instructor: String,
-    val spotsLeft: Int
+    val spotsLeft: Int,
+
+
+    val canCancel : Boolean,
+    val canSignUp : Boolean,
+    val canJoinWaitlist  : Boolean,
+
+
+
 )
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun List<Session>.asDomain(): List<Session> {
     return map {
         Session(
-            id = it.id,
+            sessionId = it.sessionId,
             startDate = it.startDate,
             endDate = it.endDate,
             SessionType = it.SessionType,
             Instructor = it.Instructor,
             spotsLeft = it.spotsLeft,
+
+            canCancel = it.canCancel,
+            canSignUp = it.canSignUp,
+            canJoinWaitlist = it.canJoinWaitlist,
+
         )
 
     }

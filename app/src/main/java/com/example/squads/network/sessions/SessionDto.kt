@@ -17,33 +17,41 @@ data class SessionDtoContainer(
 
 data class SessionDto (
     @Json(name = "sessionId")
-    val SessionId : Int,
+    val sessionId : Int,
     @Json(name = "startDate")
-    val StartDate : String,
+    val startDate : String,
     @Json(name = "endDate")
-    val EndDate : String,
+    val endDate : String,
     @Json(name = "amountOfReservations")
-    val AmountOfReservations : Int,
+    val amountOfReservations : Int,
     @Json(name = "sessionType")
-    val SessionType : String,
+    val sessionType : String,
     @Json(name = "instructor")
-    val Instructor : String,
+    val instructor : String,
+
     @Json(name = "canCancel")
-    val CanCancel : Boolean,
+    val canCancel : Boolean,
     @Json(name = "canSignUp")
-    val CanSignUp : Boolean,
+    val canSignUp : Boolean,
+
+    @Json(name = "canJoinWaitList")
+    val canJoinWaitlist: Boolean,
 )
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun SessionDtoContainer.asDomain(): List<Session> {
     return replyBody.map {
         Session(
-            id = it.SessionId,
-            startDate = Date.from(Instant.parse(it.StartDate)),
-            endDate = Date.from(Instant.parse(it.EndDate)),
-            SessionType = it.SessionType,
-            Instructor = it.Instructor,
-            spotsLeft = it.AmountOfReservations
+            sessionId = it.sessionId,
+            startDate = Date.from(Instant.parse(it.startDate)),
+            endDate = Date.from(Instant.parse(it.endDate)),
+            SessionType = it.sessionType,
+            Instructor = it.instructor,
+            spotsLeft = it.amountOfReservations,
+
+            canCancel = it.canCancel,
+            canSignUp = it.canSignUp,
+            canJoinWaitlist = it.canJoinWaitlist,
         )
     }
 }
@@ -55,12 +63,16 @@ fun SessionDtoContainer.asDomain(): List<Session> {
 fun List<SessionDto>.asDatabase(): Array<Session> {
     val x = this.map {
         Session(
-            id = it.SessionId,
-            startDate = Date.from(LocalDateTime.parse(it.StartDate).atZone(ZoneId.systemDefault()).toInstant()),
-            endDate = Date.from(LocalDateTime.parse(it.EndDate).atZone(ZoneId.systemDefault()).toInstant()),
-            SessionType = it.SessionType,
-            Instructor = it.Instructor,
-            spotsLeft = it.AmountOfReservations,
+            sessionId = it.sessionId,
+            startDate = Date.from(LocalDateTime.parse(it.startDate).atZone(ZoneId.systemDefault()).toInstant()),
+            endDate = Date.from(LocalDateTime.parse(it.endDate).atZone(ZoneId.systemDefault()).toInstant()),
+            SessionType = it.sessionType,
+            Instructor = it.instructor,
+            spotsLeft = it.amountOfReservations,
+
+            canCancel = it.canCancel,
+            canSignUp = it.canSignUp,
+            canJoinWaitlist = it.canJoinWaitlist,
 
         )
     }.toTypedArray()
