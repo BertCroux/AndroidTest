@@ -29,27 +29,17 @@ class SessionViewModel(application: Application) : AndroidViewModel(application)
         it.asDomain()
     }
 
-    fun getSessions(){
-        Log.d("SessionViewModel", sessions.value.toString())
-        /*_sessions.value = listOf(
-            Session(
-                LocalDateTime(2022, 11, 1, 19, 0, 0, 0),
-                LocalDateTime(2022, 11, 1, 20, 0, 0, 0),
-                "Heavy workout", "Beast mode.", 6
-            ),
-            Session(
-                LocalDateTime(2022, 11, 2, 19, 0, 0, 0),
-                LocalDateTime(2022, 11, 2, 20, 0, 0, 0),
-                "Yoga", "Hells.", 5
-            )
-        )*/
-    }
     init {
         viewModelScope.launch {
             repository.refreshSessions()
         }
-        getSessions()
     }
+
+    fun ReserveSession(reservation: com.example.squads.network.accounts.Reservation){
+        
+    }
+
+
 
 
     private val _navigateFromSession = MutableLiveData<Boolean?>()
