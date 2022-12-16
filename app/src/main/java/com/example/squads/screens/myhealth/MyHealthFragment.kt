@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.squads.R
 import com.example.squads.databinding.FragmentMyHealthBinding
@@ -29,7 +30,10 @@ class MyHealthFragment : Fragment() {
         )
 
         // get the viewmodel
-        val vm: MyHealthViewModel by activityViewModels()
+        val vm: MyHealthViewModel by lazy {
+            val activity = requireNotNull(this.activity)
+            ViewModelProvider(this, MyHealthViewModel.Factory(activity.application)).get(MyHealthViewModel::class.java)
+        }
         // set the viewmodel
         myHealthViewModel = vm
         // set the viewmodel in the xml file

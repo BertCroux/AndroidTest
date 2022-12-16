@@ -1,9 +1,12 @@
 package com.example.squads.screens.sessions
 
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -12,11 +15,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.squads.R
 import com.example.squads.databinding.FragmentSessionsBinding
-import com.example.squads.databinding.SessionListBinding
 
 class SessionFragment : Fragment() {
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,9 +40,16 @@ class SessionFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.sessionList.layoutManager = LinearLayoutManager(activity)
 
-        val myListSessionAdapter = MyListSessionAdapter(sessionViewModel.sessions)
+        val myListSessionAdapter = MyListSessionAdapter()
         binding.sessionList.adapter = myListSessionAdapter;
 
+        sessionViewModel.sessions.observe(viewLifecycleOwner) { it ->
+            it.forEach {
+                Log.d("SessionFragment", it.toString())
+
+            }
+            myListSessionAdapter.submitList(it)
+        }
 
 
         //observer on when to navigate from the graphs fragment
