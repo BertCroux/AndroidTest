@@ -19,7 +19,7 @@ class AccountRepository(private val database: SquadsRoomDatabase) {
         it?.asDomain()
     }
 
-    val reservations : LiveData<com.example.squads.domain.accounts.Reservation> = Transformations.map(database.reservationDao.getReservations()) {
+    val reservations  = Transformations.map(database.reservationDao.getReservations()) {
         it.asDomain()
     }
 

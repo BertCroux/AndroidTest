@@ -24,3 +24,15 @@ fun Reservation.asDomain(): com.example.squads.domain.accounts.Reservation {
         sessionId = sessionId
     )
 }
+fun List<Reservation>.asDomain(): List<com.example.squads.domain.accounts.Reservation> {
+    return map {
+        com.example.squads.domain.accounts.Reservation(
+            id = it.id,
+            startDate = it.beginDate,
+            endDate = it.endDate,
+            sessionType = it.trainerType,
+            trainer = it.trainerName,
+            sessionId = it.sessionId
+        )
+    }
+}
