@@ -6,18 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.squads.database.accounts.DatabaseAccount
 import com.example.squads.database.accounts.AccountDao
-import com.example.squads.database.accounts.Reservation
+import com.example.squads.database.accounts.DatabaseReservation
 import com.example.squads.database.accounts.ReservationDao
-import com.example.squads.database.exercises.Exercise
-import com.example.squads.database.exercises.ExerciseDao
 import com.example.squads.database.measurements.DatabaseMeasurement
 import com.example.squads.database.measurements.DatabaseMeasurementDao
-import com.example.squads.database.personalrecords.PersonalRecord
-import com.example.squads.database.personalrecords.PersonalRecordDao
 import com.example.squads.database.sessions.Session
 import com.example.squads.database.sessions.SessionDao
 
-@Database(entities = [DatabaseMeasurement::class, DatabaseAccount::class, Session::class, Reservation::class], version = 5, exportSchema = false)
+@Database(entities = [DatabaseMeasurement::class, DatabaseAccount::class, Session::class, DatabaseReservation::class], version = 5, exportSchema = false)
 @androidx.room.TypeConverters(Converters::class)
 abstract class SquadsRoomDatabase : RoomDatabase() {
     abstract val accountDao: AccountDao

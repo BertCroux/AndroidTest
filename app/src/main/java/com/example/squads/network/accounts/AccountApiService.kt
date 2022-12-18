@@ -63,10 +63,10 @@ interface AccountApiService {
 
     //reservations
     @GET("{id}/past_reservations")
-    fun past_reservations(@Path("id") id: Int): Deferred<SessionDtoContainer>
+    fun past_reservations(@Path("id") id: Int): Deferred<ReservationDtoContainer>
 
     @GET("{id}/planned_reservations")
-    fun planned_reservations(@Path("id") id:Int): Deferred<SessionDtoContainer>
+    fun planned_reservations(@Path("id") id:Int): Deferred<ReservationDtoContainer>
 }
 
 object AccountApi {

@@ -11,8 +11,8 @@ interface ReservationDao {
     //get reservations
     //we will filter (aka map)this later in android
     @Query("SELECT * FROM reservation")
-    fun getReservations(): LiveData<List<Reservation>>
+    fun getReservations(): LiveData<List<DatabaseReservation>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(res: Reservation)
+    suspend fun insert(res: DatabaseReservation)
 }

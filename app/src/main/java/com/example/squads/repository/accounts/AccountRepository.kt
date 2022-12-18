@@ -35,7 +35,20 @@ class AccountRepository(private val database: SquadsRoomDatabase) {
         }
     }
 
+    suspend fun refreshReservations() {
+        withContext(Dispatchers.IO) {
+            try  {
+                //user id
+                val past_res =AccountApi.retrofitService.past_reservations(1)
+                val planned_res = AccountApi.retrofitService.planned_reservations(1)
 
+                //TRIGGERED!!!! database.reservationDao.insert(past_res.asDatabase())
+
+            }catch (e: Exception) {
+
+            }
+        }
+    }
 
     suspend fun reserveSession(reservation: Reservation) {
         withContext(Dispatchers.IO) {

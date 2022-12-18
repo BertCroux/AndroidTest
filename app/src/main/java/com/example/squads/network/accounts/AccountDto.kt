@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.squads.database.accounts.DatabaseAccount
 import com.example.squads.database.accounts.Address
+import com.example.squads.database.accounts.DatabaseReservation
 import com.example.squads.database.reservations.Reservation
 import com.squareup.moshi.Json
 import java.time.Instant
@@ -64,6 +65,16 @@ fun AccountDto.asDatabase(): DatabaseAccount {
         lengthInCm = lengthInCm,
         physicalIssues = physicalIssues,
         drugsUsed = drugsUsed
+    )
+}
+fun ReservationDto.asDatabase(): DatabaseReservation {
+    return DatabaseReservation(
+        id = id,
+        beginDate = startDate,
+        endDate = endDate,
+        trainerName = trainer,
+        trainerType = sessionType,
+        sessionId = sessionId
     )
 }
 

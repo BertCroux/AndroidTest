@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "reservation")
-data class Reservation(
+data class DatabaseReservation(
     @PrimaryKey
     val id: Int,
     val beginDate: String,
@@ -14,7 +14,7 @@ data class Reservation(
     val sessionId: Int
 )
 
-fun Reservation.asDomain(): com.example.squads.domain.accounts.Reservation {
+fun DatabaseReservation.asDomain(): com.example.squads.domain.accounts.Reservation {
     return com.example.squads.domain.accounts.Reservation(
         id = id,
         startDate = beginDate,
@@ -24,7 +24,7 @@ fun Reservation.asDomain(): com.example.squads.domain.accounts.Reservation {
         sessionId = sessionId
     )
 }
-fun List<Reservation>.asDomain(): List<com.example.squads.domain.accounts.Reservation> {
+fun List<DatabaseReservation>.asDomain(): List<com.example.squads.domain.accounts.Reservation> {
     return map {
         com.example.squads.domain.accounts.Reservation(
             id = it.id,
