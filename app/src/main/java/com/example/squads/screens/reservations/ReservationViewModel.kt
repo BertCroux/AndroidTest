@@ -11,7 +11,10 @@ import com.example.squads.repository.accounts.AccountRepository
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toJavaLocalDate
 import kotlinx.datetime.toLocalDateTime
+import java.time.ZoneId
+import java.util.Date
 
 @RequiresApi(Build.VERSION_CODES.O)
 class ReservationViewModel(application : Application) : AndroidViewModel(application) {
@@ -20,12 +23,12 @@ class ReservationViewModel(application : Application) : AndroidViewModel(applica
     private val repository = AccountRepository(database)
 
     @RequiresApi(Build.VERSION_CODES.O)
-    val sessions = Transformations.map(repository.allSessions.asLiveData()) {
-        it.asDomain()
-    }
+    val reservations = repository.reservations
+    private val _reservations = reservations.value;
+
 
     fun getSessions(){
-        Log.d("SessionViewModel", sessions.value.toString())
+        Log.d("SessionViewModel", reservations.value.toString())
         /*_sessions.value = listOf(
             Session(
                 LocalDateTime(2022, 11, 1, 19, 0, 0, 0),
@@ -41,17 +44,17 @@ class ReservationViewModel(application : Application) : AndroidViewModel(applica
     }
     init {
         viewModelScope.launch {
-            repository.refreshSessions()
+            repository.refreshReservations()
         }
         getSessions()
     }
 
-    private val _pastReservations = MutableLiveData<List<Reservation>>()
-    val pastReservation: LiveData<List<Reservation>>
+    private val _pastReservations = MutableLiveData<List<com.example.squads.domain.accounts.Reservation>>()
+    val pastReservation: LiveData<List<com.example.squads.domain.accounts.Reservation>>
         get() = _pastReservations
 
-    private val _plannedReservations = MutableLiveData<List<Reservation>>()
-    val plannedReservation: LiveData<List<Reservation>>
+    private val _plannedReservations = MutableLiveData<List<com.example.squads.domain.accounts.Reservation>>()
+    val plannedReservation: LiveData<List<com.example.squads.domain.accounts.Reservation>>
         get() = _plannedReservations
 
     init {
@@ -64,8 +67,10 @@ class ReservationViewModel(application : Application) : AndroidViewModel(applica
      *
      */
     fun getPlannedReservations() {
-        _plannedReservations.value = _reservations.filter {
-            it.endDate > Clock.System.now().toLocalDateTime(TimeZone.UTC)
+        val toLocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.UTC)
+        _plannedReservations.value = _reservations?.filter {
+            it.endDate > Date.from(toLocalDateTime.date.toJavaLocalDate()
+                .atStartOfDay().atZone(ZoneId.systemDefault()).toInstant())
         }
     }
 
@@ -75,10 +80,11 @@ class ReservationViewModel(application : Application) : AndroidViewModel(applica
      */
     fun getPastReservations() {
         Log.d("ReservationViewModel", Clock.System.now().toLocalDateTime(TimeZone.UTC).toString())
+        val toLocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.UTC)
 
-
-        _pastReservations.value = _reservations.filter {
-            Clock.System.now().toLocalDateTime(TimeZone.UTC) > it.endDate
+        _pastReservations.value = _reservations?.filter {
+            Date.from(toLocalDateTime.date.toJavaLocalDate()
+                .atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()) > it.endDate
         }
     }
 }
