@@ -14,5 +14,5 @@ interface ReservationDao {
     fun getReservations(): LiveData<List<DatabaseReservation>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(res: DatabaseReservation)
+    suspend fun insert(res: Array<com.example.squads.database.reservations.Reservation>)
 }

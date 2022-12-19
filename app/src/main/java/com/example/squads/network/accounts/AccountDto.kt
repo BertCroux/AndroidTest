@@ -4,6 +4,7 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.squads.database.accounts.DatabaseAccount
+import com.example.squads.database.accounts.DatabaseReservation
 import com.example.squads.database.reservations.Reservation
 import com.squareup.moshi.Json
 import java.time.Instant
@@ -72,8 +73,8 @@ data class ReservationDto(
 )
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun List<ReservationDto>.asDatabase(): Array<Reservation> {
-    val x = this.map {
+fun List<ReservationDto>.asDatabase(): Array<com.example.squads.database.reservations.Reservation> {
+    val x =  this.map {
         Reservation(
             id = it.id,
             beginDate = Date.from(LocalDateTime.parse(it.startDate).atZone(ZoneId.systemDefault()).toInstant()),
@@ -84,11 +85,13 @@ fun List<ReservationDto>.asDatabase(): Array<Reservation> {
         )
     }.toTypedArray()
 
-    //temporary logging
-    x.iterator().forEach {
-        Log.d("MeasurementDto", it.toString())
+    //logging
+    x.forEach {
+        Log.d("AccountDto", it.toString())
     }
+
     return x
+
 }
 
 
