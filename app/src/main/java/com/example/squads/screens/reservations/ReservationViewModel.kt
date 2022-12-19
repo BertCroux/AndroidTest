@@ -49,12 +49,12 @@ class ReservationViewModel(application : Application) : AndroidViewModel(applica
         getSessions()
     }
 
-    private val _pastReservations = MutableLiveData<List<com.example.squads.domain.accounts.Reservation>>()
-    val pastReservation: LiveData<List<com.example.squads.domain.accounts.Reservation>>
+    private val _pastReservations = MutableLiveData<List<com.example.squads.database.reservations.Reservation>>()
+    val pastReservation: LiveData<List<com.example.squads.database.reservations.Reservation>>
         get() = _pastReservations
 
-    private val _plannedReservations = MutableLiveData<List<com.example.squads.domain.accounts.Reservation>>()
-    val plannedReservation: LiveData<List<com.example.squads.domain.accounts.Reservation>>
+    private val _plannedReservations = MutableLiveData<List<com.example.squads.database.reservations.Reservation>>()
+    val plannedReservation: LiveData<List<com.example.squads.database.reservations.Reservation>>
         get() = _plannedReservations
 
     init {

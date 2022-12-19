@@ -13,5 +13,6 @@ interface SessionDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(session: kotlin.Array<com.example.squads.database.sessions.Session>)
+
 }
 

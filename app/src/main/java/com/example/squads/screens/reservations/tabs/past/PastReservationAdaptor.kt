@@ -7,7 +7,8 @@ import android.view.LayoutInflater
 import androidx.recyclerview.widget.RecyclerView
 import com.example.squads.R
 import com.example.squads.databinding.PastReservationBinding
-import com.example.squads.screens.reservations.Reservation
+import com.example.squads.database.reservations.Reservation
+import java.text.SimpleDateFormat
 
 class PastReservationAdaptor(private val dataSet: LiveData<List<Reservation>>?) :
     RecyclerView.Adapter<PastReservationAdaptor.ViewHolder>() {
@@ -27,11 +28,29 @@ class PastReservationAdaptor(private val dataSet: LiveData<List<Reservation>>?) 
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+
+        val simpleDateFormat = SimpleDateFormat("EEE dd/MM")
+        val simpelTimeFormat = SimpleDateFormat("HH:mm")
+
         binding.textView3.text = dataSet?.value!![position].trainerName
         binding.textView2.text = context.getString(R.string.past_reservation_text,
             dataSet.value!![position].beginDate.dayOfMonth,
         dataSet.value!![position].beginDate.monthNumber,
         dataSet.value!![position].beginDate.year)
+
+        binding.textView3.text = context.getString(R.string., dataSet?.value!![position].trainerName)
+        binding.textView2.text = simpleDateFormat.format(getItem(position).startDate)
+
+
+        
+        binding.spotsleft.text = context.getString(R.string.spotslef_text, (6 - (getItem(position).spotsLeft)).toString())
+
+        binding.workoutTypeText.text = getItem(position).SessionType
+        binding.workoutDateText.text =
+            context.getString(
+                R.string.workoutdate_text
+                , simpelTimeFormat.format(getItem(position).startDate)
+                , simpelTimeFormat.format(getItem(position).endDate))
     }
 
     // Return the size of your dataset (invoked by the layout manager)

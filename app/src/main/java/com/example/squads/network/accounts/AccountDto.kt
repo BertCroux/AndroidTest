@@ -4,7 +4,6 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.squads.database.accounts.DatabaseAccount
-import com.example.squads.database.accounts.DatabaseReservation
 import com.example.squads.database.reservations.Reservation
 import com.squareup.moshi.Json
 import java.time.Instant

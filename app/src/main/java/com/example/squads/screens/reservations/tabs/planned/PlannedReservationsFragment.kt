@@ -35,9 +35,6 @@ class PlannedReservationsFragment : Fragment() {
         )
 
 
-
-        Log.d("PRF", sharedViewModel.plannedReservation.value.toString())
-
         //binding.lifecycleOwner = this
 
         binding.containerViewPlannedReservations.layoutManager = LinearLayoutManager(activity)

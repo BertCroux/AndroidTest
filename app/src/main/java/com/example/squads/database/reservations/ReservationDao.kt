@@ -1,4 +1,4 @@
-package com.example.squads.database.accounts
+package com.example.squads.database.reservations
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.squads.database.SquadsRoomDatabase
 import com.example.squads.database.accounts.asDomain
+import com.example.squads.database.reservations.asDomain
 import com.example.squads.domain.accounts.Account
 import com.example.squads.network.accounts.AccountApi
 import com.example.squads.network.accounts.Reservation
@@ -21,6 +22,7 @@ class AccountRepository(private val database: SquadsRoomDatabase) {
         it?.asDomain()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     val reservations  = Transformations.map(database.reservationDao.getReservations()) {
         it.asDomain()
     }
