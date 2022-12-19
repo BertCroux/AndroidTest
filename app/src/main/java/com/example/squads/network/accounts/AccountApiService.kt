@@ -57,7 +57,6 @@ interface AccountApiService {
     }
     */
 
-
     @PUT("{userId}/reserve_session")
     fun ReserveSession(@Body Reservation : Reservation ) : Deferred<AccountDto>
 

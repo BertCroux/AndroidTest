@@ -1,12 +1,9 @@
 package com.example.squads.network.accounts
 
-import android.accounts.Account
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.squads.database.accounts.DatabaseAccount
-import com.example.squads.database.accounts.Address
-import com.example.squads.database.accounts.DatabaseReservation
 import com.example.squads.database.reservations.Reservation
 import com.squareup.moshi.Json
 import java.time.Instant
@@ -36,19 +33,7 @@ data class AddressDto(
     var city: String
 )
 
-data class ReservationDtoContainer(
-    @Json(name = "reservations")
-    val replyBody: List<ReservationDto>
-)
 
-data class ReservationDto(
-    @Json(name = "id") val id: Int,
-    @Json(name = "startDate") val startDate: String,
-    @Json(name = "endDate") val endDate: String,
-    @Json(name = "sessionType") val sessionType: String,
-    @Json(name = "trainer") val trainer: String,
-    @Json(name = "sessionId") val sessionId: Int
-)
 
 fun AccountDto.asDatabase(): DatabaseAccount {
     Log.d("AccountDto", this.toString())
@@ -67,27 +52,56 @@ fun AccountDto.asDatabase(): DatabaseAccount {
         drugsUsed = drugsUsed
     )
 }
-fun ReservationDto.asDatabase(): DatabaseReservation {
-    return DatabaseReservation(
-        id = id,
-        beginDate = startDate,
-        endDate = endDate,
-        trainerName = trainer,
-        trainerType = sessionType,
-        sessionId = sessionId
-    )
-}
+
+//--------------------------------------
+//-------------RESERVATIONS-------------
+//--------------------------------------
+
+data class ReservationDtoContainer(
+    @Json(name = "reservations")
+    val replyBody: List<ReservationDto>
+)
+
+data class ReservationDto(
+    @Json(name = "id") val id: Int,
+    @Json(name = "startDate") val startDate: String,
+    @Json(name = "endDate") val endDate: String,
+    @Json(name = "sessionType") val sessionType: String,
+    @Json(name = "trainer") val trainer: String,
+    @Json(name = "sessionId") val sessionId: Int
+)
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun ReservationDtoContainer.asDomain(): List<com.example.squads.database.reservations.Reservation> {
+fun List<ReservationDto>.asDatabase(): Array<Reservation> {
+    val x = this.map {
+        Reservation(
+            id = it.id,
+            beginDate = Date.from(LocalDateTime.parse(it.startDate).atZone(ZoneId.systemDefault()).toInstant()),
+            endDate = Date.from(LocalDateTime.parse(it.endDate).atZone(ZoneId.systemDefault()).toInstant()),
+            trainerName = it.trainer,
+            sessionType = it.sessionType,
+            sessionId = it.sessionId
+        )
+    }.toTypedArray()
+
+    //temporary logging
+    x.iterator().forEach {
+        Log.d("MeasurementDto", it.toString())
+    }
+    return x
+}
+
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun ReservationDtoContainer.asDomain(): List<Reservation> {
     return replyBody.map {
         Reservation(
             id = it.id,
             beginDate = Date.from(Instant.parse(it.startDate)),
             endDate = Date.from(Instant.parse(it.endDate)),
             trainerName = it.trainer,
-            trainerType = it.sessionType,
+            sessionType = it.sessionType,
             sessionId = it.sessionId
-            )
+        )
     }
 }
