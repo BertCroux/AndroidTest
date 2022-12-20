@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.squads.R
 import com.example.squads.databinding.PlannedReservationBinding
-import com.example.squads.screens.reservations.Reservation
+import com.example.squads.domain.accounts.Reservation
 
 class PlannedReservationAdaptor(private val dataSet: LiveData<List<Reservation>>?) :
     RecyclerView.Adapter<PlannedReservationAdaptor.ViewHolder>() {
@@ -29,14 +29,16 @@ class PlannedReservationAdaptor(private val dataSet: LiveData<List<Reservation>>
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
-        binding.textView3.text = dataSet?.value!![position].trainerType
-        binding.trainerText.text = dataSet.value!![position].trainerName
+        binding.textView3.text = dataSet?.value!![position].sessionType
+        binding.trainerText.text = dataSet.value!![position].trainer
+        /*
         binding.workoutDateText.text = context.getString(R.string.workoutdate_text,
             dataSet.value!![position].beginDate.hour,
             dataSet.value!![position].beginDate.minute,
             dataSet.value!![position].endDate.hour,
             dataSet.value!![position].endDate.minute,
             )
+         */
     }
 
     // Return the size of your dataset (invoked by the layout manager)

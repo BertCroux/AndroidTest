@@ -15,8 +15,8 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 
 private const val BASE_URL =
-    //"https://squadsacceptancea01.azurewebsites.net/user/"
-    "https://localhost:25153/user/"
+    "https://squadsacceptancea01.azurewebsites.net/user/"
+    //"https://localhost:25153/user/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())

@@ -15,6 +15,7 @@ import com.example.squads.network.accounts.asDatabase
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.util.*
 
 class AccountRepository(private val database: SquadsRoomDatabase) {
     val account: LiveData<Account> = Transformations.map(database.accountDao.getAccountDetails(1)) {
@@ -26,6 +27,18 @@ class AccountRepository(private val database: SquadsRoomDatabase) {
     val reservations  = Transformations.map(database.reservationDao.getReservations()) {
         it.asDomain()
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    val pastRes = Transformations.map(database.reservationDao.getPastReservations(Date())) {
+        it.asDomain()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    val plannedRes = Transformations.map(database.reservationDao.getPlannedReservations(Date())) {
+        it.asDomain()
+    }
+
+
 
     suspend fun refreshAccount() {
         withContext(Dispatchers.IO) {
@@ -53,10 +66,9 @@ class AccountRepository(private val database: SquadsRoomDatabase) {
                 database.reservationDao.insert(past_res_list.asDatabase())
                 database.reservationDao.insert(planned_res_list.asDatabase())
 
-                //TRIGGERED!!!! database.reservationDao.insert(past_res.asDatabase())
 
             }catch (e: Exception) {
-
+                Log.e("AccountRepository", e.message.toString())
             }
         }
     }

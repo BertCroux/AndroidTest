@@ -11,8 +11,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
 private const val BASE_URL =
-    //"https://squadsacceptancea01.azurewebsites.net/session/"
-    "https://http://localhost:25153/session/"
+    "https://squadsacceptancea01.azurewebsites.net/session/"
+    //"http://10.0.2.2:25152/session/"
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()

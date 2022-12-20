@@ -24,67 +24,16 @@ class ReservationViewModel(application : Application) : AndroidViewModel(applica
 
     @RequiresApi(Build.VERSION_CODES.O)
     val reservations = repository.reservations
-    private val _reservations = reservations.value;
+    private val _reservations = reservations
 
 
-    fun getSessions(){
-        Log.d("SessionViewModel", reservations.value.toString())
-        /*_sessions.value = listOf(
-            Session(
-                LocalDateTime(2022, 11, 1, 19, 0, 0, 0),
-                LocalDateTime(2022, 11, 1, 20, 0, 0, 0),
-                "Heavy workout", "Beast mode.", 6
-            ),
-            Session(
-                LocalDateTime(2022, 11, 2, 19, 0, 0, 0),
-                LocalDateTime(2022, 11, 2, 20, 0, 0, 0),
-                "Yoga", "Hells.", 5
-            )
-        )*/
-    }
     init {
         viewModelScope.launch {
             repository.refreshReservations()
         }
-        getSessions()
     }
 
-    private val _pastReservations = MutableLiveData<List<com.example.squads.database.reservations.Reservation>>()
-    val pastReservation: LiveData<List<com.example.squads.database.reservations.Reservation>>
-        get() = _pastReservations
+    val pastReservation = repository.pastRes
+    val plannedReservation = repository.plannedRes
 
-    private val _plannedReservations = MutableLiveData<List<com.example.squads.database.reservations.Reservation>>()
-    val plannedReservation: LiveData<List<com.example.squads.database.reservations.Reservation>>
-        get() = _plannedReservations
-
-    init {
-        getPastReservations()
-        getPlannedReservations()
-    }
-
-    /**
-     * @see https://kotlinlang.org/docs/collection-filtering.html
-     *
-     */
-    fun getPlannedReservations() {
-        val toLocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.UTC)
-        _plannedReservations.value = _reservations?.filter {
-            it.endDate > Date.from(toLocalDateTime.date.toJavaLocalDate()
-                .atStartOfDay().atZone(ZoneId.systemDefault()).toInstant())
-        }
-    }
-
-    /**
-     * @see https://kotlinlang.org/docs/collection-filtering.html
-     *
-     */
-    fun getPastReservations() {
-        Log.d("ReservationViewModel", Clock.System.now().toLocalDateTime(TimeZone.UTC).toString())
-        val toLocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.UTC)
-
-        _pastReservations.value = _reservations?.filter {
-            Date.from(toLocalDateTime.date.toJavaLocalDate()
-                .atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()) > it.endDate
-        }
-    }
 }
