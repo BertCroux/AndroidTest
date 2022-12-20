@@ -39,8 +39,6 @@ fun List<Session>.asDomain(): List<Session> {
             canCancel = it.canCancel,
             canSignUp = it.canSignUp,
             canJoinWaitlist = it.canJoinWaitlist,
-
         )
-
     }
 }

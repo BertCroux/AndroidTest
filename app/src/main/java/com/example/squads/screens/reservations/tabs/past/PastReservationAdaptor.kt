@@ -4,15 +4,16 @@ import android.content.Context
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import android.view.LayoutInflater
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.squads.R
 import com.example.squads.databinding.PastReservationBinding
 import com.example.squads.database.reservations.Reservation
 import java.text.SimpleDateFormat
 
-class PastReservationAdaptor(private val dataSet: LiveData<List<com.example.squads.domain.accounts.Reservation>>?) :
-    RecyclerView.Adapter<PastReservationAdaptor.ViewHolder>() {
-
+class PastReservationAdaptor() :
+    ListAdapter<Reservation, PastReservationAdaptor.ViewHolder>(ReservationDiffCallback()) {
     lateinit var binding: PastReservationBinding
     lateinit var context : Context
     inner class ViewHolder(val binding: PastReservationBinding) : RecyclerView.ViewHolder(binding.root)
@@ -30,9 +31,10 @@ class PastReservationAdaptor(private val dataSet: LiveData<List<com.example.squa
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
         val simpleDateFormat = SimpleDateFormat("EEE dd/MM")
-        val simpelTimeFormat = SimpleDateFormat("HH:mm")
+        val simpleTimeFormat = SimpleDateFormat("HH:mm")
 
-        binding.textView3.text = dataSet?.value!![position].trainer
+        binding.textView3.text = getItem(position).sessionType
+        binding.textView2.text = "test"
 
         /*
 
@@ -57,6 +59,14 @@ class PastReservationAdaptor(private val dataSet: LiveData<List<com.example.squa
          */
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = dataSet?.value?.size ?: 0
+}
+class ReservationDiffCallback: DiffUtil.ItemCallback<Reservation>() {
+    override fun areItemsTheSame(oldItem: Reservation, newItem: Reservation): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Reservation, newItem: Reservation): Boolean {
+        return oldItem == newItem
+    }
+
 }

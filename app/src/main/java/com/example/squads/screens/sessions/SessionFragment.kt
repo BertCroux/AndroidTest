@@ -41,7 +41,7 @@ class SessionFragment : Fragment() {
         binding.sessionList.layoutManager = LinearLayoutManager(activity)
 
         val myListSessionAdapter = MyListSessionAdapter()
-        binding.sessionList.adapter = myListSessionAdapter;
+        binding.sessionList.adapter = myListSessionAdapter
 
         sessionViewModel.sessions.observe(viewLifecycleOwner) { it ->
             it.forEach {

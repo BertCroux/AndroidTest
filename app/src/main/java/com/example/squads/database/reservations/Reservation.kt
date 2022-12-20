@@ -20,13 +20,13 @@ data class Reservation(
 
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun List<Reservation>.asDomain(): List<com.example.squads.domain.accounts.Reservation> {
+fun List<Reservation>.asDomain(): List<Reservation> {
     return map {
-        com.example.squads.domain.accounts.Reservation(
+        Reservation(
             id = it.id,
-            startDate = it.beginDate,
+            beginDate = it.beginDate,
             endDate = it.endDate,
-            trainer = it.trainerName,
+            trainerName = it.trainerName,
             sessionType = it.sessionType,
             sessionId = it.sessionId
             )

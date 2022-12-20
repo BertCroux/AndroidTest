@@ -38,7 +38,7 @@ class PlannedReservationsFragment : Fragment() {
         //binding.lifecycleOwner = this
 
         binding.containerViewPlannedReservations.layoutManager = LinearLayoutManager(activity)
-        binding.containerViewPlannedReservations.adapter = PlannedReservationAdaptor(sharedViewModel.plannedReservation)
+        //binding.containerViewPlannedReservations.adapter = PlannedReservationAdaptor(sharedViewModel.plannedReservation)
 
 
 
