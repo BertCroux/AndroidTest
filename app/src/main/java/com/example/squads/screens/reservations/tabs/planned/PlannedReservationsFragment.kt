@@ -1,10 +1,12 @@
 package com.example.squads.screens.reservations.tabs.planned
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -23,6 +25,7 @@ class PlannedReservationsFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,9 +40,13 @@ class PlannedReservationsFragment : Fragment() {
 
         //binding.lifecycleOwner = this
 
+        binding.lifecycleOwner = this
         binding.containerViewPlannedReservations.layoutManager = LinearLayoutManager(activity)
-        //binding.containerViewPlannedReservations.adapter = PlannedReservationAdaptor(sharedViewModel.plannedReservation)
-
+        val adaptor = PlannedReservationAdaptor()
+        binding.containerViewPlannedReservations.adapter = adaptor
+        sharedViewModel.plannedReservation.observe(viewLifecycleOwner) {
+            adaptor.submitList(it)
+        }
 
 
         return binding.root
