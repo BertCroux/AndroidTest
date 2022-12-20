@@ -4,14 +4,20 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.squads.database.accounts.DatabaseAccount
-import com.example.squads.database.reservations.PastReservation
-import com.example.squads.database.reservations.PlannedReservation
+import com.example.squads.database.reservations.DatabasePastReservation
+import com.example.squads.database.reservations.DatabasePlannedReservation
 import com.squareup.moshi.Json
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.util.*
 
+//--------------------------------------
+//---------------Account----------------
+//--------------------------------------
+/**
+ * Data transfer object for the Account (user)
+ */
 data class AccountDto(
     @Json(name = "id")
     var userId: Int,
@@ -26,7 +32,9 @@ data class AccountDto(
     var drugsUsed: String,
 )
 
-
+/**
+ * Data transfer object for the Address of an Account (user)
+ */
 data class AddressDto(
     var addressLine1: String,
     var addressLine2: String,
@@ -34,8 +42,9 @@ data class AddressDto(
     var city: String
 )
 
-
-
+/**
+ * Convert a network result into Database Account
+ */
 fun AccountDto.asDatabase(): DatabaseAccount {
     Log.d("AccountDto", this.toString())
     return DatabaseAccount(
@@ -73,9 +82,9 @@ data class ReservationDto(
 )
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun List<ReservationDto>.asDatabase(): Array<com.example.squads.database.reservations.PastReservation> {
+fun List<ReservationDto>.asDatabase(): Array<com.example.squads.database.reservations.DatabasePastReservation> {
     val x =  this.map {
-        PastReservation(
+        DatabasePastReservation(
             id = it.id,
             beginDate = Date.from(LocalDateTime.parse(it.startDate).atZone(ZoneId.systemDefault()).toInstant()),
             endDate = Date.from(LocalDateTime.parse(it.endDate).atZone(ZoneId.systemDefault()).toInstant()),
@@ -94,9 +103,9 @@ fun List<ReservationDto>.asDatabase(): Array<com.example.squads.database.reserva
 
 }
 @RequiresApi(Build.VERSION_CODES.O)
-fun List<ReservationDto>.asPlannedDatabase(): Array<PlannedReservation> {
+fun List<ReservationDto>.asPlannedDatabase(): Array<DatabasePlannedReservation> {
     val x =  this.map {
-        PlannedReservation(
+        DatabasePlannedReservation(
             id = it.id,
             beginDate = Date.from(LocalDateTime.parse(it.startDate).atZone(ZoneId.systemDefault()).toInstant()),
             endDate = Date.from(LocalDateTime.parse(it.endDate).atZone(ZoneId.systemDefault()).toInstant()),
@@ -117,9 +126,9 @@ fun List<ReservationDto>.asPlannedDatabase(): Array<PlannedReservation> {
 
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun ReservationDtoContainer.asDomain(): List<PastReservation> {
+fun ReservationDtoContainer.asDomain(): List<DatabasePastReservation> {
     return replyBody.map {
-        PastReservation(
+        DatabasePastReservation(
             id = it.id,
             beginDate = Date.from(Instant.parse(it.startDate)),
             endDate = Date.from(Instant.parse(it.endDate)),

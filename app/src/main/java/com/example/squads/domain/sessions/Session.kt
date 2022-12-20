@@ -11,6 +11,4 @@ data class Session(
     val CanCancel : Boolean,
     val CanSignUp : Boolean,
     val AmoutOfReservations : Int,
-
-
-    )
+)

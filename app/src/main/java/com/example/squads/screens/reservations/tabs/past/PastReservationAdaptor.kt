@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.squads.databinding.PastReservationBinding
-import com.example.squads.database.reservations.PastReservation
+import com.example.squads.database.reservations.DatabasePastReservation
 import com.example.squads.screens.reservations.tabs.ReservationDiffCallback
 import java.text.SimpleDateFormat
 
 class PastReservationAdaptor() :
-    ListAdapter<PastReservation, PastReservationAdaptor.ViewHolder>(ReservationDiffCallback()) {
+    ListAdapter<DatabasePastReservation, PastReservationAdaptor.ViewHolder>(ReservationDiffCallback()) {
     lateinit var binding: PastReservationBinding
     lateinit var context : Context
     inner class ViewHolder(val binding: PastReservationBinding) : RecyclerView.ViewHolder(binding.root)

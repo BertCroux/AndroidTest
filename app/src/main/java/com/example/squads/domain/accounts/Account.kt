@@ -1,5 +1,10 @@
 package com.example.squads.domain.accounts
 
+/**
+ * Account model class:
+ * This is how the Account (user) is represented
+ * in the entire app.
+ */
 data class Account (
     val userId: Int,
     val firstName: String,

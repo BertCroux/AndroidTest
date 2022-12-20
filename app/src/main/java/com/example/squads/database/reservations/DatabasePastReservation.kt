@@ -10,7 +10,7 @@ import java.util.Date
  * data class that stores the past reservations
  */
 @Entity(tableName = "past_reservation")
-data class PastReservation(
+data class DatabasePastReservation(
     @PrimaryKey
     val id: Int,
     val beginDate: Date,
@@ -24,7 +24,7 @@ data class PastReservation(
  * data class that stores the planned reservations
  */
 @Entity(tableName = "planned_reservation")
-data class PlannedReservation(
+data class DatabasePlannedReservation(
     @PrimaryKey
     val id: Int,
     val beginDate: Date,
@@ -34,24 +34,34 @@ data class PlannedReservation(
     val sessionId: Int
 )
 
-
+//TODO: look at implementation: this breaks if you change this to real domain
+// objects for the ListView
+/**
+ * Converts a DB object (DatabasePastReservation) to domain objects (PastReservation)
+ */
 @RequiresApi(Build.VERSION_CODES.O)
-fun List<PastReservation>.asPastDomain(): List<PastReservation> {
+fun List<DatabasePastReservation>.asPastDomain(): List<DatabasePastReservation> {
     return map {
-        PastReservation(
+        DatabasePastReservation(
             id = it.id,
             beginDate = it.beginDate,
             endDate = it.endDate,
             trainerName = it.trainerName,
             sessionType = it.sessionType,
             sessionId = it.sessionId
-            )
+        )
     }
 }
+
+//TODO: look at implementation: this breaks if you change this to real domain
+// objects for the ListView
+/**
+ * Converts a DB object (DatabasePlannedReservation) to domain objects (PlannedReservation)
+ */
 @RequiresApi(Build.VERSION_CODES.O)
-fun List<PlannedReservation>.asPlannedDomain(): List<PlannedReservation> {
+fun List<DatabasePlannedReservation>.asPlannedDomain(): List<DatabasePlannedReservation> {
     return map {
-        PlannedReservation(
+        DatabasePlannedReservation(
             id = it.id,
             beginDate = it.beginDate,
             endDate = it.endDate,

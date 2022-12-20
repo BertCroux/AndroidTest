@@ -12,22 +12,18 @@ import com.example.squads.database.reservations.*
 import com.example.squads.database.sessions.Session
 import com.example.squads.database.sessions.SessionDao
 
-@Database(entities = [DatabaseMeasurement::class, DatabaseAccount::class, Session::class,
-    PastReservation::class, PlannedReservation::class],
-    version = 5, exportSchema = false)
+@Database(
+    entities = [DatabaseMeasurement::class, DatabaseAccount::class, Session::class,
+        DatabasePastReservation::class, DatabasePlannedReservation::class],
+    version = 5, exportSchema = false
+)
 @androidx.room.TypeConverters(Converters::class)
 abstract class SquadsRoomDatabase : RoomDatabase() {
     abstract val accountDao: AccountDao
-    //abstract fun exerciseDao(): ExerciseDao
     abstract val measurementDao: DatabaseMeasurementDao
     abstract val sessionDto: SessionDao
-
-    // WE NOW USE 2 SEPERATE INTERFACES!! - abstract val reservationDao: ReservationDao
     abstract val pastReservationDAo: PastReservationDao
     abstract val plannedReservationDAo: PlannedReservationDao
-
-    //abstract fun personalRecordDao(): PersonalRecordDao
-    //abstract fun reservationDao(): ReservationDao
 
     companion object {
         @Volatile
@@ -47,7 +43,6 @@ abstract class SquadsRoomDatabase : RoomDatabase() {
                         .build()
                     INSTANCE = instance
                 }
-
                 return instance
             }
         }

@@ -6,13 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.squads.database.reservations.PastReservation
-import com.example.squads.database.reservations.PlannedReservation
+import com.example.squads.database.reservations.DatabasePlannedReservation
 import com.example.squads.databinding.PlannedReservationBinding
-import com.example.squads.screens.reservations.tabs.ReservationDiffCallback
 
 class PlannedReservationAdaptor() :
-    ListAdapter<PlannedReservation,PlannedReservationAdaptor.ViewHolder>(ReservationDiffCallbackPl()) {
+    ListAdapter<DatabasePlannedReservation,PlannedReservationAdaptor.ViewHolder>(ReservationDiffCallbackPl()) {
     lateinit var context : Context
 
     lateinit var binding: PlannedReservationBinding
@@ -43,12 +41,12 @@ class PlannedReservationAdaptor() :
     }
 
 }
-class ReservationDiffCallbackPl: DiffUtil.ItemCallback<PlannedReservation>() {
-    override fun areItemsTheSame(oldItem: PlannedReservation, newItem: PlannedReservation): Boolean {
+class ReservationDiffCallbackPl: DiffUtil.ItemCallback<DatabasePlannedReservation>() {
+    override fun areItemsTheSame(oldItem: DatabasePlannedReservation, newItem: DatabasePlannedReservation): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: PlannedReservation, newItem: PlannedReservation): Boolean {
+    override fun areContentsTheSame(oldItem: DatabasePlannedReservation, newItem: DatabasePlannedReservation): Boolean {
         return oldItem == newItem
     }
 
