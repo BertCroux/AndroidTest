@@ -38,17 +38,12 @@ class PastReservationsFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.pastReservationContainer2.layoutManager = LinearLayoutManager(activity)
-        sharedViewModel.pastReservation.observe(viewLifecycleOwner, Observer {
-            Log.d("pastreservationFragment", sharedViewModel.pastReservation.value.toString())
-        })
-
-
         val pastReservationAd = PastReservationAdaptor()
-        binding.pastReservationContainer2.adapter = pastReservationAd
         sharedViewModel.pastReservation.observe(viewLifecycleOwner) { it ->
 
             pastReservationAd.submitList(it)
         }
+        binding.pastReservationContainer2.adapter = pastReservationAd
 
         return binding.root
     }

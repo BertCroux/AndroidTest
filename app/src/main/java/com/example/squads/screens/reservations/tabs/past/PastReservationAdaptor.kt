@@ -32,9 +32,10 @@ class PastReservationAdaptor() :
 
         val simpleDateFormat = SimpleDateFormat("EEE dd/MM")
         val simpleTimeFormat = SimpleDateFormat("HH:mm")
+        val simpleDateF = SimpleDateFormat("dd/MM/yyyy")
 
         binding.textView3.text = getItem(position).sessionType
-        binding.textView2.text = "test"
+        binding.textView2.text = simpleDateF.format(getItem(position).beginDate)
 
         /*
 
