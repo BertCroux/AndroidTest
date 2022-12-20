@@ -6,14 +6,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.squads.database.accounts.DatabaseAccount
 import com.example.squads.database.accounts.AccountDao
-import com.example.squads.database.reservations.ReservationDao
 import com.example.squads.database.measurements.DatabaseMeasurement
 import com.example.squads.database.measurements.DatabaseMeasurementDao
-import com.example.squads.database.reservations.Reservation
+import com.example.squads.database.reservations.*
 import com.example.squads.database.sessions.Session
 import com.example.squads.database.sessions.SessionDao
 
-@Database(entities = [DatabaseMeasurement::class, DatabaseAccount::class, Session::class, Reservation::class], version = 5, exportSchema = false)
+@Database(entities = [DatabaseMeasurement::class, DatabaseAccount::class, Session::class,
+    PastReservation::class, PlannedReservation::class],
+    version = 5, exportSchema = false)
 @androidx.room.TypeConverters(Converters::class)
 abstract class SquadsRoomDatabase : RoomDatabase() {
     abstract val accountDao: AccountDao
@@ -21,7 +22,9 @@ abstract class SquadsRoomDatabase : RoomDatabase() {
     abstract val measurementDao: DatabaseMeasurementDao
     abstract val sessionDto: SessionDao
 
-    abstract val reservationDao: ReservationDao
+    // WE NOW USE 2 SEPERATE INTERFACES!! - abstract val reservationDao: ReservationDao
+    abstract val pastReservationDAo: PastReservationDao
+    abstract val plannedReservationDAo: PlannedReservationDao
 
     //abstract fun personalRecordDao(): PersonalRecordDao
     //abstract fun reservationDao(): ReservationDao

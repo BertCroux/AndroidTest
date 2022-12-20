@@ -7,11 +7,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.squads.database.SquadsRoomDatabase
 import com.example.squads.database.accounts.asDomain
-import com.example.squads.database.reservations.asDomain
+import com.example.squads.database.reservations.asPastDomain
+import com.example.squads.database.reservations.asPlannedDomain
 import com.example.squads.domain.accounts.Account
 import com.example.squads.network.accounts.AccountApi
 import com.example.squads.network.accounts.Reservation
 import com.example.squads.network.accounts.asDatabase
+import com.example.squads.network.accounts.asPlannedDatabase
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -23,22 +25,22 @@ class AccountRepository(private val database: SquadsRoomDatabase) {
         it?.asDomain()
     }
 
+    /*
     @RequiresApi(Build.VERSION_CODES.O)
     val reservations  = Transformations.map(database.reservationDao.getReservations()) {
-        it.asDomain()
+        it.asPastDomain()
+    }
+     */
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    val pastRes = Transformations.map(database.pastReservationDAo.getPastReservation()) {
+        it.asPastDomain()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    val pastRes = Transformations.map(database.reservationDao.getPastReservations(Date())) {
-        it.asDomain()
+    val plannedRes = Transformations.map(database.plannedReservationDAo.getPlannedReservation()) {
+        it.asPlannedDomain()
     }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    val plannedRes = Transformations.map(database.reservationDao.getPlannedReservations(Date())) {
-        it.asDomain()
-    }
-
-
 
     suspend fun refreshAccount() {
         withContext(Dispatchers.IO) {
@@ -63,10 +65,8 @@ class AccountRepository(private val database: SquadsRoomDatabase) {
                 val past_res_list = past_res.replyBody
                 val planned_res_list = planned_res.replyBody
 
-                database.reservationDao.insert(past_res_list.asDatabase())
-                database.reservationDao.insert(planned_res_list.asDatabase())
-
-
+                database.pastReservationDAo.insert(past_res_list.asDatabase())
+                database.plannedReservationDAo.insert(planned_res_list.asPlannedDatabase())
             }catch (e: Exception) {
                 Log.e("AccountRepository", e.message.toString())
             }

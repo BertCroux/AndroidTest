@@ -22,9 +22,6 @@ class ReservationViewModel(application : Application) : AndroidViewModel(applica
     private val database = SquadsRoomDatabase.getInstance(application.applicationContext)
     private val repository = AccountRepository(database)
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    val reservations = repository.reservations
-    private val _reservations = reservations
 
 
     init {

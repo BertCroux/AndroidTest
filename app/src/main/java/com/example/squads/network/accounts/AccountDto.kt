@@ -4,7 +4,8 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.squads.database.accounts.DatabaseAccount
-import com.example.squads.database.reservations.Reservation
+import com.example.squads.database.reservations.PastReservation
+import com.example.squads.database.reservations.PlannedReservation
 import com.squareup.moshi.Json
 import java.time.Instant
 import java.time.LocalDateTime
@@ -72,9 +73,30 @@ data class ReservationDto(
 )
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun List<ReservationDto>.asDatabase(): Array<com.example.squads.database.reservations.Reservation> {
+fun List<ReservationDto>.asDatabase(): Array<com.example.squads.database.reservations.PastReservation> {
     val x =  this.map {
-        Reservation(
+        PastReservation(
+            id = it.id,
+            beginDate = Date.from(LocalDateTime.parse(it.startDate).atZone(ZoneId.systemDefault()).toInstant()),
+            endDate = Date.from(LocalDateTime.parse(it.endDate).atZone(ZoneId.systemDefault()).toInstant()),
+            trainerName = it.trainer,
+            sessionType = it.sessionType,
+            sessionId = it.sessionId
+        )
+    }.toTypedArray()
+
+    //logging
+    x.forEach {
+        Log.d("AccountDto", it.toString())
+    }
+
+    return x
+
+}
+@RequiresApi(Build.VERSION_CODES.O)
+fun List<ReservationDto>.asPlannedDatabase(): Array<PlannedReservation> {
+    val x =  this.map {
+        PlannedReservation(
             id = it.id,
             beginDate = Date.from(LocalDateTime.parse(it.startDate).atZone(ZoneId.systemDefault()).toInstant()),
             endDate = Date.from(LocalDateTime.parse(it.endDate).atZone(ZoneId.systemDefault()).toInstant()),
@@ -95,9 +117,9 @@ fun List<ReservationDto>.asDatabase(): Array<com.example.squads.database.reserva
 
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun ReservationDtoContainer.asDomain(): List<Reservation> {
+fun ReservationDtoContainer.asDomain(): List<PastReservation> {
     return replyBody.map {
-        Reservation(
+        PastReservation(
             id = it.id,
             beginDate = Date.from(Instant.parse(it.startDate)),
             endDate = Date.from(Instant.parse(it.endDate)),

@@ -2,19 +2,16 @@ package com.example.squads.screens.reservations.tabs.past
 
 import android.content.Context
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
 import android.view.LayoutInflater
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.squads.R
 import com.example.squads.databinding.PastReservationBinding
-import com.example.squads.database.reservations.Reservation
+import com.example.squads.database.reservations.PastReservation
 import com.example.squads.screens.reservations.tabs.ReservationDiffCallback
 import java.text.SimpleDateFormat
 
 class PastReservationAdaptor() :
-    ListAdapter<Reservation, PastReservationAdaptor.ViewHolder>(ReservationDiffCallback()) {
+    ListAdapter<PastReservation, PastReservationAdaptor.ViewHolder>(ReservationDiffCallback()) {
     lateinit var binding: PastReservationBinding
     lateinit var context : Context
     inner class ViewHolder(val binding: PastReservationBinding) : RecyclerView.ViewHolder(binding.root)
